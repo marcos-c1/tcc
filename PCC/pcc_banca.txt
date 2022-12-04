@@ -1,0 +1,11 @@
+Revisão
+
+	- Ao referenciar mais de 1 autor na referência, usar o et. al deixando apenas o nome do primeiro autor
+	- Deixar o referencial teórico mais sólido
+	- Ortografia e gramática
+	- Melhorar o título
+	- Definir o algoritmo de comparação para que seja elucidado pelas extrações de características
+	- Definir um conjunto negativo de amostras (como os ncRNAs não pertencentes ao grupo de snoRNAs)
+	- O foco da pesquisa é na análise das extrações de características utilizando modelos matemáticos e não na implementação de um método de aprendizado para predição da estrutura
+	- Tempo devido para implementação dos métodos (ter cuidado no cronograma)
+	- Usar mais de uma métrica para avaliação dos resultados
