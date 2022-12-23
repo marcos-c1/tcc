@@ -1,0 +1,167 @@
+\chapter{Revisão da literatura}
+
+A construção do estado de conhecimento teve como princípio a análise sistemática de dissertações, teses, trabalhos científicos e artigos produzidos em um lapso temporal de 6 anos. A estratégia utilizada para a revisão sistemática da literatura busca seguir os critérios adotados por \cite{review-literature} tendo o trabalho de \cite{math-feature-bio} como exemplo.
+
+\section{Questões de pesquisa}
+As questões de pesquisa norteam a revisão sistemática e têm como objetivo definir a parametrização da problemática identificando os trabalhos que propunham a extração de características em sequências de RNAs, quais métodos de extração matemáticos bem como o comparativo da técnica biológica em detrimento dos modelos matemáticos e a acurácia de cada método considerando um grupo de lcRNAs. Portanto, as \ac{question} foram definidas a seguir:
+
+\begin{itemize}
+   \item\ac{question}$_{1}$ Quais os métodos de extração de características em sequências de RNAs?
+  \item \ac{question}$_{2}$ Quais os modelos matemáticos utilizados na extração?
+  \item \ac{question}$_{3}$ Quais os grupos de lcRNAs a serem trabalhados e os modelos matemáticos aplicados?
+\end{itemize}
+
+\section{Estratégia de busca}
+
+As bases de dados \textit{PubMed Central}, repositório da UnB, \textit{Oxford Academic}, \textit{Medline}, SIABI/IFB foram consumidas para embasamento teórico e argumentativo da tese. O \textit{PubMed Central} é um banco de dados digital gratuito de literatura científica na área de biomedicina e tecnologia gerenciado e desenvolvido pela \textit{National Library of Medicine} que contém um vasto repositório de artigos científicos mundialmente reconhecido. O repositório da UnB é um serviço digital oferecido pela Biblioteca Central para a gestão e disseminação da produção científica da Universidade de Brasília. A base da \textit{Oxford Academic} publica os periódicos de cunho científico geral para o público em mais alta qualidade, dispondo de uma comunidade acadêmica da Universidade de Oxford. A Medline que é uma biblioteca virtual de medicina a qual detém os dados indexados por uma palavra-chave específica do sistema \textit{MeSH} e, por fim, o SIABI/IFB, biblioteca virtual do IFB que disponibiliza os recursos dos campus existentes em Brasília.
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Base de dados consumidas}
+    \label{tab:table1}
+    \begin{tabular}{l r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \hline \\
+      \textbf{Base de dados} & \textbf{Link para acesso} \\ \\
+      \hline \\
+      \textbf{PubMed Central} & <https://pubmed.ncbi.nlm.nih.gov/> \\
+      \textbf{Repositório UnB} & <https://repositorio.unb.br/> \\
+      \textbf{Oxford Academic} & <https://academic.oup.com/journals>\\
+      \textbf{Medline} & <http://bases.bireme.br/>\\
+      \textbf{SIABI/IFB} & <http://siabi.ifb.edu.br/> 
+      \\ \hline 
+    \end{tabular}
+  \end{center}
+\end{table}
+
+Para cada base de dados escolhida foram realizadas buscas avançadas em suas
+ferramentas de pesquisa com um intervalo de tempo de 6 anos até a data de
+realização desta revisão (24 de junho de 2022), contemplando como palavras-chaves de pesquisa: \textit{ncRNAs}, \textit{machine learning}, \textit{feature extraction}, \textit{sequence features}, \textit{mathematical approach} às quais resultaram em um conjunto de mais de 300 literaturas. Visando diminuir o escopo das produções para a problemática em questão, modificou-se o critério de análise que apenas considerava o título e resumo dos materiais e passou-se a levar em conta apenas os trabalhos que continham ncRNAs como objeto de estudo. Na seção posterior, mais especificamente no processo de seleção e exclusão, ao passar pela crítica qualitativa das obras, as literaturas serão menos abrangentes e mais voltadas ao estudo de caso da tese. A Tabela 3.2 mostra a quantidade de artigos científicos retornados por cada banco de dados no campo de busca.
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Resultado das buscas nos bancos de dados}
+    \label{tab:table2}
+    \begin{tabular}{l c r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \hline \\
+      \textbf{Base de dados} & \textbf{Palavras-chaves} & \textbf{Produções científicas} \\ \\
+      \hline \\
+      \textbf{PubMed Central} & \textit{Machine learning, sequence features, ncRNAs} & 98\\
+      \textbf{Repositório UnB} & \textit{Machine learning, ncRNAs} & 5 \\
+      \textbf{Oxford Academic} & \textit{Machine learning, ncRNAs, mathematic sequence features} & 153\\
+      \textbf{Medline} & \textit{Machine learning, ncRNAs, mathematic sequence} & 34\\
+      \textbf{SIABI/IFB} & \textit{Machine learning} & 2\\ 
+      \hline \\
+      \textbf{Total} & & 292  
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\section{Critério de inclusão e exclusão}
+
+Para responder as QPs definimos Critérios de Inclusão (CIs) e Critérios de Exclusão (CEs) que irão filtrar os resultados das pesquisas. Os CIs estão listados a seguir.
+
+\begin{itemize}
+  \item \ac{ci}$_{1}$ Produções científicas que usam os \ac{ncRNAs} como objeto de pesquisa para a extração de características;
+  \item \ac{ci}$_{2}$ Estudos primários que aplicam modelos preditivos supervisionados ou não supervisionados sendo biológico, híbrido ou matemático para classificação de \ac{ncRNAs};
+  \item \ac{ci}$_{3}$ Estudos que classificam as classes e grupos de ncRNAs aplicando o modelo matemático de extração de características;
+\end{itemize}
+
+Os \ac{ce} irão ajudar a filtrar apenas os artigos científicos relevantes para a revisão. Baseado nas questões de pesquisa que norteam o trabalho, os \ac{ce}s propostos abaixo selecionarão um grupo concreto de produções a fim de diminuir a abragência e a generalização do tema.
+
+\begin{itemize}
+    \item Estudos que não estejam escritos em português ou inglês;
+    \item Estudos que a versão completa não é disponível gratuitamente;
+    \item  Estudos "duplicados", que foram obtidos através da busca em mais de uma base, nestes casos apenas o primeiro será considerado.
+    \item Produções científicas que não classificam o grupo de \ac{ncRNAs};
+    \item Estudos descritivos de funcionalidades que não discorre sobre a metodologia de \ac{ml} empregue;
+\end{itemize}
+
+
+\section{Análise e discussão das literatuas}
+
+As aplicações modernas do \textit{ML}  extraem informações relevantes de sequências baseadas em várias propriedades biológicas e físico-químicas, usando quadros de leitura abertos (ORF), frequência de uso de nucleotídeos adjacentes, conteúdo \textit{GC} e entre outros. Essas abordagens são comuns em problemas biológicos, mas essas implementações são muitas vezes difíceis de reutilizar ou adaptar a outro problema específico. Um grande exemplo é que os recursos ORF são um guia essencial para \ac{ncRNAs} de genes codificadores de proteínas, mas não são capazes de classificar classes para os ncRNAs, e, como dito por \cite{lncRNAs-article}, consequentemente, a extração de um conjunto de características que contêm informação discriminatória significativa para identificá-las é prejudicada, o que influencia na construção de um modelo preditivo. 
+
+
+\cite{math-feature-bio} propõe um modelo preditivo matemático para identificação de classes de ncRNAs. Este trabalho foi dividido em três estudos de caso: (I) Avaliação das abordagens matemáticas com os problemas mais frequentes da classe de ncRNAs, por exemplo, \textit{lncRNA versus mRNA}; (II) Teste de generalização em diferentes classificadores de ncRNAs; (III) Análise de persistência em cenários com dados desbalanceados. As técnicas de \ac{ml} aplicadas consistem na transformação discreta de Fourier, mapeamento numérico (representação de Voss, de Real, de z-curve, de EIIP e de números complexos), entropia de Shannon e Tsallis e o uso de redes complexas. 
+
+\cite{ga-svm} em contra-proposta aplica um \ac{ga} junto a uma \ac{svm} que implementa o método de aprendizado de máquina supervisionado baseado no conceito da teoria de Darwin, isto é, o conjunto de sequências que mais se adaptam a parametrização de classificação dos algoritmos são herdadas na próxima geração a partir do mecanismo de competição. Em suma, a classificação executa um modelo preditivo biológico na categorização do grupo de ncRNAs.
+
+\cite{math-features-package} apresenta um pacote de 20 descritores matemáticos divididos em 5 grupos: mapeamento numérico, \textit{chaos game}, transformação de Fourier, entropia e grafos. Similar ao seu estudo comparativo \cite{math-feature-bio}, o autor executa o estudo de caso nos ncRNAs treinando o algoritmo \textit{CatBoost} para classificação de classes e concluiu que a abordagem matemática trouxe uma eficácia significativa nos resultados.
+
+\cite{snoRNAs-article} busca classificar as classes de snoRNAs \textit{(H/ACA box snoRNA e C/D box snoRNA)} empregando uma técnica mais sofisticada na fase de treinamento no intuito de encontrar bons meta-parâmetros da \ac{svm}. A ideia é usar o \ac{eden}, um kernel decomposicional de grafos baseado no \ac{nspdk}, que pode ser usado para a geração explicita de features a partir de grafos e as \ac{svm}s que geram um hiperplano como superfície de decisão de tal modo que a margem de separação entre amostras positivas e negativas é maximizada formando, posteriormente, as classes preditas no hiperplano. 
+
+\cite{snoReport-article} é a versão melhorada do snoReport 1.0, ferramenta cuja fora utilizada em \cite{snoRNAs-article} para a classificação de snoRNAs usando uma combinação de estruturas secundárias e \ac{ml}. A aprimoração do snoReport contemplou novos recursos para os snoRNAs \textit{box C/D e H/ACA box}, desenvolvendo uma técnica robusta na fase de treinamento da \ac{svm} (com dados recentes de organismos vertebrados e o refinamento dos parâmetros \textit{C} e \textit{gamma} na \ac{svm}), consumindo ainda mais bancos de dados para expandir a coleção anterior do snoReport. Para validar a sua serventia, houve diversos testes em organismos animais os quais mostraram um ótimo desempenho de classificação.
+
+\cite{cnn-article} aborda a classificação de ncRNAs fundado nas redes neurais convolucionais. O treinamento é feito por representações distributivas de 4 nucleotídeos que derivaram com sucesso as matrizes de peso de posição em kernels aprendidos que correspondem a sequência de \textit{motifs} como locais de ligação a proteínas. A classificação de um par alinhado de duas sequências em classes positivas e negativas corresponde ao agrupamento das sequências de entrada. Depois de combinarmos a distribuição
+representativa de nucleotídeos de RNA com a informação da estrutura secundária específica para \ac{ncRNAs}
+e ainda com perfis de mapeamento de leituras de sequência de próxima geração, o treinamento de CNNs
+para classificação de alinhamentos de sequências de RNA rendeu agrupamento preciso em termos de famílias ncRNA e superou os métodos de agrupamento existentes tradicionais para sequências de ncRNA. Interessantes sequências de \textit{motifs} e estruturas secundárias conhecidas pelas famílias de snoRNAs, microRNA e tRNAs foram identificadas no estudo.
+
+\cite{graph-kernel-article} sugere um estudo voltado a classificação funcional de ncRNAs fundamentado na implementação de um grafo kernel. Para lidar com entidades representadas como grafos, uma variedade de
+kernels têm sido propostos na literatura. Diferentes noções de similaridade são obtidas escolhendo diversos tipos de subestruturas a serem consideradas, desde caminhos até pequenos subgrafos. Existem várias maneiras de representar estruturas secundárias de RNA, incluindo as representações entre colchetes (onde os nucleotídeos são convertidos em nós e ligações em arestas) e representações em árvore (onde pares de bases são convertidos em nós 'tronco' e nucleotídeos de alça são convertidos em nós de 'loop'). Cada representaçãotem diferentes vantagens e desvantagens, incluindo perda de informações e complexidade
+de cálculo. A estratégia \ac{nspdk}, assim como no trabalho de \cite{snoReport-article}, é adotada com o objetivo de materializar a codificação de características implícitas que é chave para obter eficiência linear na fase de classificação. Neste artigo, a representação escolhida é a \textit{loss-less}, ou seja, \textbf{sem perda}, onde os nós representam nucleotídeos e as arestas são as ligações entre eles, seja do tipo \textit{backbone} ou do tipo de \textit{encadernação}.
+
+\cite{}
+
+\section{Conclusão dos resultados apresentados na análise}
+
+Através da análise e discussão dos resultados da revisão, percebemos que existe
+a exploração de modelos preditivos matemáticos para a classificação de ncRNAs em oposição aos modelos tradicionais biológicos. Este fato deve-se pela alta taxa de \textit{F-score}, em outras palavras, da acurácia no classificamento de classes para os ncRNAs. Apesar da perspectiva biológica e híbrida, em contraste com a matemática, sua escolha varia de acordo com o objeto de estudo analisado e a sua eficiência de identificação. Há algoritmos que são melhores para classificação de móleculas de DNAs, assim como há outros mecanismos de classificação que produzem resultados significativos para as moléculas de RNAs. No atual contexto, os projetos científicos revelam que a extração de características por um cenário matemático demonstrou ser relevante para classificação de ncRNAs. O principal enfoque da tese é demonstrar o custo do algoritmo, o \textit{pipeline} das etapas a serem executadas desde a entrada, a parametrização, treinamento e testes até a saída. Mesmo que muito progresso já tenha sido feito, existem incógnitas para este grupo importante de moléculas que podem ser respondidas pelo avanço do \ac{ml}. Com base nas provas de conceito observadas é possível perceber a capacidade do modelo preditivo matemático de identificar os ncRNAs e do benefício da identificação em um âmbito biomedicinal.
+
+% \section{Introduction}
+
+% \lipsum[1]
+
+% \begin{code}[language=Python,caption=Python Fribonacci Code,label=code:frib]
+% from math import *
+
+% # define function
+% def analytic_fibonacci(n):
+%   sqrt_5 = sqrt(5);
+%   p = (1 + sqrt_5) / 2;
+%   q = 1/p;
+%   return int( (p**n + q**n) / sqrt_5 + 0.5 )
+
+% for i in range(1,31):
+%   print analytic_fibonacci(i)
+% \end{code}
+
+
+% This is a reference to Code \ref{code:frib} \ldots{}
+
+% \lipsum[1]
+
+% \begin{code}[language=C,caption=Hello World C Code,label=code:helloc]
+% #include<stdio.h>
+
+% main()
+%     {
+%         printf("Hello World");
+%     }
+% \end{code}
+
+
+% This is a reference to Code \ref{code:helloc} \ldots{}
+
+% \lipsum[1]
+
+% \begin{code}[language=Java,caption=Hello Java Code,label=code:helloj]
+% public class HelloWorld {
+
+%     public static void main(String[] args) {
+%         System.out.println("Hello, World");
+%     }
+% }
+% \end{code}
+
+
+% This is a reference to Code \ref{code:helloj} \ldots{}
+
+
+% \section{Section}
+
+% \lipsum[2-4]
+
+% \subsection{Subsection}
+
+% \lipsum[2-4]

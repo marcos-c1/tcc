@@ -1,0 +1,456 @@
+@article{math-feature-bio,
+    author = {Bonidia, Robson P and Sampaio, Lucas D H and Domingues, Douglas S and Paschoal, Alexandre R and Lopes, Fabrício M and de Carvalho, André C P L F and Sanches, Danilo S},
+    title = "{Feature extraction approaches for biological sequences: a comparative study of mathematical features}",
+    journal = {Briefings in Bioinformatics},
+    volume = {22},
+    number = {5},
+    year = {2021},
+    month = {02},
+    abstract = "{As consequence of the various genomic sequencing projects, an increasing volume of biological sequence data is being produced. Although machine learning algorithms have been successfully applied to a large number of genomic sequence-related problems, the results are largely affected by the type and number of features extracted. This effect has motivated new algorithms and pipeline proposals, mainly involving feature extraction problems, in which extracting significant discriminatory information from a biological set is challenging. Considering this, our work proposes a new study of feature extraction approaches based on mathematical features (numerical mapping with Fourier, entropy and complex networks). As a case study, we analyze long non-coding RNA sequences. Moreover, we separated this work into three studies. First, we assessed our proposal with the most addressed problem in our review, e.g. lncRNA and mRNA; second, we also validate the mathematical features in different classification problems, to predict the class of lncRNA, e.g. circular RNAs sequences; third, we analyze its robustness in scenarios with imbalanced data. The experimental results demonstrated three main contributions: first, an in-depth study of several mathematical features; second, a new feature extraction pipeline; and third, its high performance and robustness for distinct RNA sequence classification. Availability:https://github.com/Bonidia/FeatureExtraction\_BiologicalSequences}",
+    issn = {1477-4054},
+    doi = {10.1093/bib/bbab011},
+    url = {https://doi.org/10.1093/bib/bbab011},
+    note = {bbab011},
+    eprint = {https://academic.oup.com/bib/article-pdf/22/5/bbab011/40261502/bbab011.pdf},
+}
+
+
+@article {lncRNAs-article,
+	Title = {Towards a deeper annotation of human lncRNAs},
+	Author = {SzczeÅniak, MichaÅ‚ Wojciech and Wanowska, ElÅ¼bieta and Mukherjee, Neelanjan and Ohler, Uwe and MakaÅ‚owska, Izabela},
+	DOI = {10.1016/j.bbagrm.2019.05.003},
+	Number = {4},
+	Volume = {1863},
+	Month = {April},
+	Year = {2020},
+	Journal = {Biochimica et biophysica acta. Gene regulatory mechanisms},
+	ISSN = {1874-9399},
+	Pages = {194385},
+	Abstract = {A substantial fraction of the human transcriptome is composed of the so-called long noncoding RNAs (lncRNAs), yet the available catalogs of known lncRNAs are far from complete. Moreover, functional studies of these RNAs are challenged by several factors, such as their tissue-specific expression and functional heterogeneity, resulting in only ca. 1\% of them being well characterized. Here, we describe a set of 41,400 novel lncRNAs discovered with RNA-Seq data from 1463 samples encompassing diverse tissues and cell lines. We utilized publicly available transcriptomic and genomic data to provide their characteristics, such as tissue specificity, cellular abundance, polyA status, cellular localization, evolutionary conservation and transcript stability, which allowed us to speculate on their possible biological roles. We also pinpointed 24 novel lncRNAs as candidates for breast cancer biomarkers. The results bring us closer to a comprehensive annotation of human lncRNAs, though vast amounts of further work are needed to validate the predictions and fully decipher their biology. This article is part of a Special Issue entitled: ncRNA in control of gene expression edited by Kotb Abdelmohsen.},
+	URL = {https://doi.org/10.1016/j.bbagrm.2019.05.003},
+}
+
+@article{ga-svm,
+title = {Computational identification of human long intergenic non-coding RNAs using a GA–SVM algorithm},
+journal = {Gene},
+volume = {533},
+number = {1},
+pages = {94-99},
+year = {2014},
+issn = {0378-1119},
+doi = {https://doi.org/10.1016/j.gene.2013.09.118},
+url = {https://www.sciencedirect.com/science/article/pii/S0378111913013528},
+author = {Yanqiu Wang and Yang Li and Qi Wang and Yingli Lv and Shiyuan Wang and Xi Chen and Xuexin Yu and Wei Jiang and Xia Li},
+keywords = {LincRNAs, Feature selection, Classification, GA–SVM},
+abstract = {Long intergenic non-coding RNAs (lincRNAs) are a new type of non-coding RNAs and are closely related with the occurrence and development of diseases. In previous studies, most lincRNAs have been identified through next-generation sequencing. Because lincRNAs exhibit tissue-specific expression, the reproducibility of lincRNA discovery in different studies is very poor. In this study, not including lincRNA expression, we used the sequence, structural and protein-coding potential features as potential features to construct a classifier that can be used to distinguish lincRNAs from non-lincRNAs. The GA–SVM algorithm was performed to extract the optimized feature subset. Compared with several feature subsets, the five-fold cross validation results showed that this optimized feature subset exhibited the best performance for the identification of human lincRNAs. Moreover, the LincRNA Classifier based on Selected Features (linc-SF) was constructed by support vector machine (SVM) based on the optimized feature subset. The performance of this classifier was further evaluated by predicting lincRNAs from two independent lincRNA sets. Because the recognition rates for the two lincRNA sets were 100\% and 99.8\%, the linc-SF was found to be effective for the prediction of human lincRNAs.}
+}
+
+@article{math-features-package,
+    author = {Bonidia, Robson P and Domingues, Douglas S and Sanches, Danilo S and de Carvalho, André C P L F},
+    title = "{MathFeature: feature extraction package for DNA, RNA and protein sequences based on mathematical descriptors}",
+    journal = {Briefings in Bioinformatics},
+    volume = {23},
+    number = {1},
+    year = {2021},
+    month = {11},
+    abstract = "{One of the main challenges in applying machine learning algorithms to biological sequence data is how to numerically represent a sequence in a numeric input vector. Feature extraction techniques capable of extracting numerical information from biological sequences have been reported in the literature. However, many of these techniques are not available in existing packages, such as mathematical descriptors. This paper presents a new package, MathFeature, which implements mathematical descriptors able to extract relevant numerical information from biological sequences, i.e. DNA, RNA and proteins (prediction of structural features along the primary sequence of amino acids). MathFeature makes available 20 numerical feature extraction descriptors based on approaches found in the literature, e.g. multiple numeric mappings, genomic signal processing, chaos game theory, entropy and complex networks. MathFeature also allows the extraction of alternative features, complementing the existing packages. To ensure that our descriptors are robust and to assess their relevance, experimental results are presented in nine case studies. According to these results, the features extracted by MathFeature showed high performance (0.6350–0.9897, accuracy), both applying only mathematical descriptors, but also hybridization with well-known descriptors in the literature. Finally, through MathFeature, we overcame several studies in eight benchmark datasets, exemplifying the robustness and viability of the proposed package. MathFeature has advanced in the area by bringing descriptors not available in other packages, as well as allowing non-experts to use feature extraction techniques.}",
+    issn = {1477-4054},
+    doi = {10.1093/bib/bbab434},
+    url = {https://doi.org/10.1093/bib/bbab434},
+    note = {bbab434},
+    eprint = {https://academic.oup.com/bib/article-pdf/23/1/bbab434/42229654/bbab434.pdf},
+}
+
+@article{snoRNAs-article,
+    author = {João Victor de Araujo},
+    title = "{Identificação de snoRNAs usando aprendizagem de máquina}",
+    journal = {Bioinformatics},
+    pages = {1-105},
+    year = {2016},
+    month = {06},
+    abstract = "Machine learning methods have been widely used to identify and classify different families of non-coding RNAs. Many of these methods are based on supervised learning, where some previous known attributes, called features, are extracted from a sequence, and then used in a classifier. In this work, we present two methods to identify the two main classes of snoRNAs, C/D box and H/ACA box: snoReport 2.0, a significant improvement of the original snoReport version; and snoRNA-EDeN, a new method based on EDeN, a decompositional graph kernel. On one hand, snoReport 2.0 is a method that, using features extracted from candidate sequences in genomes, combines secondary structure prediction with Support Vector Machine (SVM) to identify C/D box and H/ACA box snoRNAs. H/ACA box snoRNA classifier showed a F-score of 93{\%} (an improvement of 10\% regarding to the previous version), while C/D box snoRNA classifier a F-Score of 94\% (improvement of 14\%). Besides, both classifiers exhibited performance measures above 90\%. In the validation phase, snoReport 2.0 predicted 67.43\% of vertebrate organisms for both classes. SnoReport 2.0 predicted: for Nematodes, 29.6\% of C/D box and 69\% of H/ACA box snoRNAs; and for Drosophilids, 3.2\% of C/D box and 76.7\% of H/ACA box snoRNAs. These results show that snoReport 2.0 is efficient to identify snoRNAs in vertebrates, and also H/ACA box snoRNAs in invertebrates organisms. On the other hand, instead of using known features from a sequence (difficult to find in general), a recent approach in machine learning is described as follows. Given a region of interest of a sequence, the objective is to generate a sparse vector that can be used as micro-features in a specific machine learning algorithm, or it can be used to create powerful features. This approach is used in EDeN (Explicit Decomposition with Neighbourhoods), a decompositional graph kernel based on Neighborhood Subgraph Pairwise Distance Kernel (NSPDK). EDeN transforms one graph in a sparse vector, decomposing it in all pairs of neighborhood subgraphs of small radius at increasing distances. Based on EDeN, we developed a method called snoRNA-EDeN. On the test phase, for C/D box snoRNAs, snoRNA-EDeN showed a F-score of 93.4\%, while for H/ACA box snoRNAs, the F-score was 72\%. On the validation phase, for C/D box snoRNAs, snoRNA-EDeN showed a better capacity of generalization, predicting 94.61\% of vertebrate C/D box snoRNAs and 63.52\% of invertebrates, a significantly better result compared to snoReport 2.0, which predicted only 52.92\% of vertebrates and 14.6\% of invertebrates. For H/ACA box snoRNAs, snoReport 2.0 predicted 79.9\% of vertebrate snoRNAs and 73.3\% of Nematode and Drosophilid sequences, while snoRNA-EDeN predicted 95.4\% of vertebrate snoRNAs and 57.8\% of Nematode and Drosophilid sequences. Both methods are available at http://www.biomol.unb.br/snoreport and http://www.biomol.unb.br/snorna_eden",
+    doi = {https://repositorio.unb.br/handle/10482/21891},
+    url = {http://dx.doi.org/10.26512/2015.04.D.21891},
+    eprint = {repositorio.unb.br/bitstream/10482/21891/1/2016_JoaoVictorAraujoOliveira.pdf},
+}
+
+@article{snoReport-article,
+    author = {João Victor de Araujo},
+    title = "{SnoReport 2.0: new features and a refined Support Vector Machine to improve snoRNA identification}",
+    journal = {BMC Bioinformatics},
+    pages = {1-14},
+    year = {2017},
+    month = {11},
+    abstract = "snoReport uses RNA secondary structure prediction combined with machine learning as the basis to identify the two main classes of small nucleolar RNAs, the box H/ACA snoRNAs and the box C/D snoRNAs. Here, we present snoReport 2.0, which substantially improves and extends in the original method by: extracting new features for both box C/D and H/ACA box snoRNAs; developing a more sophisticated technique in the SVM training phase with recent data from vertebrate organisms and a careful choice of the SVM parameters C and γ; and using updated versions of tools and databases used for the construction of the original version of snoReport. To validate the new version and to demonstrate its improved performance, we tested snoReport 2.0 in different organisms.",
+    doi = {10.1186/s12859-016-1345-6},
+    url = {https://doi.org/10.1186/s12859-016-1345-6},
+    eprint = {https://bmcbioinformatics.biomedcentral.com/track/pdf/10.1186/s12859-016-1345-6.pdf},
+}
+
+@article{cnn-article,
+    author = {Aoki, Genta and Sakakibara, Yasubumi},
+    title = "{Convolutional neural networks for classification of alignments of non-coding RNA sequences}",
+    journal = {Bioinformatics},
+    volume = {34},
+    number = {13},
+    pages = {i237-i244},
+    year = {2018},
+    month = {06},
+    abstract = "{The convolutional neural network (CNN) has been applied to the classification problem of DNA sequences, with the additional purpose of motif discovery. The training of CNNs with distributed representations of four nucleotides has successfully derived position weight matrices on the learned kernels that corresponded to sequence motifs such as protein-binding sites.We propose a novel application of CNNs to classification of pairwise alignments of sequences for accurate clustering of sequences and show the benefits of the CNN method of inputting pairwise alignments for clustering of non-coding RNA (ncRNA) sequences and for motif discovery. Classification of a pairwise alignment of two sequences into positive and negative classes corresponds to the clustering of the input sequences. After we combined the distributed representation of RNA nucleotides with the secondary-structure information specific to ncRNAs and furthermore with mapping profiles of next-generation sequence reads, the training of CNNs for classification of alignments of RNA sequences yielded accurate clustering in terms of ncRNA families and outperformed the existing clustering methods for ncRNA sequences. Several interesting sequence motifs and secondary-structure motifs known for the snoRNA family and specific to microRNA and tRNA families were identified.The source code of our CNN software in the deep-learning framework Chainer is available at http://www.dna.bio.keio.ac.jp/cnn/, and the dataset used for performance evaluation in this work is available at the same URL.}",
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/bty228},
+    url = {https://doi.org/10.1093/bioinformatics/bty228},
+    eprint = {https://academic.oup.com/bioinformatics/article-pdf/34/13/i237/25098204/bty228.pdf},
+}
+
+@article{graph-kernel-article,
+    author = {Navarin, Nicolò and Costa, Fabrizio},
+    title = "{An efficient graph kernel method for non-coding RNA functional prediction}",
+    journal = {Bioinformatics},
+    volume = {33},
+    number = {17},
+    pages = {2642-2650},
+    year = {2017},
+    month = {05},
+    abstract = "{The importance of RNA protein-coding gene regulation is by now well appreciated. Non-coding RNAs (ncRNAs) are known to regulate gene expression at practically every stage, ranging from chromatin packaging to mRNA translation. However the functional characterization of specific instances remains a challenging task in genome scale settings. For this reason, automatic annotation approaches are of interest. Existing computational methods are either efficient but non-accurate or they offer increased precision, but present scalability problems.In this article, we present a predictive system based on kernel methods, a type of machine learning algorithm grounded in statistical learning theory. We employ a flexible graph encoding to preserve multiple structural hypotheses and exploit recent advances in representation and model induction to scale to large data volumes. Experimental results on tens of thousands of ncRNA sequences available from the Rfam database indicate that we can not only improve upon state-of-the-art predictors, but also achieve speedups of several orders of magnitude.The code is available from http://www.bioinf.uni-freiburg.de/~costa/EDeN.tgz.}",
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/btx295},
+    url = {https://doi.org/10.1093/bioinformatics/btx295},
+    eprint = {https://academic.oup.com/bioinformatics/article-pdf/33/17/2642/25163963/btx295.pdf},
+}
+
+@article{review-literature,
+title = {A systematic review of systematic review process research in software engineering},
+journal = {Information and Software Technology},
+volume = {55},
+number = {12},
+pages = {2049-2075},
+year = {2013},
+issn = {0950-5849},
+doi = {https://doi.org/10.1016/j.infsof.2013.07.010},
+url = {https://www.sciencedirect.com/science/article/pii/S0950584913001560},
+author = {Barbara Kitchenham and Pearl Brereton},
+keywords = {Systematic review, Systematic literature review, Systematic review methodology, Mapping study},
+abstract = {Context
+Many researchers adopting systematic reviews (SRs) have also published papers discussing problems with the SR methodology and suggestions for improving it. Since guidelines for SRs in software engineering (SE) were last updated in 2007, we believe it is time to investigate whether the guidelines need to be amended in the light of recent research.
+Objective
+To identify, evaluate and synthesize research published by software engineering researchers concerning their experiences of performing SRs and their proposals for improving the SR process.
+Method
+We undertook a systematic review of papers reporting experiences of undertaking SRs and/or discussing techniques that could be used to improve the SR process. Studies were classified with respect to the stage in the SR process they addressed, whether they related to education or problems faced by novices and whether they proposed the use of textual analysis tools.
+Results
+We identified 68 papers reporting 63 unique studies published in SE conferences and journals between 2005 and mid-2012. The most common criticisms of SRs were that they take a long time, that SE digital libraries are not appropriate for broad literature searches and that assessing the quality of empirical studies of different types is difficult.
+Conclusion
+We recommend removing advice to use structured questions to construct search strings and including advice to use a quasi-gold standard based on a limited manual search to assist the construction of search stings and evaluation of the search process. Textual analysis tools are likely to be useful for inclusion/exclusion decisions and search string construction but require more stringent evaluation. SE researchers would benefit from tools to manage the SR process but existing tools need independent validation. Quality assessment of studies using a variety of empirical methods remains a major problem.}
+}
+
+@inbook{bio-info,
+author = {Rana, Jagmohan and Vaisla, Dr. Kunwar},
+year = {2012},
+month = {12},
+pages = {11-18},
+title = {Introduction To Bioinformatics},
+isbn = {978-81-923296-3-5}
+}
+
+@inproceedings{nucleic-acid,
+  title={Introduction to computational molecular biology},
+  author={Jo{\~a}o Carlos Setubal and Jo{\~a}o Meidanis},
+  year={1997}
+}
+
+@Inbook{watson-crick-pair,
+author="Cleaves, Henderson James",
+editor="Gargaud, Muriel
+and Amils, Ricardo
+and Quintanilla, Jos{\'e} Cernicharo
+and Cleaves, Henderson James (Jim)
+and Irvine, William M.
+and Pinti, Daniele L.
+and Viso, Michel",
+title="Watson--Crick Pairing",
+bookTitle="Encyclopedia of Astrobiology",
+year="2011",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="1775--1776",
+isbn="978-3-642-11274-4",
+doi="10.1007/978-3-642-11274-4_1683",
+url="https://doi.org/10.1007/978-3-642-11274-4_1683"
+}
+
+@incollection{stop-codon,
+title = {Chapter 3 - Virus Interactions With the Cell},
+editor = {Susan Payne},
+booktitle = {Viruses},
+publisher = {Academic Press},
+pages = {23-35},
+year = {2017},
+isbn = {978-0-12-803109-4},
+doi = {https://doi.org/10.1016/B978-0-12-803109-4.00003-9},
+url = {https://www.sciencedirect.com/science/article/pii/B9780128031094000039},
+author = {Susan Payne},
+keywords = {Virus attachment, virus uncoating, endocytosis, membrane fusion, virus maturation, polarized cells, ribosomal frame-shifting, RNA-dependent RNA polymerase, reverse transcriptase},
+abstract = {Virus replication requires specific interactions with host cells. The replication cycle begins with attachment of viral proteins to host cell receptors. The presence or absence of receptors is an important factor in determining if the cell is permissive for infection. The next step in the virus replication cycle is transfer of the genome into cytosol or nucleoplasm. Some viruses transport just their nucleic acid genomes into the cell while others deliver the entire virion. Once in the cell, virion proteins and genome interact with a variety of cell proteins, nucleic acids, and membranes. Productive replication requires synthesis of viral mRNAs, protein, and genomes. The details of these processes vary widely. However, to be successful a virus must be able to compete with host cell for building materials. For example, as the cell is constantly synthesizing proteins, viral mRNAs must be able to redirect ribosomes to their own mRNAs. Some viruses can shut down cellular transcription and translation to redirect those processes to the production of viral proteins. In contrast DNA viruses have developed methods to induce cell DNA replication and/or cell division to obtain materials necessary for genome synthesis. Viruses pack a lot of information into their relatively small genomes. Most do not have the complex promoters that drive cell transcription nor do they have long noncoding introns in their genes. Viruses that replicate in the nucleus often use alternative splicing to generate families of related mRNAs from a single precursor transcript. In other cases a single transcript may be used to produce multiple proteins by ribosome-mediated processes such as leaky scanning, stop codon suppression, and frame shifting. Once viral building blocks have been synthesized, new virions are assembled and must leave the cell. Again, the details of these processes can vary widely. Some of the simplest viruses can assemble in a test tube, from purified capsid proteins and genomes. More complex viruses use a variety of cell proteins and structures for assembly and release.}
+}
+
+@incollection{snoRNAs-content,
+title = {snoRNAs: functions and mechanisms in biological processes, and roles in tumor pathophysiology.},
+editor = {Cell Death Discovery},
+publisher = {Nature},
+year = {2022},
+doi = {https://doi.org/10.1038/s41420-022-01056-8},
+url = {https://rdcu.be/cSaqH},
+author = {Zheng-hao Huang and Yu-ping Du and Jing-tao Wen and Bing-feng Lu and Yang Zhao},
+keywords = {Virus attachment, virus uncoating, endocytosis, membrane fusion, virus maturation, polarized cells, ribosomal frame-shifting, RNA-dependent RNA polymerase, reverse transcriptase},
+abstract = {Small nucleolar RNAs (snoRNAs), a type of non-coding RNA, are widely present in the nucleoli of eukaryotic cells and play an important role in rRNA modification. With the recent increase in research on snoRNAs, new evidence has emerged indicating that snoRNAs also participate in tRNA and mRNA modification. Studies suggest that numerous snoRNAs, including tumor-promoting and tumor-suppressing snoRNAs, are not only dysregulated in tumors but also show associations with clinical prognosis. In this review, we summarize the reported functions of snoRNAs and the possible mechanisms underlying their role in tumorigenesis and cancer development to guide the snoRNA-based clinical diagnosis and treatment of cancer in the future.}
+}
+
+@incollection{ncRNAs-intro,
+title = {Non-coding RNAs: the silent regulators of health and diseases.},
+editor = {Molecular Biology Reports},
+publisher = {SpringerLink},
+year = {2022},
+doi = {https://doi.org/10.1007/s11033-022-07464-4},
+url = {https://rdcu.be/cSazI},
+author = {Nishant Chakravorty},
+keywords = {Virus attachment, virus uncoating, endocytosis, membrane fusion, virus maturation, polarized cells, ribosomal frame-shifting, RNA-dependent RNA polymerase, reverse transcriptase},
+abstract = {Non-coding RNAs (ncRNAs) like miRNAs, siRNA, lncRNAs, circRNAs, piRNAs, snoRNAs, snRNAs etc. form a collective group of RNAs that is instrumental to the various functions of the genome. With the advent of cutting-edge molecular biology tools and techniques, scientists have unearthed several mechanisms through which these ncRNAs act. Although our understanding may still be limited, yet scientists have been able to establish ncRNAs as major regulators of genetic inter-plays that dictate various pathophysiological conditions. This special issue of Molecular Biology Reports features a collection of research and review articles on ncRNAs and their involvement in different pathophysiological conditions that include different types of cancers. It is expected that this special issue will motivate researchers in the field to delve deeper into the world of ncRNAs and attempt to develop new diagnostic and therapeutic interventions for challenging clinical conditions.}
+}
+
+@incollection{ncRNAs-content,
+title = {Computational methods in noncoding RNA research.},
+editor = {Journal of Mathematical Biology},
+publisher = {SpringerLink},
+year = {2007},
+doi = {https://doi.org/10.1007/s11033-022-07464-4},
+url = {https://rdcu.be/cSazI},
+author = {Ariane Machado Lima and Hernando A. del Portillo},
+abstract = {Non protein-coding RNAs (ncRNAs) are a research hotspot in bioinformatics. Recent discoveries have revealed new ncRNA families performing a variety of roles, from gene expression regulation to catalytic activities. It is also believed that other families are still to be unveiled. Computational methods developed for protein coding genes often fail when searching for ncRNAs. Noncoding RNAs functionality is often heavily dependent on their secondary structure, which makes gene discovery very different from protein coding RNA genes. This motivated the development of specific methods for ncRNA research. This article reviews the main approaches used to identify ncRNAs and predict secondary structure.}
+}
+
+@incollection{ncRNAs-mitochondrial,
+title = {ncRNAs: New Players in Mitochondrial Health and Disease?},
+editor = {Front Genet},
+publisher = {frontiers in Genetics},
+year = {2020},
+doi = {https://doi.org/10.3389/fgene.2020.00095},
+url = {https://rdcu.be/cSazI},
+author = {Mirjana Gusic and Holger Prokisch},
+abstract = {Non protein-coding RNAs (ncRNAs) are a research hotspot in bioinformatics. Recent discoveries have revealed new ncRNA families performing a variety of roles, from gene expression regulation to catalytic activities. It is also believed that other families are still to be unveiled. Computational methods developed for protein coding genes often fail when searching for ncRNAs. Noncoding RNAs functionality is often heavily dependent on their secondary structure, which makes gene discovery very different from protein coding RNA genes. This motivated the development of specific methods for ncRNA research. This article reviews the main approaches used to identify ncRNAs and predict secondary structure.}
+}
+
+@article{snoRNAs-paradigm,
+title = {Eukaryotic snoRNAs: A paradigm for gene expression flexibility},
+journal = {Genomics},
+volume = {94},
+number = {2},
+pages = {83-88},
+year = {2009},
+issn = {0888-7543},
+doi = {https://doi.org/10.1016/j.ygeno.2009.05.002},
+url = {https://www.sciencedirect.com/science/article/pii/S0888754309001062},
+author = {Giorgio Dieci and Milena Preti and Barbara Montanini},
+keywords = {Small nucleolar RNAs, snoRNA genes, ncRNAs, Intron, Promoter, Gene expression, Transcription},
+abstract = {Small nucleolar RNAs (snoRNAs) are one of the most ancient and numerous families of non-protein-coding RNAs (ncRNAs). The main function of snoRNAs – to guide site-specific rRNA modification – is the same in Archaea and all eukaryotic lineages. In contrast, as revealed by recent genomic and RNomic studies, their genomic organization and expression strategies are the most varied. Seemingly snoRNA coding units have adopted, in the course of evolution, all the possible ways of being transcribed, thus providing a unique paradigm of gene expression flexibility. By focusing on representative fungal, plant and animal genomes, we review here all the documented types of snoRNA gene organization and expression, and we provide a comprehensive account of snoRNA expressional freedom by precisely estimating the frequency, in each genome, of each type of genomic organization. We finally discuss the relevance of snoRNA genomic studies for our general understanding of ncRNA family evolution and expression in eukaryotes.}
+}
+
+@article{ml-intro,
+title = {Introduction of a time series machine learning methodology for the application in a production system},
+journal = {Advanced Engineering Informatics},
+volume = {47},
+pages = {101197},
+year = {2021},
+issn = {1474-0346},
+doi = {https://doi.org/10.1016/j.aei.2020.101197},
+url = {https://www.sciencedirect.com/science/article/pii/S1474034620301671},
+author = {Martin Hennig and Manfred Grafinger and René Hofmann and Detlef Gerhard and Stefan Dumss and Patrick Rosenberger},
+abstract = {Machine learning methods are considered a promising approach for improving operations and processes in manufacturing. However, the application of machine learning often requires the expertise of a data scientist combined with thorough knowledge of the manufacturing processes. Small and medium-sized companies that specialize in certain high value-added, variant rich production processes often lack an in-house data scientist and therefore miss out on generating a deeper data-driven insight from their production data streams. This paper proposes a three-step machine learning methodology to empower process experts with limited knowledge in machine learning: 1) data exploration through clustering, 2) representation of the production systems behaviour through specially structured neural networks and 3) querying this representation through evolutionary algorithms to achieve decision support through online optimization or scenario simulation. The chosen algorithms focus on parameter-light, well-established, general use algorithms in order to lower knowledge requirements for their application.}
+}
+
+@article{ml-approach,
+title = {Machine learning applications in RNA modification sites prediction},
+journal = {Computational and Structural Biotechnology Journal},
+volume = {19},
+pages = {5510-5524},
+year = {2021},
+issn = {2001-0370},
+doi = {https://doi.org/10.1016/j.csbj.2021.09.025},
+url = {https://www.sciencedirect.com/science/article/pii/S2001037021004104},
+author = {El Allali and Zahra Elhamraoui and Rachid Daoud},
+keywords = {RNA modification, Machine learning, Deep learning, Feature extraction, Prediction},
+abstract = {Ribonucleic acid (RNA) modifications are post-transcriptional chemical composition changes that have a fundamental role in regulating the main aspect of RNA function. Recently, large datasets have become available thanks to the recent development in deep sequencing and large-scale profiling. This availability of transcriptomic datasets has led to increased use of machine learning based approaches in epitranscriptomics, particularly in identifying RNA modifications. In this review, we comprehensively explore machine learning based approaches used for the prediction of 11 RNA modification types, namely, m1A, m6A, m5C, 5hmC, ψ, 2′-O-Me, ac4C, m7G, A-to-I, m2G, and D. This review covers the life cycle of machine learning methods to predict RNA modification sites including available benchmark datasets, feature extraction, and classification algorithms. We compare available methods in terms of datasets, target species, approach, and accuracy for each RNA modification type. Finally, we discuss the advantages and limitations of the reviewed approaches and suggest future perspectives.}
+}
+
+@book{ml-book,
+author = {Mitchell, Thomas M.},
+title = {Machine Learning},
+year = {1997},
+isbn = {0070428077},
+publisher = {McGraw-Hill, Inc.},
+address = {USA},
+edition = {1},
+abstract = {This exciting addition to the McGraw-Hill Series in Computer Science focuses on the concepts and techniques that contribute to the rapidly changing field of machine learning--including probability and statistics, artificial intelligence, and neural networks--unifying them all in a logical and coherent manner. Machine Learning serves as a useful reference tool for software developers and researchers, as well as an outstanding text for college students. Table of contents Chapter 1. Introduction Chapter 2. Concept Learning and the General-to-Specific Ordering Chapter 3. Decision Tree Learning Chapter 4. Artificial Neural Networks Chapter 5. Evaluating Hypotheses Chapter 6. Bayesian Learning Chapter 7. Computational Learning Theory Chapter 8. Instance-Based Learning Chapter 9. Inductive Logic Programming Chapter 10. Analytical Learning Chapter 11. Combining Inductive and Analytical Learning Chapter 12. Reinforcement Learning.}
+}
+
+@article{svm-1,
+title = {iRNA-Methyl: Identifying N6-methyladenosine sites using pseudo nucleotide composition},
+journal = {Analytical Biochemistry},
+volume = {490},
+pages = {26-33},
+year = {2015},
+issn = {0003-2697},
+doi = {https://doi.org/10.1016/j.ab.2015.08.021},
+url = {https://www.sciencedirect.com/science/article/pii/S0003269715003978},
+author = {Wei Chen and Pengmian Feng and Hui Ding and Hao Lin and Kuo-Chen Chou},
+keywords = {RNA methylation, Pseudo dinucleotide composition: PseKNC, Global sequence pattern, Flexible scaled window},
+abstract = {Occurring at adenine (A) with the consensus motif GAC, N6-methyladenosine (m6A) is one of the most abundant modifications in RNA, which plays very important roles in many biological processes. The nonuniform distribution of m6A sites across the genome implies that, for better understanding the regulatory mechanism of m6A, it is indispensable to characterize its sites in a genome-wide scope. Although a series of experimental technologies have been developed in this regard, they are both time-consuming and expensive. With the avalanche of RNA sequences generated in the postgenomic age, it is highly desired to develop computational methods to timely identify their m6A sites. In view of this, a predictor called “iRNA-Methyl” is proposed by formulating RNA sequences with the “pseudo dinucleotide composition” into which three RNA physiochemical properties were incorporated. Rigorous cross-validation tests have indicated that iRNA-Methyl holds very high potential to become a useful tool for genome analysis. For the convenience of most experimental scientists, a web-server for iRNA-Methyl has been established at http://lin.uestc.edu.cn/server/iRNA-Methyl by which users can easily get their desired results without needing to go through the mathematical details.}
+}
+
+@Article{svm-content,
+AUTHOR = {Vieira, Lucas Maciel and Grativol, Clicia and Thiebaut, Flavia and Carvalho, Thais G. and Hardoim, Pablo R. and Hemerly, Adriana and Lifschitz, Sergio and Ferreira, Paulo Cavalcanti Gomes and Walter, Maria Emilia M. T.},
+TITLE = {PlantRNA_Sniffer: A SVM-Based Workflow to Predict Long Intergenic Non-Coding RNAs in Plants},
+JOURNAL = {Non-Coding RNA},
+VOLUME = {3},
+YEAR = {2017},
+NUMBER = {1},
+ARTICLE-NUMBER = {11},
+URL = {https://www.mdpi.com/2311-553X/3/1/11},
+PubMedID = {29657283},
+ISSN = {2311-553X},
+ABSTRACT = {Non-coding RNAs (ncRNAs) constitute an important set of transcripts produced in the cells of organisms. Among them, there is a large amount of a particular class of long ncRNAs that are difficult to predict, the so-called long intergenic ncRNAs (lincRNAs), which might play essential roles in gene regulation and other cellular processes. Despite the importance of these lincRNAs, there is still a lack of biological knowledge and, currently, the few computational methods considered are so specific that they cannot be successfully applied to other species different from those that they have been originally designed to. Prediction of lncRNAs have been performed with machine learning techniques. Particularly, for lincRNA prediction, supervised learning methods have been explored in recent literature. As far as we know, there are no methods nor workflows specially designed to predict lincRNAs in plants. In this context, this work proposes a workflow to predict lincRNAs on plants, considering a workflow that includes known bioinformatics tools together with machine learning techniques, here a support vector machine (SVM). We discuss two case studies that allowed to identify novel lincRNAs, in sugarcane (Saccharum spp.) and in maize (Zea mays). From the results, we also could identify differentially-expressed lincRNAs in sugarcane and maize plants submitted to pathogenic and beneficial microorganisms.},
+DOI = {10.3390/ncrna3010011}
+}
+
+@article{hubel-wiesel,
+  title={Recounting the impact of Hubel and Wiesel},
+  author={Robert Wurtz},
+  journal={The Journal of Physiology},
+  year={2009},
+  volume={587}
+}
+
+@online{cnn-blog,
+  author = {Anas Al-Masri},
+  title = {How Does Back-Propagation in Artificial Neural Networks Work?},
+  year = 2019,
+  url = {https://towardsdatascience.com/how-does-back-propagation-in-artificial-neural-networks-work-c7cad873ea7},
+  urldate = {2022-07-31}
+}
+
+@online{cnn-image,
+  author = {Kishan Maladkar},
+  title = {Overview Of Convolutional Neural Network In Image Classification},
+  year = 2018,
+  url = {https://analyticsindiamag.com/convolutional-neural-network-image-classification-overview/},
+  urldate = {2022-07-31}
+}
+
+@online{training-test,
+  author = {Yufeng Guo},
+  title = {The 7 Steps of Machine Learning},
+  year = 2017,
+  url = {https://towardsdatascience.com/the-7-steps-of-machine-learning-2877d7e5548e},
+  urldate = {2022-08-01}
+}
+
+
+@online{pre-process-ml,
+  author = {Pragati Baheti},
+  title = {A Simple Guide to Data Preprocessing in Machine Learning},
+  year = 2022,
+  url = {https://www.v7labs.com/blog/data-preprocessing-guide},
+  urldate = {2022-08-01}
+}
+
+
+
+@inproceedings{eden-nspdk,
+author = {Costa, Fabrizio and Grave, Kurt De},
+title = {Fast Neighborhood Subgraph Pairwise Distance Kernel},
+year = {2010},
+isbn = {9781605589077},
+publisher = {Omnipress},
+address = {Madison, WI, USA},
+abstract = {We introduce a novel graph kernel called the Neighborhood Subgraph Pairwise Distance Kernel. The kernel decomposes a graph into all pairs of neighborhood subgraphs of small radius at increasing distances. We show that using a fast graph invariant we obtain significant speed-ups in the Gram matrix computation. Finally, we test the novel kernel on a wide range of chemoinformatics tasks, from antiviral to anticarcinogenic to toxicological activity prediction, and observe competitive performance when compared against several recent graph kernel methods.},
+booktitle = {Proceedings of the 27th International Conference on International Conference on Machine Learning},
+pages = {255–262},
+numpages = {8},
+location = {Haifa, Israel},
+series = {ICML'10}
+}
+
+@article{graph-representation,
+    author = {Heyne, Steffen and Costa, Fabrizio and Rose, Dominic  and Backofen, Rolf},
+    title = "{GraphClust: alignment-free structural clustering of local RNA secondary structures}",
+    journal = {Bioinformatics},
+    volume = {28},
+    number = {12},
+    pages = {i224-i232},
+    year = {2012},
+    month = {06},
+    abstract = "{Motivation: Clustering according to sequence–structure similarity has now become a generally accepted scheme for ncRNA annotation. Its application to complete genomic sequences as well as whole transcriptomes is therefore desirable but hindered by extremely high computational costs.Results: We present a novel linear-time, alignment-free method for comparing and clustering RNAs according to sequence and structure. The approach scales to datasets of hundreds of thousands of sequences. The quality of the retrieved clusters has been benchmarked against known ncRNA datasets and is comparable to state-of-the-art sequence–structure methods although achieving speedups of several orders of magnitude. A selection of applications aiming at the detection of novel structural ncRNAs are presented. Exemplarily, we predicted local structural elements specific to lincRNAs likely functionally associating involved transcripts to vital processes of the human nervous system. In total, we predicted 349 local structural RNA elements.Availability: The GraphClust pipeline is available on request.Contact:backofen@informatik.uni-freiburg.deSupplementary information:Supplementary data are available at Bioinformatics online.}",
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/bts224},
+    url = {https://doi.org/10.1093/bioinformatics/bts224},
+    eprint = {https://academic.oup.com/bioinformatics/article-pdf/28/12/i224/16907405/bts224.pdf},
+}
+
+@article{snoPY,
+  title={snOPY: a small nucleolar RNA orthological gene database},
+  author={Maki Yoshihama and Akihiro Nakao and Naoya Kenmochi},
+  journal={BMC Research Notes},
+  year={2013},
+  volume={6},
+  pages={426 - 426}
+}
+
+@article{rfam,
+    author = {Kalvari, Ioanna and Nawrocki, Eric P and Ontiveros-Palacios, Nancy and Argasinska, Joanna and Lamkiewicz, Kevin and Marz, Manja and Griffiths-Jones, Sam and Toffano-Nioche, Claire and Gautheret, Daniel and Weinberg, Zasha and Rivas, Elena and Eddy, Sean R and Finn, Robert D and Bateman, Alex and Petrov, Anton I},
+    title = "{Rfam 14: expanded coverage of metagenomic, viral and microRNA families}",
+    journal = {Nucleic Acids Research},
+    volume = {49},
+    number = {D1},
+    pages = {D192-D200},
+    year = {2020},
+    month = {11},
+    abstract = "{Rfam is a database of RNA families where each of the 3444 families is represented by a multiple sequence alignment of known RNA sequences and a covariance model that can be used to search for additional members of the family. Recent developments have involved expert collaborations to improve the quality and coverage of Rfam data, focusing on microRNAs, viral and bacterial RNAs. We have completed the first phase of synchronising microRNA families in Rfam and miRBase, creating 356 new Rfam families and updating 40. We established a procedure for comprehensive annotation of viral RNA families starting with Flavivirus and Coronaviridae RNAs. We have also increased the coverage of bacterial and metagenome-based RNA families from the ZWD database. These developments have enabled a significant growth of the database, with the addition of 759 new families in Rfam 14. To facilitate further community contribution to Rfam, expert users are now able to build and submit new families using the newly developed Rfam Cloud family curation system. New Rfam website features include a new sequence similarity search powered by RNAcentral, as well as search and visualisation of families with pseudoknots. Rfam is freely available at https://rfam.org.}",
+    issn = {0305-1048},
+    doi = {10.1093/nar/gkaa1047},
+    url = {https://doi.org/10.1093/nar/gkaa1047},
+    eprint = {https://academic.oup.com/nar/article-pdf/49/D1/D192/35364695/gkaa1047.pdf},
+}
+
+@article{snoDB,
+    author = {Bouchard-Bourelle, Philia and Desjardins-Henri, Clément and Mathurin-St-Pierre, Darren and Deschamps-Francoeur, Gabrielle and Fafard-Couture, Étienne and Garant, Jean-Michel and Elela, Sherif Abou and Scott, Michelle S},
+    title = "{snoDB: an interactive database of human snoRNA sequences, abundance and interactions}",
+    journal = {Nucleic Acids Research},
+    volume = {48},
+    number = {D1},
+    pages = {D220-D225},
+    year = {2019},
+    month = {10},
+    abstract = "{Small nucleolar RNAs (snoRNAs) are an abundant type of non-coding RNA with conserved functions in all known eukaryotes. Classified into two main families, the box C/D and H/ACA snoRNAs, they enact their most well characterized role of guiding site specific modifications in ribosomal RNA, through the formation of specific ribonucleoprotein complexes, with fundamental implications in ribosome biogenesis. However, it is becoming increasingly clear that the landscape of snoRNA cellular functionality is much broader than it once seemed with novel members, non-uniform expression patterns, new and diverse targets as well as several emerging non-canonical functions ranging from the modulation of alternative splicing to the regulation of chromatin architecture. In order to facilitate the further characterization of human snoRNAs in a holistic manner, we introduce an online interactive database tool: snoDB. Its purpose is to consolidate information on human snoRNAs from different sources such as sequence databases, target information, both canonical and non-canonical from the literature and from high-throughput RNA–RNA interaction datasets, as well as high-throughput sequencing data that can be visualized interactively.}",
+    issn = {0305-1048},
+    doi = {10.1093/nar/gkz884},
+    url = {https://doi.org/10.1093/nar/gkz884},
+    eprint = {https://academic.oup.com/nar/article-pdf/48/D1/D220/31697332/gkz884.pdf},
+}
+
+@Inbook{feature-extraction,
+author="Guyon, Isabelle
+and Elisseeff, Andr{\'e}",
+editor="Guyon, Isabelle
+and Nikravesh, Masoud
+and Gunn, Steve
+and Zadeh, Lotfi A.",
+title="An Introduction to Feature Extraction",
+bookTitle="Feature Extraction: Foundations and Applications",
+year="2006",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="1--25",
+abstract="This chapter introduces the reader to the various aspects of feature extraction covered in this book. Section 1 reviews definitions and notations and proposes a unified view of the feature extraction problem. Section 2 is an overview of the methods and results presented in the book, emphasizing novel contributions. Section 3 provides the reader with an entry point in the field of feature extraction by showing small revealing examples and describing simple but effective algorithms. Finally, Section 4 introduces a more theoretical formalism and points to directions of research and open problems.",
+isbn="978-3-540-35488-8",
+doi="10.1007/978-3-540-35488-8_1",
+url="https://doi.org/10.1007/978-3-540-35488-8_1"
+}

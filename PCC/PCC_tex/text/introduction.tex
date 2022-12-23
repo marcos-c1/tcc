@@ -1,0 +1,39 @@
+\chapter{Introdução}
+\label{chp:introduction}
+
+A expansão do Aprendizado de Máquina e de técnicas biológicas para a predição de estruturas protéicas e genômicas e também para o diagnóstico de doenças, trouxe um resultado significado no que tange a identificação de padrões e características em RNAs não-codificadores \textit{(ncRNAs)}. De acordo com \cite{math-feature-bio}, existem aplicações modernas que extraem propriedades biológicas relevantes para o estudo dessas moléculas como quadro de leitura aberto (\textit{ORF}), o uso da frequência de trigêmeos de nucleotídeos adjacentes e a porcentagem de conteúdo \textit{GC}. A aplicabilidade de cunho biológico, apesar de expressivo, dificilmente tem reutilização ou adaptação para problemas específicos tal como classificar as classes de RNAs não-codificadores.
+
+Um exemplo disso é a classe de pequenos RNAs nucleolares \textit{snoRNAs} que podem ser divididos em duas classes: \textit{C/D box} e \textit{H/ACA box}. Em uma sequência \textit{ncRNA}, através da extração de características da estrutura secundária, em conjunto com técnicas de aprendizado supervisionado, auxiliam na identificação das classes \textit{C/D box} e \textit{H/ACA box} \textit{snoRNAs}, como visto na dissertação de \cite{snoRNAs-article}.
+
+A construção de um modelo preditivo devido às limitações dos experimentos manuais no laboratório a fim de otimizar o desempenho dos modelos atuais de aprendizado de máquina também inclui uma representação matemática das sequências biológicas por meio do mapeamento numérico e a transformação de Fourier. A adoção de uma abordagem matemática no contexto de \textit{ncRNAs} demonstrou ser promissora nos experimentos de \cite{math-feature-bio} ao comparar a sua eficiência com os algoritmos particulamente de natureza biológica computacional. 
+
+O pacote \textit{MathFeature}, proposto por \cite{math-features-package}, contém 37 \textit{features} descritivas para sequencias biologicas. Dentre estas 37, 20 são baseadas em uma analise matemática incluindo tanto a transformação de Fourier quanto o mapeamento numérico, mas também a entropia, grafos, redes complexas e CGR (\textit{Chaos game representation}) em sua composição. Os casos de estudo teve resultados experimentais significativos.
+
+\section{Formulação do problema}
+
+A extração de características busca gerar um vetor de características para uma determinada estrutura baseado no treinamento intensivo do modelo. A busca por técnicas de \textit{machine learning} capazes de identificar as características de estruturas secundárias de RNAs tornou-se fundamental ao longo dos últimos anos devido a grande quantidade de dados sobre o conteúdo genético. 
+
+Os métodos casuais de extração de características do \textit{machine learning} nem sempre conseguem determinar um modelo eficaz que consiga evitar a perca de informações da estrutura, um bom exemplo disso é para as classes de pequenos nucleotídeos de RNA (snoRNAs). Para ilustrar a ideia, o estudo de \cite{math-feature-bio}, é relatado que a ténica \textit{ORF}, cuja é bastante aplicada no meio biológico para leitura sequencial do códon, retornou uma pontuação inferior a 0,009 para classificar o RNA circular de outros tipos de lncRNAs.
+
+Além desse fato, os autores de \cite{math-features-package} mostraram que a eficiência de algoritmos para classificação de classes de lncRNAs demonstraram amplo provetio nos estudos de caso obtendo um desempenho entre 0.6350–0.9897 de eficácia na fase de avaliação, o que é extremamente vantajoso para a classificação de lncRNAs.
+
+Diante disso, a questão norteadora do trabalho é assumida na hipótese a seguir:
+
+\begin{itemize}
+    \item \textbf{Hipótese} - Os métodos matemáticos, apesar de generalistas, são bons o suficiente como os biológicos para classificar as duas classes de snoRNAs: \textit{H/ACA box} e \textit{C/D box}.  
+\end{itemize}
+
+Pretende-se analisar e fundamentalizar a hipótese baseado nos resultados obtidos de experimentos em casos de testes. 
+
+\section{Objetivos}
+\subsection{Objetivos gerais}
+    Este trabalho tem como objetivo geral a análise de modelos matemáticos de extração de características para as classes de snoRNAs.
+    
+\subsection{Objetivos específicos}
+
+\begin{enumerate}
+    \item Implementar um algoritmo de extração de \textit{features} com abordagem matemática como a transformação de Fourier, mapeamento numérico, entropia, redes convolucionais neurais, EDeN e etc;
+    \item Extrair novas features de ambas as classes de snoRNAs (H/ACA box snoRNA e C/D box snoRNA);
+    \item Validar o método matemático de aplicação generalista nas duas classes de snoRNAs;
+    \item Comparar os resultados com os outros métodos de aprendizado de máquina, sejam eles híbridos ou biológicos;
+\end{enumerate}
