@@ -16,6 +16,7 @@ def shuffle(sequence, times, order):
 def getSequence(dirname):
     directory = os.listdir(f'./{dirname}-average/')
     negative = dict()
+    key = ''
     for filename in directory:
         file = open(f'./{dirname}-average/{filename}')
         lines = file.readlines()
@@ -23,15 +24,15 @@ def getSequence(dirname):
             if(line[0] == '>'):
                 key = line[1:].strip()                
             else:
-                if key not in negative:
+                if key not in negative and key != '':
                     negative[key] = ''
-                negative[key] += line.strip()
+                negative[key] += line.strip().replace('-', '')
         file.close()
         file_output = open(f'./{dirname}-average-negative/{filename}', 'w')
         for key, value in negative.items():
-            file_output.write(f'>{key}\n')
             sequences = shuffle(value, times=5, order=2)
             for i in range(len(sequences)):
+                file_output.write(f'>{key}_neg_{i+1}\n')
                 file_output.write(f'{sequences[i]}\n')  
         negative.clear()
         file_output.close()
@@ -44,7 +45,7 @@ def joinAllFamilies(file):
     cd_dir = os.listdir(f'./{cd_dirname}')
     negative = dict()
 
-    f_out = open('negative_sample.fasta', 'w')
+    f_out = open(f'{file}.fasta', 'w')
     for filename in haca_dir:
         f_in = open(f'./{haca_dirname}/{filename}')
         lines = f_in.readlines()

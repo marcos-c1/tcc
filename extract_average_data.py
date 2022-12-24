@@ -21,7 +21,7 @@ def extractAverageData(media=int, dirname=str) -> None:
                 data = ''
                 it += 1
             else:
-                data += line
+                data += line.replace('-', '')
                                                                 
         file.close()
         output_file = open(f'./{dirname}-average/{filename}', 'w')
@@ -38,10 +38,17 @@ if __name__ == "__main__":
     parser.add_argument('-a', '--average', help='Average data to be extracted of each sequence')
     parser.add_argument('-g', '--group', help='Group of snoRNAs')
     args = parser.parse_args()
+    usage = 'Usage: python ' + sys.argv[0] +  ' -g <Group of snoRNAs> and -a <Average sample data of a specific group of snoRNAs>\nType -h for help'
     media = int(args.average)
+    if(media == 0):
+        print(usage)
+        sys.exit()
     dirname = str(args.group).lower().strip()
     if(dirname == 'cd-box' or dirname == 'cd'):
         dirname = 'CD-BOX' 
-    else:
+    elif(dirname == 'haca' or dirname == 'HACA-BOX'):
         dirname = 'HACA-BOX'
+    else:
+        print(usage)
+        sys.exit()
     extractAverageData(media, dirname)
