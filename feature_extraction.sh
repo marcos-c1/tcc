@@ -156,8 +156,8 @@ fi
 # ASSERT length of args > 1 
 if [ $# -le 1 ]; then 
 	printf '%s\n' "Grupo de snoRNAs ou método de extração de features não reconhecido."
-	printf '%s\n' "Caso queira remover todos os arquivos gerados pela extração de features rode o commando: ./extract.sh clean"
-	printf '%s\n' "Uso: ./extract.sh [cdbox|hacabox] [fourier|complex|entropy] [fourier_representation]" 
+	printf '%s\n' "Caso queira remover todos os arquivos gerados pela extração de features rode o commando: ./feature_extraction.sh clean"
+	printf '%s\n' "Uso: ./feature_extraction.sh [cdbox|hacabox] [fourier|complex|entropy] [fourier_representation]" 
 	echo "Escolha o mapeamento numérico se a representação do Mapeamento de Fourier foi escolhida:\n\t1 = Binary\n\t2 = Z-curve\n\t3 = Real\n\t4 = Integer\n\t5 = EIIP\n\t6 = Complex Number\n\t7 = Atomic Number"
 	echo "Escolha a entropia adequada se a representação for entropia:\n\tShannon\n\tTsallis\n"
 	exit 0
