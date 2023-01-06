@@ -1,3 +1,4 @@
+#!/bin/bash
 occ=0
 file="./HACA-BOX-average/*.fasta"
 

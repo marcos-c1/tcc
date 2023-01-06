@@ -1,27 +1,37 @@
 # FOURIER_REAL_DIR
 CD_BOX_FOURIER_REAL_DIR='../../Feature_Extraction_CDBOX/Fourier_Real'
 HACA_BOX_FOURIER_REAL_DIR='../../Feature_Extraction_HACABOX/Fourier_Real'
+NEGATIVE_FOURIER_REAL_DIR='../../Feature_Extraction_Negatives/Fourier_Real'
 
 # FOURIER_ZCURVE_DIR
 CD_BOX_FOURIER_ZCURVE_DIR='../../Feature_Extraction_CDBOX/Fourier_ZCurve'
 HACA_BOX_FOURIER_ZCURVE_DIR='../../Feature_Extraction_HACABOX/Fourier_ZCurve'
+NEGATIVE_FOURIER_ZCURVE_DIR='../../Feature_Extraction_Negatives/Fourier_ZCurve'
 
 # ENTROPY_SHANNON_DIR
 CD_BOX_ENTROPY_SHANNON_DIR='../../Feature_Extraction_CDBOX/Entropy/Shannon'
 HACA_BOX_ENTROPY_SHANNON_DIR='../../Feature_Extraction_HACABOX/Entropy/Shannon'
+NEGATIVE_ENTROPY_SHANNON_DIR='../../Feature_Extraction_Negatives/Entropy/Shannon'
 
 # ENTROPY_TSALLIS_DIR
 CD_BOX_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_CDBOX/Entropy/Tsallis'
 HACA_BOX_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_HACABOX/Entropy/Tsallis' 
+NEGATIVE_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_Negatives/Entropy/Tsallis'
 
+# COMPLEX_DIR
 CD_BOX_COMPLEX_DIR='../../Feature_Extraction_CDBOX/Complex'
 HACA_BOX_COMPLEX_DIR='../../Feature_Extraction_HACABOX/Complex'
+NEGATIVE_COMPLEX_DIR='../../Feature_Extraction_Negatives/Complex'
 
+# OUTPUT DIR
 OUTPUT_FOURIER_REAL_DIR='./Fourier_Real'
 OUTPUT_FOURIER_ZCURVE_DIR='./Fourier_ZCurve'
 OUTPUT_ENTROPY_SHANNON_DIR='./Entropy/Shannon'
 OUTPUT_ENTROPY_TSALLIS_DIR='./Entropy/Tsallis'
 OUTPUT_COMPLEX_DIR='./Complex'
+
+# NEGATIVE SAMPLE
+NEGATIVE_SAMPLE_DIR='../../negative_sample.fasta'
 
 clean()
 {
@@ -34,8 +44,8 @@ clean()
 
 usage()
 {
-	printf '%s\n' "Concatene todos os arquivos contendo as features em um único arquivo mesclado com n labels"
-	printf '%s\n' "Uso: ./concatenate_files.sh [fourier_real|fourier_zcurve|complex|entropy_shannon|entropy_tsallis]" 
+	printf '%s\n' "Concatene todos os arquivos de conjunto positivo com negativo contendo as features em um único arquivo mesclado com n labels"
+	printf '%s\n' "Uso: ./concatenate_files.sh [cd-box|haca-box] [fourier_real|fourier_zcurve|complex|entropy_shannon|entropy_tsallis]" 
 	printf '%s\n' "Caso queira remover todos os arquivos gerados pela concatenação dos arquivos contendo as features, rode o commando: ./concatenate_files.sh clean"
 	exit 0
 }
@@ -53,35 +63,69 @@ remove_header_duplicates()
 
 append_files()
 {
-	local dir=$1
+	local group=$1
+	local method=$2
 	local file
 
-	case $dir in
-		'fourier_real')
-			file='./Fourier_Real/fourier_real_data.csv'
-			cat $CD_BOX_FOURIER_REAL_DIR/*.csv $HACA_BOX_FOURIER_REAL_DIR/*.csv > $file 
-			;;
-		'fourier_zcurve')
-			file=./Fourier_ZCurve/fourier_zcurve_data.csv
-			cat $CD_BOX_FOURIER_ZCURVE_DIR/*.csv  $HACA_BOX_FOURIER_ZCURVE_DIR/*.csv > $file 
-			;;
-		'entropy_shannon')
-			file='./Entropy/Shannon/entropy_shannon_data.csv'
-			cat $CD_BOX_ENTROPY_SHANNON_DIR/*.csv  $HACA_BOX_ENTROPY_SHANNON_DIR/*.csv > $file 
-			;;
-		'entropy_tsallis')
-			file='./Entropy/Tsallis/entropy_tsallis_data.csv'
-			cat $CD_BOX_ENTROPY_TSALLIS_DIR/*.csv  $HACA_BOX_ENTROPY_TSALLIS_DIR/*.csv > $file 
-			;;
-		'complex')
-			file='./Complex/complex_data.csv'
-			cat $CD_BOX_COMPLEX_DIR/*.csv  $HACA_BOX_COMPLEX_DIR/*.csv > $file 
-			;;
-		*)
-			printf '%s\n' "Método de extração de features não reconhecido."
-			usage
-			;;
-	esac
+	if [ $group == 'cd-box' ]; then 
+		case $method in
+			'fourier_real')
+				file='./Fourier_Real/cd_box_fourier_real_data.csv'
+				cat $CD_BOX_FOURIER_REAL_DIR/*.csv $NEGATIVE_FOURIER_REAL_DIR/*.csv > $file 
+				;;
+			'fourier_zcurve')
+				file='./Fourier_ZCurve/cd_box_fourier_zcurve_data.csv'
+				cat $CD_BOX_FOURIER_ZCURVE_DIR/*.csv  $NEGATIVE_FOURIER_ZCURVE_DIR/*.csv > $file 
+				;;
+			'entropy_shannon')
+				file='./Entropy/Shannon/cd_box_entropy_shannon_data.csv'
+				cat $CD_BOX_ENTROPY_SHANNON_DIR/*.csv  $NEGATIVE_ENTROPY_SHANNON_DIR/*.csv > $file 
+				;;
+			'entropy_tsallis')
+				file='./Entropy/Tsallis/cd_box_entropy_tsallis_data.csv'
+				cat $CD_BOX_ENTROPY_TSALLIS_DIR/*.csv  $NEGATIVE_ENTROPY_TSALLIS_DIR/*.csv > $file 
+				;;
+			'complex')
+				file='./Complex/cd_box_complex_data.csv'
+				cat $CD_BOX_COMPLEX_DIR/*.csv  $NEGATIVE_COMPLEX_DIR/*.csv > $file 
+				;;
+			*)
+				printf '%s\n' "Método de extração de features não reconhecido."
+				usage
+				;;
+		esac
+	elif [ $group == 'haca-box' ]; then
+		case $method in
+			'fourier_real')
+				file='./Fourier_Real/haca_box_fourier_real_data.csv'
+				cat $HACA_BOX_FOURIER_REAL_DIR/*.csv $NEGATIVE_FOURIER_REAL_DIR/*.csv > $file 
+				;;
+			'fourier_zcurve')
+				file='./Fourier_ZCurve/haca_box_fourier_zcurve_data.csv'
+				cat $HACA_BOX_FOURIER_ZCURVE_DIR/*.csv  $NEGATIVE_FOURIER_ZCURVE_DIR/*.csv > $file 
+				;;
+			'entropy_shannon')
+				file='./Entropy/Shannon/haca_box_entropy_shannon_data.csv'
+				cat $HACA_BOX_ENTROPY_SHANNON_DIR/*.csv  $NEGATIVE_ENTROPY_SHANNON_DIR/*.csv > $file 
+				;;
+			'entropy_tsallis')
+				file='./Entropy/Tsallis/haca_box_entropy_tsallis_data.csv'
+				cat $HACA_BOX_ENTROPY_TSALLIS_DIR/*.csv  $NEGATIVE_ENTROPY_TSALLIS_DIR/*.csv > $file 
+				;;
+			'complex')
+				file='./Complex/haca_box_complex_data.csv'
+				cat $HACA_BOX_COMPLEX_DIR/*.csv  $NEGATIVE_COMPLEX_DIR/*.csv > $file 
+				;;
+			*)
+				printf '%s\n' "Método de extração de features não reconhecido."
+				usage
+				;;
+		esac
+	else
+		printf '%s\n' "Grupo de snoRNA não reconhecido."
+		usage
+	fi
+
 	chmod +rwx $file
 	remove_header_duplicates $file 
 }
@@ -92,8 +136,9 @@ if [ "$1" = "clean" ]; then
 	exit 0
 fi
 
-if [ $# -eq 0 ]; then 
+if [ $# -le 1 ]; then 
 	usage
+else
+	append_files $1 $2
 fi
 
-append_files $1
