@@ -1,2 +1,2 @@
-
-12830
+cd_box_negative_sample: 4659
+haca_box_negative_sample: 3039

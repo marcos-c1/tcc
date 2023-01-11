@@ -5,6 +5,7 @@ from sklearn import preprocessing
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sn
+from os import getcwd
 
 class CSVData:
     def __init__(self, group, method) -> None:
@@ -51,12 +52,12 @@ class CSVData:
 
     
 
-def plotGraph(method, y_test, predictions):
+def plotGraph(obj, y_test, predictions):
     cm = confusion_matrix(y_test, predictions)
     plt.figure(figsize=(10, 7))
     ax = sn.heatmap(cm, annot=True, fmt='d')
-    ax.set(xlabel='Predicted', ylabel='Labels', title=method)
-    plt.show()
+    ax.set(xlabel='Predicted', ylabel='Labels', title=obj.method)
+    plt.savefig(f'./imgs/{obj.method}_{obj.group}')
 
 def createMethods(group):
     fr = CSVData(group, 'fourier_real')
@@ -79,7 +80,11 @@ def accuracy(y_test, y_pred):
     return np.sum(y_test == y_pred) / len(y_test)
 
 def saveModel(save_file, clf):
-    pickle.dump(clf, open(save_file, "wb"))
+    cd = getcwd()
+    file = open(f'{cd}/models/{save_file}', "wb")
+    pickle.dump(clf, file)
+    file.close()
+
 
 def loadModel(save_file):
     loaded_model = pickle.load(open(save_file, "rb"))

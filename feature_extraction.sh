@@ -8,23 +8,29 @@ COMPLEX_ALGORITHM="FeatureExtraction/methods/ComplexNetworksClass.py"
 CD_BOX_DIRECTORY="./CD-BOX-average/*.fasta"
 HACA_BOX_DIRECTORY="./HACA-BOX-average/*.fasta"
 
-# Output directory for CD-BOX group 
+# Output directory for CD-BOX class 
 OUTPUT_CDBOX_EXTRACT_FOURIER_REAL_DIRECTORY="./Feature_Extraction_CDBOX/Fourier_Real"
 OUTPUT_CDBOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY="./Feature_Extraction_CDBOX/Fourier_ZCurve"
 OUTPUT_CDBOX_EXTRACT_ENTROPY_DIRECTORY="./Feature_Extraction_CDBOX/Entropy"
 OUTPUT_CDBOX_EXTRACT_COMPLEX_DIRECTORY="./Feature_Extraction_CDBOX/Complex"
 
-# Output directory for HACA-BOX group 
+# Output directory for HACA-BOX class 
 OUTPUT_HACABOX_EXTRACT_FOURIER_REAL_DIRECTORY="./Feature_Extraction_HACABOX/Fourier_Real"
 OUTPUT_HACABOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY="./Feature_Extraction_HACABOX/Fourier_ZCurve"
 OUTPUT_HACABOX_EXTRACT_ENTROPY_DIRECTORY="./Feature_Extraction_HACABOX/Entropy"
 OUTPUT_HACABOX_EXTRACT_COMPLEX_DIRECTORY="./Feature_Extraction_HACABOX/Complex"
 
-# Output directory for Negative sample group
-OUTPUT_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY="./Feature_Extraction_Negatives/Fourier_Real"
-OUTPUT_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="./Feature_Extraction_Negatives/Fourier_ZCurve"
-OUTPUT_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="./Feature_Extraction_Negatives/Entropy"
-OUTPUT_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="./Feature_Extraction_Negatives/Complex"
+# Output directory for Negative sample of CD-BOX class 
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY="./Feature_Extraction_CDBOX_Negative/Fourier_Real"
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="./Feature_Extraction_CDBOX_Negative/Fourier_ZCurve"
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="./Feature_Extraction_CDBOX_Negative/Entropy"
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="./Feature_Extraction_CDBOX_Negative/Complex"
+
+# Output directory for Negative sample of HACA-BOX class
+OUTPUT_HACABOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY="./Feature_Extraction_HACABOX_Negative/Fourier_Real"
+OUTPUT_HACABOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="./Feature_Extraction_HACABOX_Negative/Fourier_ZCurve"
+OUTPUT_HACABOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="./Feature_Extraction_HACABOX_Negative/Entropy"
+OUTPUT_HACABOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="./Feature_Extraction_HACABOX_Negative/Complex"
 
 # Negative file
 NEGATIVE_FILE="./negative_sample.fasta"
@@ -58,7 +64,7 @@ extract()
 	case $method in
 		"fourier")
 			if [ -z $fourier_number ]; then
-				echo "Escolha o mapeamento numérico desejado\n\t1 = Binary\n\t2 = Z-curve\n\t3 = Real\n\t4 = Integer\n\t5 = EIIP\n\t6 = Complex Number\n\t7 = Atomic Number"
+				printf '%s\n' "Escolha o mapeamento numérico desejado\n\t1 = Binary\n\t2 = Z-curve\n\t3 = Real\n\t4 = Integer\n\t5 = EIIP\n\t6 = Complex Number\n\t7 = Atomic Number"
 				exit 0
 			fi
 			if [ $group = 'cdbox' ]; then
@@ -73,7 +79,7 @@ extract()
 							python3 $FOURIER_ALGORITHM -i $file -o $OUTPUT_CDBOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY/$archive.csv -l cdbox -r $fourier_number 1>/dev/null 
 							;;
 					esac	
-					echo "$group\t$method\t$archive.fasta"
+					printf '%s\n' "Negative sample\t$group\t$method\t$archive.csv"
 				done
 			elif [ $SNORNA_GROUP = 'hacabox' ]; then
 				for file in $HACA_BOX_DIRECTORY
@@ -87,20 +93,22 @@ extract()
 							python3 $FOURIER_ALGORITHM -i $file -o $OUTPUT_HACABOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY/$archive.csv -l hacabox -r $fourier_number 1>/dev/null 
 							;;
 					esac	
-					echo "$group\t$method\t$fourier_number\t$archive.fasta"
+					printf '%s\n' "$group\t$method\t$fourier_number\t$archive.fasta"
 				done
 			elif [ $SNORNA_GROUP = 'negative' ]; then
 				case $fourier_number in 
 					"3")
 						archive="negative_fourier_real"
-						python3 $FOURIER_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY/$archive.csv -l negative -r $fourier_number 1>/dev/null 
+						python3 $FOURIER_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY/$archive.csv -l negative -r $fourier_number 1>/dev/null 
+						python3 $FOURIER_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_HACABOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY/$archive.csv -l negative -r $fourier_number 1>/dev/null 
 						;;
 					"2")
 						archive="negative_fourier_zcurve"
-						python3 $FOURIER_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY/$archive.csv -l negative -r $fourier_number 1>/dev/null 
+						python3 $FOURIER_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY/$archive.csv -l negative -r $fourier_number 1>/dev/null 
+						python3 $FOURIER_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_HACABOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY/$archive.csv -l negative -r $fourier_number 1>/dev/null 
 						;;
 				esac
-				echo "$group\t$method\t$fourier_number\t$archive.csv"
+				printf '%s\n' "$group\t$method\t$fourier_number\t$archive.csv"
 			else
 				printf '%s\n' "Grupo de snoRNAs não reconhecido."
 				exit 0
@@ -112,19 +120,20 @@ extract()
 					do 
 						archive=$(printf '%s\n' $file | cut -f3 -d "/" | cut -f1 -d ".")
 						python3 $COMPLEX_ALGORITHM -i $file -o $OUTPUT_CDBOX_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l cdbox -k 3 -t 10 1>/dev/null 
-						echo "$group\t$method\t$archive.fasta"
+						printf '%s\n' "Negative sample\t$group\t$method\t$archive.csv"
 					done
 				elif [ $SNORNA_GROUP = 'hacabox' ]; then
 					for file in $HACA_BOX_DIRECTORY
 					do
 						archive=$(printf '%s\n' $file | cut -f3 -d "/" | cut -f1 -d ".")
 						python3 $COMPLEX_ALGORITHM -i $file -o $OUTPUT_HACABOX_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l hacabox -k 3 -t 10 1>/dev/null 
-						echo "$group\t$method\t$archive.fasta"
+						printf '%s\n' "Negative sample\t$group\t$method\t$archive.csv"
 					done
 				elif [ $SNORNA_GROUP = 'negative' ]; then
 					archive="negative_complex"
-					python3 $COMPLEX_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l negative -k 3 -t 10 1>/dev/null
-					echo "$group\t$method\t$archive.csv"
+					python3 $COMPLEX_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_CDBOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l negative -k 3 -t 10 1>/dev/null
+					python3 $COMPLEX_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_HACABOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l negative -k 3 -t 10 1>/dev/null
+					printf '%s\n' "$group\t$method\t$archive.csv"
 				else	
 					printf '%s\n' "Grupo de snoRNAs não reconhecido."
 					exit 0
@@ -144,7 +153,7 @@ extract()
 						printf '%s\n' "Escolha uma entropia adequada [shannon|tsallis]"
 						exit 0
 					fi
-					echo "$group\t$method\t$entropy_choice\t$archive.fasta"
+					printf '%s\n' "$group\t$method\t$entropy_choice\t$archive.fasta"
 				done
 			elif [ $SNORNA_GROUP = 'hacabox' ]; then
 				for file in $HACA_BOX_DIRECTORY
@@ -158,20 +167,22 @@ extract()
 						printf '%s\n' "Tipo de entropia não identificada. Escolha uma das duas opções: [shannon|tsallis]"
 						exit 0
 					fi
-					echo "$group\t$method\t$entropy_choice\t$archive.fasta"
+					printf '%s\n' "$group\t$method\t$entropy_choice\t$archive.fasta"
 				done
 			elif [ $SNORNA_GROUP = 'negative' ]; then
 				if [ $entropy_choice = 'shannon' ]; then
 					archive="negative_shannon"
-					python3 $ENTROPY_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY/Shannon/$archive.csv -l negative -k 2 -e Shannon 1>/dev/null 
+					python3 $ENTROPY_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_CDBOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY/Shannon/$archive.csv -l negative -k 2 -e Shannon 1>/dev/null 
+					python3 $ENTROPY_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_HACABOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY/Shannon/$archive.csv -l negative -k 2 -e Shannon 1>/dev/null 
 				elif [ $entropy_choice = 'tsallis' ]; then
 					archive="negative_tsallis"
-					python3 $ENTROPY_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY/Tsallis/$archive.csv -l negative -k 2 -e Tsallis 1>/dev/null 
+					python3 $ENTROPY_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_CDBOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY/Tsallis/$archive.csv -l negative -k 2 -e Tsallis 1>/dev/null 
+					python3 $ENTROPY_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_HACABOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY/Tsallis/$archive.csv -l negative -k 2 -e Tsallis 1>/dev/null 
 				else
 					printf '%s\n' "Tipo de entropia não identificada. Escolha uma das duas opções: [shannon|tsallis]"
 					exit 0
 				fi
-				echo "$group\t$method\t$entropy_choice\t$archive.csv"
+				printf '%s\n' "$group\t$method\t$entropy_choice\t$archive.csv"
 			else	
 				printf '%s\n' "Grupo de snoRNAs não reconhecido."
 				exit 0
@@ -182,7 +193,7 @@ extract()
 			exit 0
 			;;
 	esac
-	echo "Extração concluída!\n"
+	printf '%s\n' "Extração concluída!\n"
 }
 
 if [ "$1" = "clean" ]; then
@@ -195,8 +206,8 @@ if [ $# -le 1 ]; then
 	printf '%s\n' "Grupo de snoRNAs ou método de extração de features não reconhecido."
 	printf '%s\n' "Caso queira remover todos os arquivos gerados pela extração de features rode o commando: ./feature_extraction.sh clean"
 	printf '%s\n' "Uso: ./feature_extraction.sh [cdbox|hacabox|negative] [fourier|complex|entropy] [fourier_representation]" 
-	echo "Escolha o mapeamento numérico se a representação do Mapeamento de Fourier foi escolhida:\n\t1 = Binary\n\t2 = Z-curve\n\t3 = Real\n\t4 = Integer\n\t5 = EIIP\n\t6 = Complex Number\n\t7 = Atomic Number"
-	echo "Escolha a entropia adequada se a representação for entropia:\n\tShannon\n\tTsallis\n"
+	printf '%s\n' "Escolha o mapeamento numérico se a representação do Mapeamento de Fourier foi escolhida:\n\t1 = Binary\n\t2 = Z-curve\n\t3 = Real\n\t4 = Integer\n\t5 = EIIP\n\t6 = Complex Number\n\t7 = Atomic Number"
+	printf '%s\n' "Escolha a entropia adequada se a representação for entropia:\n\tShannon\n\tTsallis\n"
 	exit 0
 fi
 

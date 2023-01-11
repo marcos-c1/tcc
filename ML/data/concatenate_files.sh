@@ -1,27 +1,32 @@
 # FOURIER_REAL_DIR
 CD_BOX_FOURIER_REAL_DIR='../../Feature_Extraction_CDBOX/Fourier_Real'
 HACA_BOX_FOURIER_REAL_DIR='../../Feature_Extraction_HACABOX/Fourier_Real'
-NEGATIVE_FOURIER_REAL_DIR='../../Feature_Extraction_Negatives/Fourier_Real'
+CD_BOX_NEGATIVE_FOURIER_REAL_DIR='../../Feature_Extraction_CDBOX_Negative/Fourier_Real'
+HACA_BOX_NEGATIVE_FOURIER_REAL_DIR='../../Feature_Extraction_HACABOX_Negative/Fourier_Real'
 
 # FOURIER_ZCURVE_DIR
 CD_BOX_FOURIER_ZCURVE_DIR='../../Feature_Extraction_CDBOX/Fourier_ZCurve'
 HACA_BOX_FOURIER_ZCURVE_DIR='../../Feature_Extraction_HACABOX/Fourier_ZCurve'
-NEGATIVE_FOURIER_ZCURVE_DIR='../../Feature_Extraction_Negatives/Fourier_ZCurve'
+CD_BOX_NEGATIVE_FOURIER_ZCURVE_DIR='../../Feature_Extraction_CDBOX_Negative/Fourier_ZCurve'
+HACA_BOX_NEGATIVE_FOURIER_ZCURVE_DIR='../../Feature_Extraction_HACABOX_Negative/Fourier_ZCurve'
 
 # ENTROPY_SHANNON_DIR
 CD_BOX_ENTROPY_SHANNON_DIR='../../Feature_Extraction_CDBOX/Entropy/Shannon'
 HACA_BOX_ENTROPY_SHANNON_DIR='../../Feature_Extraction_HACABOX/Entropy/Shannon'
-NEGATIVE_ENTROPY_SHANNON_DIR='../../Feature_Extraction_Negatives/Entropy/Shannon'
+CD_BOX_NEGATIVE_ENTROPY_SHANNON_DIR='../../Feature_Extraction_CDBOX_Negative/Entropy/Shannon'
+HACA_BOX_NEGATIVE_ENTROPY_SHANNON_DIR='../../Feature_Extraction_HACABOX_Negative/Entropy/Shannon'
 
 # ENTROPY_TSALLIS_DIR
 CD_BOX_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_CDBOX/Entropy/Tsallis'
 HACA_BOX_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_HACABOX/Entropy/Tsallis' 
-NEGATIVE_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_Negatives/Entropy/Tsallis'
+CD_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_CDBOX_Negative/Entropy/Tsallis'
+HACA_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_HACABOX_Negative/Entropy/Tsallis'
 
 # COMPLEX_DIR
 CD_BOX_COMPLEX_DIR='../../Feature_Extraction_CDBOX/Complex'
 HACA_BOX_COMPLEX_DIR='../../Feature_Extraction_HACABOX/Complex'
-NEGATIVE_COMPLEX_DIR='../../Feature_Extraction_Negatives/Complex'
+CD_BOX_NEGATIVE_COMPLEX_DIR='../../Feature_Extraction_CDBOX_Negative/Complex'
+HACA_BOX_NEGATIVE_COMPLEX_DIR='../../Feature_Extraction_HACABOX_Negative/Complex'
 
 # OUTPUT DIR
 OUTPUT_FOURIER_REAL_DIR='./Fourier_Real'
@@ -29,9 +34,6 @@ OUTPUT_FOURIER_ZCURVE_DIR='./Fourier_ZCurve'
 OUTPUT_ENTROPY_SHANNON_DIR='./Entropy/Shannon'
 OUTPUT_ENTROPY_TSALLIS_DIR='./Entropy/Tsallis'
 OUTPUT_COMPLEX_DIR='./Complex'
-
-# NEGATIVE SAMPLE
-NEGATIVE_SAMPLE_DIR='../../negative_sample.fasta'
 
 clean()
 {
@@ -71,23 +73,23 @@ append_files()
 		case $method in
 			'fourier_real')
 				file='./Fourier_Real/cd_box_fourier_real_data.csv'
-				cat $CD_BOX_FOURIER_REAL_DIR/*.csv $NEGATIVE_FOURIER_REAL_DIR/*.csv > $file 
+				cat $CD_BOX_FOURIER_REAL_DIR/*.csv $CD_BOX_NEGATIVE_FOURIER_REAL_DIR/*.csv > $file 
 				;;
 			'fourier_zcurve')
 				file='./Fourier_ZCurve/cd_box_fourier_zcurve_data.csv'
-				cat $CD_BOX_FOURIER_ZCURVE_DIR/*.csv  $NEGATIVE_FOURIER_ZCURVE_DIR/*.csv > $file 
+				cat $CD_BOX_FOURIER_ZCURVE_DIR/*.csv  $CD_BOX_NEGATIVE_FOURIER_ZCURVE_DIR/*.csv > $file 
 				;;
 			'entropy_shannon')
 				file='./Entropy/Shannon/cd_box_entropy_shannon_data.csv'
-				cat $CD_BOX_ENTROPY_SHANNON_DIR/*.csv  $NEGATIVE_ENTROPY_SHANNON_DIR/*.csv > $file 
+				cat $CD_BOX_ENTROPY_SHANNON_DIR/*.csv  $CD_BOX_NEGATIVE_ENTROPY_SHANNON_DIR/*.csv > $file 
 				;;
 			'entropy_tsallis')
 				file='./Entropy/Tsallis/cd_box_entropy_tsallis_data.csv'
-				cat $CD_BOX_ENTROPY_TSALLIS_DIR/*.csv  $NEGATIVE_ENTROPY_TSALLIS_DIR/*.csv > $file 
+				cat $CD_BOX_ENTROPY_TSALLIS_DIR/*.csv  $CD_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR/*.csv > $file 
 				;;
 			'complex')
 				file='./Complex/cd_box_complex_data.csv'
-				cat $CD_BOX_COMPLEX_DIR/*.csv  $NEGATIVE_COMPLEX_DIR/*.csv > $file 
+				cat $CD_BOX_COMPLEX_DIR/*.csv  $CD_BOX_NEGATIVE_COMPLEX_DIR/*.csv > $file 
 				;;
 			*)
 				printf '%s\n' "Método de extração de features não reconhecido."
@@ -98,23 +100,23 @@ append_files()
 		case $method in
 			'fourier_real')
 				file='./Fourier_Real/haca_box_fourier_real_data.csv'
-				cat $HACA_BOX_FOURIER_REAL_DIR/*.csv $NEGATIVE_FOURIER_REAL_DIR/*.csv > $file 
+				cat $HACA_BOX_FOURIER_REAL_DIR/*.csv $HACA_BOX_NEGATIVE_FOURIER_REAL_DIR/*.csv > $file 
 				;;
 			'fourier_zcurve')
 				file='./Fourier_ZCurve/haca_box_fourier_zcurve_data.csv'
-				cat $HACA_BOX_FOURIER_ZCURVE_DIR/*.csv  $NEGATIVE_FOURIER_ZCURVE_DIR/*.csv > $file 
+				cat $HACA_BOX_FOURIER_ZCURVE_DIR/*.csv  $HACA_BOX_NEGATIVE_FOURIER_ZCURVE_DIR/*.csv > $file 
 				;;
 			'entropy_shannon')
 				file='./Entropy/Shannon/haca_box_entropy_shannon_data.csv'
-				cat $HACA_BOX_ENTROPY_SHANNON_DIR/*.csv  $NEGATIVE_ENTROPY_SHANNON_DIR/*.csv > $file 
+				cat $HACA_BOX_ENTROPY_SHANNON_DIR/*.csv  $HACA_BOX_NEGATIVE_ENTROPY_SHANNON_DIR/*.csv > $file 
 				;;
 			'entropy_tsallis')
 				file='./Entropy/Tsallis/haca_box_entropy_tsallis_data.csv'
-				cat $HACA_BOX_ENTROPY_TSALLIS_DIR/*.csv  $NEGATIVE_ENTROPY_TSALLIS_DIR/*.csv > $file 
+				cat $HACA_BOX_ENTROPY_TSALLIS_DIR/*.csv  $HACA_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR/*.csv > $file 
 				;;
 			'complex')
 				file='./Complex/haca_box_complex_data.csv'
-				cat $HACA_BOX_COMPLEX_DIR/*.csv  $NEGATIVE_COMPLEX_DIR/*.csv > $file 
+				cat $HACA_BOX_COMPLEX_DIR/*.csv  $HACA_BOX_NEGATIVE_COMPLEX_DIR/*.csv > $file 
 				;;
 			*)
 				printf '%s\n' "Método de extração de features não reconhecido."
