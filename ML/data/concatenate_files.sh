@@ -46,9 +46,10 @@ clean()
 
 usage()
 {
-	printf '%s\n' "Concatene todos os arquivos de conjunto positivo com negativo contendo as features em um único arquivo mesclado com n labels"
-	printf '%s\n' "Uso: ./concatenate_files.sh [cd-box|haca-box] [fourier_real|fourier_zcurve|complex|entropy_shannon|entropy_tsallis]" 
-	printf '%s\n' "Caso queira remover todos os arquivos gerados pela concatenação dos arquivos contendo as features, rode o commando: ./concatenate_files.sh clean"
+	echo -e "Concatene todos os arquivos de conjunto positivo com negativo contendo as features em um único arquivo mesclado com n labels"
+	echo -e "Caso queira remover todos os arquivos gerados pela concatenação dos arquivos contendo as features, rode o commando: ./concatenate_files.sh clean"
+  echo -e "Caso queira concatenar todos os arquivos gerados pela extracao contendo os conjuntos positivos e negativos, rode o comando ./concatenate_files.sh all"
+	echo -e "Uso: ./concatenate_files.sh [cd-box|haca-box] [fourier_real|fourier_zcurve|complex|entropy_shannon|entropy_tsallis]" 
 	exit 0
 }
 
@@ -92,7 +93,7 @@ append_files()
 				cat $CD_BOX_COMPLEX_DIR/*.csv  $CD_BOX_NEGATIVE_COMPLEX_DIR/*.csv > $file 
 				;;
 			*)
-				printf '%s\n' "Método de extração de features não reconhecido."
+				echo -e "Método de extração de features não reconhecido."
 				usage
 				;;
 		esac
@@ -119,12 +120,12 @@ append_files()
 				cat $HACA_BOX_COMPLEX_DIR/*.csv  $HACA_BOX_NEGATIVE_COMPLEX_DIR/*.csv > $file 
 				;;
 			*)
-				printf '%s\n' "Método de extração de features não reconhecido."
+				echo -e "Método de extração de features não reconhecido."
 				usage
 				;;
 		esac
 	else
-		printf '%s\n' "Grupo de snoRNA não reconhecido."
+		echo -e "Grupo de snoRNA não reconhecido."
 		usage
 	fi
 
@@ -134,13 +135,24 @@ append_files()
 
 if [ "$1" = "clean" ]; then
 	clean
-	printf '%s\n' "Todos os arquivos que continham os dados concatenados das features foram removidos"
+	echo -e "Todos os arquivos que continham os dados concatenados das features foram removidos"
 	exit 0
-fi
+elif [ "$1" = "all" ]; then
+  append_files "cd-box" "fourier_real"
+  append_files "cd-box" "fourier_zcurve"
+  append_files "cd-box" "complex"
+  append_files "cd-box" "entropy_shannon"
+  append_files "cd-box" "entropy_tsallis" 
 
-if [ $# -le 1 ]; then 
+  append_files "haca-box" "fourier_real"
+  append_files "haca-box" "fourier_zcurve"
+  append_files "haca-box" "complex"
+  append_files "haca-box" "entropy_shannon"
+  append_files "haca-box" "entropy_tsallis" 
+
+  echo -e "Todos os arquivos foram concatenados."
+elif [ $# -le 1 ]; then 
 	usage
 else
 	append_files $1 $2
 fi
-

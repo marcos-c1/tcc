@@ -1,0 +1,14 @@
+RF00001.fasta
+712
+RF00005.fasta
+954
+RF00009.fasta
+116
+RF00010.fasta
+458
+RF00011.fasta
+114
+RF00373.fasta
+70
+RF02357.fasta
+9
