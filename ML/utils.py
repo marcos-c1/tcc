@@ -38,25 +38,25 @@ class CSVData:
         # Doesnt accept NaN
         X = np.nan_to_num(X, copy=False, nan=0.0, posinf=0.0, neginf=0.0)
 
+        changer = lambda t: 0 if t == 'negative' else 1
+
         # Change label cdbox and hacabox to float numbers
-        le = preprocessing.LabelEncoder()
+        labels = np.array([changer(label) for label in data['label']]) 
 
-        # Get the label itself by float number decoding
-        data['label'] = le.fit_transform(data['label'])
-
-        # Get the labels name
-        self.labels = np.take(le.inverse_transform([0, 1]), 0)
         # Target label (cdbox or hacabox as float numbers)
-        y = data['label']
+        y = labels 
         return X, y
 
     
 
 def plotGraph(obj, y_test, predictions):
     cm = confusion_matrix(y_test, predictions)
+    tn, fp, fn, tp = cm.ravel()
+    print(f'{obj.method}_{obj.group}\tPositivos verdadeiros: {tp}')
+    print(f'{obj.method}_{obj.group}\tPositivos falsos: {tn}')
     plt.figure(figsize=(10, 7))
     ax = sn.heatmap(cm, annot=True, fmt='d')
-    ax.set(xlabel='Predicted', ylabel='Labels', title=obj.method)
+    ax.set(xlabel='Actual Values (Labels)', ylabel='Predicted Values', title=obj.method)
     plt.savefig(f'./imgs/{obj.method}_{obj.group}')
 
 def createMethods(group):

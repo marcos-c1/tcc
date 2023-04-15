@@ -32,7 +32,7 @@ def train(snoRNA_class):
         f1_scores.append(str(f1_score(y_test, predictions) * 100.0) + '%') 
         fbeta_scores.append(str(fbeta_score(y_test, predictions, beta=0.5) * 100.0) + '%')
         recalls.append(str(recall_score(y_test, predictions) * 100.0) + '%')
-        labels.append(value.labels)
+        labels.append(value.group)
         methods.append(key)
         end_time = time.time()
         measure_time.append(str(end_time - initial_time) + 's')
