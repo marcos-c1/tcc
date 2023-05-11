@@ -50,10 +50,13 @@ class CSVData:
         y = data['label']
         return X, y
 
-    
-
 def plotGraph(obj, y_test, predictions):
     cm = confusion_matrix(y_test, predictions)
+    # true negative, false positive, false negative, true positive
+    tn, fp, fn, tp = cm.ravel()
+    f = open(f'./output/confusion_matrix/{obj.group}_{obj.method}', "w")
+    f.write(f'TN: {tn}\nFP: {fp}\nFN: {fn}\nTP: {tp}')
+    f.close()
     plt.figure(figsize=(10, 7))
     ax = sn.heatmap(cm, annot=True, fmt='d')
     ax.set(xlabel='Predicted', ylabel='Labels', title=obj.method)
