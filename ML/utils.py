@@ -5,7 +5,7 @@ from sklearn import preprocessing
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sn
-from os import getcwd
+from os import getcwd 
 
 class CSVData:
     def __init__(self, group, method) -> None:
@@ -39,19 +39,19 @@ class CSVData:
         X = np.nan_to_num(X, copy=False, nan=0.0, posinf=0.0, neginf=0.0)
 
         # Change label cdbox and hacabox to float numbers
-        le = preprocessing.LabelEncoder()
+        #le = preprocessing.LabelEncoder()
 
+        changeLabel = lambda x: [1 if label == 'cdbox' or label == 'hacabox' else 0 for label in x]
         # Get the label itself by float number decoding
-        data['label'] = le.fit_transform(data['label'])
+        data['label'] = changeLabel(data['label'].tolist()) 
 
-        # Get the labels name
-        self.labels = np.take(le.inverse_transform([0, 1]), 0)
         # Target label (cdbox or hacabox as float numbers)
         y = data['label']
         return X, y
 
 def plotGraph(obj, y_test, predictions):
     cm = confusion_matrix(y_test, predictions)
+    print(f'{obj.group}\t{obj.method}\t{cm.ravel()}')
     # true negative, false positive, false negative, true positive
     tn, fp, fn, tp = cm.ravel()
     f = open(f'./output/confusion_matrix/{obj.group}_{obj.method}', "w")

@@ -1,32 +1,32 @@
 # FOURIER_REAL_DIR
-CD_BOX_FOURIER_REAL_DIR='../../Feature_Extraction_CDBOX/Fourier_Real'
-HACA_BOX_FOURIER_REAL_DIR='../../Feature_Extraction_HACABOX/Fourier_Real'
-CD_BOX_NEGATIVE_FOURIER_REAL_DIR='../../Feature_Extraction_CDBOX_Negative/Fourier_Real'
-HACA_BOX_NEGATIVE_FOURIER_REAL_DIR='../../Feature_Extraction_HACABOX_Negative/Fourier_Real'
+CD_BOX_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_CDBOX/Fourier_Real'
+HACA_BOX_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_HACABOX/Fourier_Real'
+CD_BOX_NEGATIVE_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Fourier_Real'
+HACA_BOX_NEGATIVE_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Fourier_Real'
 
 # FOURIER_ZCURVE_DIR
-CD_BOX_FOURIER_ZCURVE_DIR='../../Feature_Extraction_CDBOX/Fourier_ZCurve'
-HACA_BOX_FOURIER_ZCURVE_DIR='../../Feature_Extraction_HACABOX/Fourier_ZCurve'
-CD_BOX_NEGATIVE_FOURIER_ZCURVE_DIR='../../Feature_Extraction_CDBOX_Negative/Fourier_ZCurve'
-HACA_BOX_NEGATIVE_FOURIER_ZCURVE_DIR='../../Feature_Extraction_HACABOX_Negative/Fourier_ZCurve'
+CD_BOX_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_CDBOX/Fourier_ZCurve'
+HACA_BOX_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_HACABOX/Fourier_ZCurve'
+CD_BOX_NEGATIVE_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Fourier_ZCurve'
+HACA_BOX_NEGATIVE_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Fourier_ZCurve'
 
 # ENTROPY_SHANNON_DIR
-CD_BOX_ENTROPY_SHANNON_DIR='../../Feature_Extraction_CDBOX/Entropy/Shannon'
-HACA_BOX_ENTROPY_SHANNON_DIR='../../Feature_Extraction_HACABOX/Entropy/Shannon'
-CD_BOX_NEGATIVE_ENTROPY_SHANNON_DIR='../../Feature_Extraction_CDBOX_Negative/Entropy/Shannon'
-HACA_BOX_NEGATIVE_ENTROPY_SHANNON_DIR='../../Feature_Extraction_HACABOX_Negative/Entropy/Shannon'
+CD_BOX_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_CDBOX/Entropy/Shannon'
+HACA_BOX_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_HACABOX/Entropy/Shannon'
+CD_BOX_NEGATIVE_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Entropy/Shannon'
+HACA_BOX_NEGATIVE_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Entropy/Shannon'
 
 # ENTROPY_TSALLIS_DIR
-CD_BOX_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_CDBOX/Entropy/Tsallis'
-HACA_BOX_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_HACABOX/Entropy/Tsallis' 
-CD_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_CDBOX_Negative/Entropy/Tsallis'
-HACA_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR='../../Feature_Extraction_HACABOX_Negative/Entropy/Tsallis'
+CD_BOX_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_CDBOX/Entropy/Tsallis'
+HACA_BOX_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_HACABOX/Entropy/Tsallis' 
+CD_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Entropy/Tsallis'
+HACA_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Entropy/Tsallis'
 
 # COMPLEX_DIR
-CD_BOX_COMPLEX_DIR='../../Feature_Extraction_CDBOX/Complex'
-HACA_BOX_COMPLEX_DIR='../../Feature_Extraction_HACABOX/Complex'
-CD_BOX_NEGATIVE_COMPLEX_DIR='../../Feature_Extraction_CDBOX_Negative/Complex'
-HACA_BOX_NEGATIVE_COMPLEX_DIR='../../Feature_Extraction_HACABOX_Negative/Complex'
+CD_BOX_COMPLEX_DIR='../../extraction/Feature_Extraction_CDBOX/Complex'
+HACA_BOX_COMPLEX_DIR='../../extraction/Feature_Extraction_HACABOX/Complex'
+CD_BOX_NEGATIVE_COMPLEX_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Complex'
+HACA_BOX_NEGATIVE_COMPLEX_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Complex'
 
 # OUTPUT DIR
 OUTPUT_FOURIER_REAL_DIR='./Fourier_Real'

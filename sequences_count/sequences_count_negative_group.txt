@@ -1,2 +1,0 @@
-negative_group.fasta
-2433

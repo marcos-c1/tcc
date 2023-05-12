@@ -1,8 +1,8 @@
 #!/bin/bash
 
 occ=0
-file="../negatives/negative_group.fasta"
-output_file="../sequences_count/sequences_count_negative_group.txt"
+file="../negatives/neg.fasta"
+output_file="../sequences_count/sequences_count_neg.txt"
 total_sequences=0
 
 for i in $file 

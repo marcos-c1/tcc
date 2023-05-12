@@ -22,7 +22,7 @@ OUTPUT_HACABOX_EXTRACT_COMPLEX_DIRECTORY="../extraction/Feature_Extraction_HACAB
 
 # Output directory for Negative sample of CD-BOX class 
 OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/Feature_Extraction_CDBOX_Negative/Fourier_Real"
-OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="./extraction/Feature_Extraction_CDBOX_Negative/Fourier_ZCurve"
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/Feature_Extraction_CDBOX_Negative/Fourier_ZCurve"
 OUTPUT_CDBOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="../extraction/Feature_Extraction_CDBOX_Negative/Entropy"
 OUTPUT_CDBOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="../extraction/Feature_Extraction_CDBOX_Negative/Complex"
 
@@ -33,7 +33,7 @@ OUTPUT_HACABOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="../extraction/Feature_Extract
 OUTPUT_HACABOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="../extraction/Feature_Extraction_HACABOX_Negative/Complex"
 
 # Negative file
-NEGATIVE_FILE="./NEGATIVES/negative_group.fasta"
+NEGATIVE_FILE="../negatives/all_negative.fasta"
 
 clean_positive()
 {

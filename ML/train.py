@@ -34,9 +34,9 @@ def train(snoRNA_class):
         f1_scores.append(str(f1_score(y_test, predictions) * 100.0) + '%') 
         fbeta_scores.append(str(fbeta_score(y_test, predictions, beta=0.5) * 100.0) + '%')
         recalls.append(str(recall_score(y_test, predictions) * 100.0) + '%')
-        precisions.append(str(precision_score(y_test, predictions) * 100.0) + '%')
+        precisions.append(str(precision_score(y_test, predictions, average='macro') * 100.0) + '%')
         auc.append(str(roc_auc_score(y_test, predictions) * 100.0) + '%') 
-        labels.append(value.labels)
+        labels.append(value.group)
         methods.append(key)
         end_time = time.time()
         measure_time.append(str(end_time - initial_time) + 's')
@@ -61,5 +61,5 @@ if __name__ == '__main__':
     measure_time = mt1 + mt2
 
     dt_str = datetime.now().strftime("%d-%m-%Y_%H-%M")
-    table = pd.DataFrame({'classe': labels, 'metodo': methods, 'f1_score': f1_scores, 'recall': recalls, 'fbeta_score': fbeta_scores, 'precisions_score': precision_score, 'auc_scores': auc_scores, 'tempo_corrido': measure_time, 'modelo': models})
+    table = pd.DataFrame({'classe': labels, 'metodo': methods, 'f1_score': f1_scores, 'recall': recalls, 'fbeta_score': fbeta_scores, 'precisions_score': precisions_scores, 'auc_scores': auc_scores, 'tempo_corrido': measure_time, 'modelo': models})
     table.to_csv(f'./output/accuracy_{dt_str}.csv', index=False)
