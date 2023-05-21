@@ -1,0 +1,3 @@
+diff_RNAs
+2433
+ff_RNAs/TOTAL.fasta

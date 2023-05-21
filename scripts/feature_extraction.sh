@@ -7,6 +7,7 @@ COMPLEX_ALGORITHM="../FeatureExtraction/methods/ComplexNetworksClass.py"
 # Input directory
 CD_BOX_DIRECTORY="../average_data/CD-BOX-average/*.fasta"
 HACA_BOX_DIRECTORY="../average_data/HACA-BOX-average/*.fasta"
+REAL_DATA_DIRECTORY="../Validation/*.fasta"
 
 # Output directory for CD-BOX class 
 OUTPUT_CDBOX_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/Feature_Extraction_CDBOX/Fourier_Real"

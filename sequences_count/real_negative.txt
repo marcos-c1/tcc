@@ -1,3 +1,3 @@
-negative_group.fasta
-2433
-p.fasta
+average_negative.fasta
+1666
+e.fasta
