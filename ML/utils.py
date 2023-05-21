@@ -1,4 +1,5 @@
 import pandas as pd
+from math import sqrt 
 import numpy as np 
 import pickle
 from sklearn import preprocessing
@@ -49,18 +50,19 @@ class CSVData:
         y = data['label']
         return X, y
 
-def plotGraph(obj, y_test, predictions):
-    cm = confusion_matrix(y_test, predictions)
-    print(f'{obj.group}\t{obj.method}\t{cm.ravel()}')
-    # true negative, false positive, false negative, true positive
-    tn, fp, fn, tp = cm.ravel()
-    f = open(f'./output/confusion_matrix/{obj.group}_{obj.method}', "w")
-    f.write(f'TN: {tn}\nFP: {fp}\nFN: {fn}\nTP: {tp}')
-    f.close()
+def plotGraph(obj, y_test, predictions, cm_arr):
     plt.figure(figsize=(10, 7))
+    cm = getConfusionMatrix(obj, y_test, predictions, cm_arr)
     ax = sn.heatmap(cm, annot=True, fmt='d')
     ax.set(xlabel='Predicted', ylabel='Labels', title=obj.method)
     plt.savefig(f'./imgs/{obj.method}_{obj.group}')
+
+def getConfusionMatrix(obj, y_test, predictions, tp_arr):
+    cm = confusion_matrix(y_test, predictions)
+    tn, fp, fn, tp = cm.ravel()
+    tp_arr.append({'class': obj.group, 'method': obj.method, 'tn': tn, 'fp': fp, 'fn': fn, 'tp': tp})
+    print(f'{obj.group}\t{obj.method}\t{cm.ravel()}')
+    return cm
 
 def createMethods(group):
     fr = CSVData(group, 'fourier_real')
@@ -81,6 +83,22 @@ def createMethods(group):
 
 def accuracy(y_test, y_pred):
     return np.sum(y_test == y_pred) / len(y_test)
+
+#def predictModel(loadedModel):
+
+
+def average(tp_arr):
+    sum_n = 0
+    for i in tp_arr:
+        sum_n += i['tp']
+    return sum_n / len(tp_arr)
+        
+def dp(tp_arr):
+    avg = average(tp_arr)
+    sum_n = 0
+    for i in tp_arr:
+        sum_n += pow(i['tp'] - avg, 2)
+    return sqrt(sum_n / len(tp_arr)) 
 
 def saveModel(save_file, clf):
     cd = getcwd()

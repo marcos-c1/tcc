@@ -1,2 +1,3 @@
-negative_sample.fasta
-2566
+average_shuffle_negative.fasta
+1500
+e.fasta

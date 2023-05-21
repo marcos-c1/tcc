@@ -1,2 +1,3 @@
-neg.fasta
-4999
+all_negative.fasta
+3166
+e.fasta
