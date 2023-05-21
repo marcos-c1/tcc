@@ -86,4 +86,5 @@ if __name__ == '__main__':
     dt_str = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
     table = pd.DataFrame({'classe': labels, 'metodo': methods, 'f1_score': f1_scores, 'recall': recalls, 'fbeta_score': fbeta_scores, 'precisions_score': precisions_scores, 'auc_scores': auc_scores, 'tempo_corrido': measure_time, 'matriz_da_confusao': confusion_matrix, 'modelo': models})
     table = table._append({f'desvio_padrao (n = {args.test_counter})': deviations}, ignore_index=True)
+    table = table._append({f'media_aritmetica (n = {args.test_counter})': averages}, ignore_index=True)
     table.to_csv(f'./output/accuracy_{dt_str}.csv', index=False)
