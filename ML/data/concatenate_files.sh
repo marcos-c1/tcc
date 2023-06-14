@@ -1,30 +1,35 @@
 # FOURIER_REAL_DIR
 CD_BOX_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_CDBOX/Fourier_Real'
 HACA_BOX_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_HACABOX/Fourier_Real'
+REAL_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_Real_Data/Fourier_Real'
 CD_BOX_NEGATIVE_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Fourier_Real'
 HACA_BOX_NEGATIVE_FOURIER_REAL_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Fourier_Real'
 
 # FOURIER_ZCURVE_DIR
 CD_BOX_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_CDBOX/Fourier_ZCurve'
 HACA_BOX_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_HACABOX/Fourier_ZCurve'
+REAL_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_Real_Data/Fourier_ZCurve'
 CD_BOX_NEGATIVE_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Fourier_ZCurve'
 HACA_BOX_NEGATIVE_FOURIER_ZCURVE_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Fourier_ZCurve'
 
 # ENTROPY_SHANNON_DIR
 CD_BOX_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_CDBOX/Entropy/Shannon'
 HACA_BOX_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_HACABOX/Entropy/Shannon'
+REAL_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_Real_Data/Entropy/Shannon'
 CD_BOX_NEGATIVE_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Entropy/Shannon'
 HACA_BOX_NEGATIVE_ENTROPY_SHANNON_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Entropy/Shannon'
 
 # ENTROPY_TSALLIS_DIR
 CD_BOX_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_CDBOX/Entropy/Tsallis'
 HACA_BOX_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_HACABOX/Entropy/Tsallis' 
+REAL_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_Real_Data/Entropy/Tsallis'
 CD_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Entropy/Tsallis'
 HACA_BOX_NEGATIVE_ENTROPY_TSALLIS_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Entropy/Tsallis'
 
 # COMPLEX_DIR
 CD_BOX_COMPLEX_DIR='../../extraction/Feature_Extraction_CDBOX/Complex'
 HACA_BOX_COMPLEX_DIR='../../extraction/Feature_Extraction_HACABOX/Complex'
+REAL_COMPLEX_DIR='../../extraction/Feature_Extraction_Real_Data/Complex'
 CD_BOX_NEGATIVE_COMPLEX_DIR='../../extraction/Feature_Extraction_CDBOX_Negative/Complex'
 HACA_BOX_NEGATIVE_COMPLEX_DIR='../../extraction/Feature_Extraction_HACABOX_Negative/Complex'
 
@@ -124,6 +129,33 @@ append_files()
 				usage
 				;;
 		esac
+	elif [ $group == 'real' ]; then
+		case $method in
+			'fourier_real')
+				file='./Fourier_Real/real_fourier_real_data.csv'
+				cat $REAL_FOURIER_REAL_DIR/*.csv > $file 
+				;;
+			'fourier_zcurve')
+				file='./Fourier_ZCurve/real_fourier_zcurve_data.csv'
+				cat $REAL_FOURIER_ZCURVE_DIR/*.csv > $file 
+				;;
+			'entropy_shannon')
+				file='./Entropy/Shannon/real_entropy_shannon_data.csv'
+				cat $REAL_ENTROPY_SHANNON_DIR/*.csv > $file 
+				;;
+			'entropy_tsallis')
+				file='./Entropy/Tsallis/real_entropy_tsallis_data.csv'
+				cat $REAL_ENTROPY_TSALLIS_DIR/*.csv > $file 
+				;;
+			'complex')
+				file='./Complex/real_complex_data.csv'
+				cat $REAL_COMPLEX_DIR/*.csv > $file 
+				;;
+			*)
+				echo -e "Método de extração de features não reconhecido."
+				usage
+				;;
+		esac
 	else
 		echo -e "Grupo de snoRNA não reconhecido."
 		usage
@@ -151,6 +183,13 @@ elif [ "$1" = "all" ]; then
   append_files "haca-box" "entropy_tsallis" 
 
   echo -e "Todos os arquivos foram concatenados."
+elif [ "$1" = "real" ]; then
+	append_files "real" "fourier_real"
+	append_files "real" "fourier_zcurve"
+	append_files "real" "complex"
+	append_files "real" "entropy_shannon"
+	append_files "real" "entropy_tsallis"
+	echo -e "Todos os arquivos foram concatenados."
 elif [ $# -le 1 ]; then 
 	usage
 else

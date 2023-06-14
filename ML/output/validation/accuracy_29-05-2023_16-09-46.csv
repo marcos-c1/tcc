@@ -1,0 +1,11 @@
+classe,metodo,accuracy_score,modelo
+cd_box,fourier_real,33.50357507660878%,cd_box_fourier_real_29-05-2023_16-09-20.701694.pickle
+cd_box,fourier_zcurve,32.48212461695608%,cd_box_fourier_zcurve_29-05-2023_16-09-20.701694.pickle
+cd_box,entropy_shannon,48.4167517875383%,cd_box_entropy_shannon_29-05-2023_16-09-20.701694.pickle
+cd_box,entropy_tsallis,42.79877425944842%,cd_box_entropy_tsallis_29-05-2023_16-09-20.701694.pickle
+cd_box,complex,32.17568947906027%,cd_box_complex_29-05-2023_16-09-20.701694.pickle
+haca_box,fourier_real,24.514811031664966%,haca_box_fourier_real_29-05-2023_16-09-33.936218.pickle
+haca_box,fourier_zcurve,25.740551583248212%,haca_box_fourier_zcurve_29-05-2023_16-09-33.936218.pickle
+haca_box,entropy_shannon,44.330949948927476%,haca_box_entropy_shannon_29-05-2023_16-09-33.936218.pickle
+haca_box,entropy_tsallis,41.87946884576098%,haca_box_entropy_tsallis_29-05-2023_16-09-33.936218.pickle
+haca_box,complex,24.719101123595504%,haca_box_complex_29-05-2023_16-09-33.936218.pickle

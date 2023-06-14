@@ -1,0 +1,11 @@
+desvio_padrao (n = 5),media_aritmetica (n = 5)
+"{'class': 'cd_box', 'method': 'fourier_real', 'deviation': 7.249827584156742}","{'class': 'cd_box', 'method': 'fourier_real', 'average': 454.2}"
+"{'class': 'cd_box', 'method': 'fourier_zcurve', 'deviation': 8.94427190999916}","{'class': 'cd_box', 'method': 'fourier_zcurve', 'average': 453.0}"
+"{'class': 'cd_box', 'method': 'entropy_shannon', 'deviation': 48.51070901243239}","{'class': 'cd_box', 'method': 'entropy_shannon', 'average': 419.6666666666667}"
+"{'class': 'cd_box', 'method': 'entropy_tsallis', 'deviation': 46.81986757777087}","{'class': 'cd_box', 'method': 'entropy_tsallis', 'average': 408.0}"
+"{'class': 'cd_box', 'method': 'complex', 'deviation': 46.71188285650665}","{'class': 'cd_box', 'method': 'complex', 'average': 418.2}"
+"{'class': 'haca_box', 'method': 'fourier_real', 'deviation': 13.175735273600482}","{'class': 'haca_box', 'method': 'fourier_real', 'average': 284.0}"
+"{'class': 'haca_box', 'method': 'fourier_zcurve', 'deviation': 11.670903992407785}","{'class': 'haca_box', 'method': 'fourier_zcurve', 'average': 283.3}"
+"{'class': 'haca_box', 'method': 'entropy_shannon', 'deviation': 93.78685053531402}","{'class': 'haca_box', 'method': 'entropy_shannon', 'average': 217.4}"
+"{'class': 'haca_box', 'method': 'entropy_tsallis', 'deviation': 87.10423353660832}","{'class': 'haca_box', 'method': 'entropy_tsallis', 'average': 199.45}"
+"{'class': 'haca_box', 'method': 'complex', 'deviation': 85.37431932378728}","{'class': 'haca_box', 'method': 'complex', 'average': 216.84}"
