@@ -1,12 +1,14 @@
 #!/bin/bash
 
 occ=0
-file="../negatives/diff_RNAs/TOTAL.fasta"
-output_file="../sequences_count/total_diff_RNAs.txt"
+dir="../Validation/"
+out_dir="../sequences_count/"
 total_sequences=0
 
-for i in $file 
+for file in $(ls $dir)
 do
-	echo $i >> $output_file 
-	cut -d '/' -f 3 <<< $i && cat $i | grep '>' | wc -l
-done > $output_file 
+	rm -rf $out_dir/$file
+	echo $file > $out_dir/$file 
+	#cut -d '/' -f 3 <<< $i && cat $i | grep '>' | wc -l
+	cat $dir/$file | grep '>' | wc -l > $out_dir/$file
+done 
