@@ -1,0 +1,61 @@
+classe,metodo,organismo,positivos,negativos,total,modelo,eficiencia
+cd_box,fourier_real,chicken,124,8,132,RandomForestClassifier(max_depth=10),0.9393939393939394
+cd_box,fourier_real,drosophilas,63,0,63,RandomForestClassifier(max_depth=10),1.0
+cd_box,fourier_real,cElegans,108,0,108,RandomForestClassifier(max_depth=10),1.0
+cd_box,fourier_real,leishmania,54,8,62,RandomForestClassifier(max_depth=10),0.8709677419354839
+cd_box,fourier_real,platypus,144,0,144,RandomForestClassifier(max_depth=10),1.0
+cd_box,fourier_real,yang_human,21,0,21,RandomForestClassifier(max_depth=10),1.0
+cd_box,fourier_zcurve,chicken,126,6,132,RandomForestClassifier(max_depth=10),0.9545454545454546
+cd_box,fourier_zcurve,drosophilas,63,0,63,RandomForestClassifier(max_depth=10),1.0
+cd_box,fourier_zcurve,cElegans,106,2,108,RandomForestClassifier(max_depth=10),0.9814814814814815
+cd_box,fourier_zcurve,leishmania,62,0,62,RandomForestClassifier(max_depth=10),1.0
+cd_box,fourier_zcurve,platypus,144,0,144,RandomForestClassifier(max_depth=10),1.0
+cd_box,fourier_zcurve,yang_human,21,0,21,RandomForestClassifier(max_depth=10),1.0
+cd_box,entropy_shannon,chicken,103,29,132,RandomForestClassifier(max_depth=10, n_estimators=500),0.7803030303030303
+cd_box,entropy_shannon,drosophilas,44,19,63,RandomForestClassifier(max_depth=10, n_estimators=500),0.6984126984126984
+cd_box,entropy_shannon,cElegans,69,39,108,RandomForestClassifier(max_depth=10, n_estimators=500),0.6388888888888888
+cd_box,entropy_shannon,leishmania,44,18,62,RandomForestClassifier(max_depth=10, n_estimators=500),0.7096774193548387
+cd_box,entropy_shannon,platypus,122,22,144,RandomForestClassifier(max_depth=10, n_estimators=500),0.8472222222222222
+cd_box,entropy_shannon,yang_human,20,1,21,RandomForestClassifier(max_depth=10, n_estimators=500),0.9523809523809523
+cd_box,entropy_tsallis,chicken,113,19,132,RandomForestClassifier(max_depth=10),0.8560606060606061
+cd_box,entropy_tsallis,drosophilas,44,19,63,RandomForestClassifier(max_depth=10),0.6984126984126984
+cd_box,entropy_tsallis,cElegans,82,26,108,RandomForestClassifier(max_depth=10),0.7592592592592593
+cd_box,entropy_tsallis,leishmania,54,8,62,RandomForestClassifier(max_depth=10),0.8709677419354839
+cd_box,entropy_tsallis,platypus,123,21,144,RandomForestClassifier(max_depth=10),0.8541666666666666
+cd_box,entropy_tsallis,yang_human,19,2,21,RandomForestClassifier(max_depth=10),0.9047619047619048
+cd_box,complex,chicken,127,5,132,RandomForestClassifier(max_depth=10, n_estimators=500),0.9621212121212122
+cd_box,complex,drosophilas,62,1,63,RandomForestClassifier(max_depth=10, n_estimators=500),0.9841269841269841
+cd_box,complex,cElegans,106,2,108,RandomForestClassifier(max_depth=10, n_estimators=500),0.9814814814814815
+cd_box,complex,leishmania,62,0,62,RandomForestClassifier(max_depth=10, n_estimators=500),1.0
+cd_box,complex,platypus,144,0,144,RandomForestClassifier(max_depth=10, n_estimators=500),1.0
+cd_box,complex,yang_human,21,0,21,RandomForestClassifier(max_depth=10, n_estimators=500),1.0
+haca_box,fourier_real,chicken,67,2,69,RandomForestClassifier(max_depth=10, n_estimators=500),0.9710144927536232
+haca_box,fourier_real,drosophilas,55,1,56,RandomForestClassifier(max_depth=10, n_estimators=500),0.9821428571428571
+haca_box,fourier_real,cElegans,60,0,60,RandomForestClassifier(max_depth=10, n_estimators=500),1.0
+haca_box,fourier_real,leishmania,36,1,37,RandomForestClassifier(max_depth=10, n_estimators=500),0.972972972972973
+haca_box,fourier_real,platypus,69,4,73,RandomForestClassifier(max_depth=10, n_estimators=500),0.9452054794520548
+haca_box,fourier_real,yang_human,28,5,33,RandomForestClassifier(max_depth=10, n_estimators=500),0.8484848484848485
+haca_box,fourier_zcurve,chicken,69,0,69,RandomForestClassifier(max_depth=10),1.0
+haca_box,fourier_zcurve,drosophilas,55,1,56,RandomForestClassifier(max_depth=10),0.9821428571428571
+haca_box,fourier_zcurve,cElegans,59,1,60,RandomForestClassifier(max_depth=10),0.9833333333333333
+haca_box,fourier_zcurve,leishmania,36,1,37,RandomForestClassifier(max_depth=10),0.972972972972973
+haca_box,fourier_zcurve,platypus,72,1,73,RandomForestClassifier(max_depth=10),0.9863013698630136
+haca_box,fourier_zcurve,yang_human,33,0,33,RandomForestClassifier(max_depth=10),1.0
+haca_box,entropy_shannon,chicken,33,36,69,RandomForestClassifier(max_depth=10, n_estimators=500),0.4782608695652174
+haca_box,entropy_shannon,drosophilas,6,50,56,RandomForestClassifier(max_depth=10, n_estimators=500),0.10714285714285714
+haca_box,entropy_shannon,cElegans,9,51,60,RandomForestClassifier(max_depth=10, n_estimators=500),0.15
+haca_box,entropy_shannon,leishmania,18,19,37,RandomForestClassifier(max_depth=10, n_estimators=500),0.4864864864864865
+haca_box,entropy_shannon,platypus,34,39,73,RandomForestClassifier(max_depth=10, n_estimators=500),0.4657534246575342
+haca_box,entropy_shannon,yang_human,23,10,33,RandomForestClassifier(max_depth=10, n_estimators=500),0.696969696969697
+haca_box,entropy_tsallis,chicken,51,18,69,RandomForestClassifier(max_depth=10),0.7391304347826086
+haca_box,entropy_tsallis,drosophilas,28,28,56,RandomForestClassifier(max_depth=10),0.5
+haca_box,entropy_tsallis,cElegans,18,42,60,RandomForestClassifier(max_depth=10),0.3
+haca_box,entropy_tsallis,leishmania,18,19,37,RandomForestClassifier(max_depth=10),0.4864864864864865
+haca_box,entropy_tsallis,platypus,53,20,73,RandomForestClassifier(max_depth=10),0.726027397260274
+haca_box,entropy_tsallis,yang_human,26,7,33,RandomForestClassifier(max_depth=10),0.7878787878787878
+haca_box,complex,chicken,69,0,69,RandomForestClassifier(max_depth=10),1.0
+haca_box,complex,drosophilas,56,0,56,RandomForestClassifier(max_depth=10),1.0
+haca_box,complex,cElegans,60,0,60,RandomForestClassifier(max_depth=10),1.0
+haca_box,complex,leishmania,36,1,37,RandomForestClassifier(max_depth=10),0.972972972972973
+haca_box,complex,platypus,73,0,73,RandomForestClassifier(max_depth=10),1.0
+haca_box,complex,yang_human,33,0,33,RandomForestClassifier(max_depth=10),1.0

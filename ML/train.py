@@ -1,6 +1,6 @@
 from sklearn import datasets
 from sklearn.metrics.pairwise import effective_n_jobs
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import (
     f1_score,
     fbeta_score,
@@ -99,6 +99,58 @@ def train(snoRNA_class, test_counter):
     averages,
     )
 
+def train_with_cv(snoRNA_class):
+    f1_scores = []
+    recalls = []
+    fbeta_scores = []
+    precisions = []
+    auc = []
+    measure_time = []
+    methods = []
+    labels = []
+    cm_arr = []
+    standard_deviations = []
+    averages = []
+    evaluation = []
+    space = dict()
+    space['n_estimators'] = [10, 100, 500]
+    for key, value in snoRNA_class.items():
+        initial_time = time.time()
+        X, y = value.getXY()
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+        model = RandomForestClassifier(max_depth=10)
+        clf = GridSearchCV(model, space, cv=kf, refit=True)
+        result = clf.fit(X_train, y_train)
+        best_model = result.best_estimator_
+        test_with_cv(best_model, value.group, value.method)
+        predictions = clf.predict(X_test)
+        plotGraph(value, y_test, predictions, cm_arr)
+        f1_scores.append(str(f1_score(y_test, predictions) * 100.0) + "%")
+        fbeta_scores.append(
+            str(fbeta_score(y_test, predictions, beta=0.5) * 100.0) + "%"
+        )
+        recalls.append(str(recall_score(y_test, predictions) * 100.0) + "%")
+        precisions.append(
+            str(precision_score(y_test, predictions, average="macro") * 100.0) + "%"
+        )
+        auc.append(str(roc_auc_score(y_test, predictions) * 100.0) + "%")
+        labels.append(value.group)
+        methods.append(key)
+        end_time = time.time()
+        measure_time.append(str(end_time - initial_time) + "s")
+    return (
+    f1_scores,
+    recalls,
+    fbeta_scores,
+    precisions,
+    auc,
+    methods,
+    measure_time,
+    labels,
+    cm_arr
+    )
+
+
 def test(y_test, model_file, group, method):
     list_organisms_real_data = ["chicken", "drosophilas", "cElegans", "leishmania", "platypus", "yang_human"]
     path = f'./models/{model_file}'
@@ -124,6 +176,32 @@ def test(y_test, model_file, group, method):
                 neg += 1
         total = pos + neg   
         content += f'{group},{method},{org},{pos},{neg},{total},{model_file},{pos/total}\n'
+    f.write(content)
+    f.close()
+
+def test_with_cv(best_model, group, method):
+    list_organisms_real_data = ["chicken", "drosophilas", "cElegans", "leishmania", "platypus", "yang_human"]
+    real_valid = CSVData(group, method)                           
+    out_file = f"./output/validation/validation_{datetime_str}.csv"
+    content = ""
+    if not os.path.isfile(out_file):
+        content = f'classe,metodo,organismo,positivos,negativos,total,modelo,eficiencia\n'
+        f = open(out_file, "w")  
+    else:
+        f = open(out_file, "a+")
+    for org in list_organisms_real_data:
+        X = real_valid.getX(org)
+        prediction = best_model.predict(X)
+        pos = 0
+        neg = 0
+        total = 0
+        for i in prediction:
+            if i == 1:
+                pos += 1
+            else:
+                neg += 1
+        total = pos + neg   
+        content += f'{group},{method},{org},{pos},{neg},{total},{best_model},{pos/total}\n'
     f.write(content)
     f.close()
 
@@ -175,6 +253,41 @@ def train_and_test():
     })                                                                              
                                                                                     
     statistics.to_csv(f"./output/statistics/statistics_{datetime_str}.csv", index=False)        
-    
+
+def train_and_test_with_cv():
+    cd_box = createMethods("cd_box")
+    haca_box = createMethods("haca_box")
+
+    f1_sc, rec1, fbeta1, p1, auc1, m1, mt1, l1, cm_arr1 = train_with_cv(
+        cd_box)
+
+    f2_sc, rec2, fbeta2, p2, auc2, m2, mt2, l2, cm_arr2 = train_with_cv(  
+        haca_box)
+                                        
+    f1_scores = f1_sc + f2_sc                                                       
+    recalls = rec1 + rec2                                                           
+    fbeta_scores = fbeta1 + fbeta2                                                  
+    precisions_scores = p1 + p2                                                     
+    auc_scores = auc1 + auc2                                                        
+    labels = l1 + l2                                                                
+    methods = m1 + m2
+    measure_time = mt1 + mt2                                                        
+    confusion_matrix = cm_arr1 + cm_arr2
+                        
+    table = pd.DataFrame(                                                           
+        {                                                                           
+            "classe": labels,                                                       
+            "metodo": methods,                                                      
+            "f1_score": f1_scores,                                                  
+            "recall": recalls,                                                      
+            "fbeta_score": fbeta_scores,                                            
+            "precisions_score": precisions_scores,
+            "auc_scores": auc_scores,                                               
+            "tempo_corrido": measure_time,                                          
+            "matriz_da_confusao": confusion_matrix,                                 
+        }                                                                           
+    )                                                                               
+    table.to_csv(f"./output/cross_validation/metrics_{datetime_str}.csv", index=False)    
+
 if __name__ == "__main__":
-    train_and_test()
+    train_and_test_with_cv()
