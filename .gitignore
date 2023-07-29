@@ -1,4 +1,5 @@
 .~lock.TCC_data.xlsx#
-./ML/__pycache__
-.vscode/
+./classifier/__pycache__
+./classifier/build.sh
+.vscode
 TODO.md

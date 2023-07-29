@@ -31,20 +31,20 @@ class CSVData:
 
     def _getOrganismDir(self, organism):
         if self.method == "fourier_real":
-            return f"../extraction/Feature_Extraction_Real_Data/Fourier_Real/{organism}_{self.group}.csv"
+            return f"../extraction/real_data/Fourier_Real/{organism}_{self.group}.csv"
         elif self.method == "fourier_zcurve":
-            return f"../extraction/Feature_Extraction_Real_Data/Fourier_ZCurve/{organism}_{self.group}.csv"
+            return f"../extraction/real_data/Fourier_ZCurve/{organism}_{self.group}.csv"
         elif self.method == "entropy_shannon":
-            return f"../extraction/Feature_Extraction_Real_Data/Entropy/Shannon/{organism}_{self.group}.csv"
+            return f"../extraction/real_data/Entropy/Shannon/{organism}_{self.group}.csv"
         elif self.method == "entropy_tsallis":
-            return f"../extraction/Feature_Extraction_Real_Data/Entropy/Tsallis/{organism}_{self.group}.csv"
+            return f"../extraction/real_data/Entropy/Tsallis/{organism}_{self.group}.csv"
         elif self.method == "complex":
-            return f"../extraction/Feature_Extraction_Real_Data/Complex/{organism}_{self.group}.csv"
+            return f"../extraction/real_data/Complex/{organism}_{self.group}.csv"
         else:
             print(f"{COLORS.BOLD}[DEBUG] {COLORS.ERROR}Diretório não encontrado!{COLORS.ENDC}")
             exit(-1)
         
-    def getXY(self):
+    def get_XY(self):
         data = pd.read_csv(self._getDir())
         X = data.drop(columns=["nameseq", "label"], axis=1)
 
@@ -67,22 +67,22 @@ class CSVData:
         y = data["label"]
         return X, y
 
-    def getX(self, organism):
+    def get_X(self, organism):
         data = pd.read_csv(self._getOrganismDir(organism))
         X = data.drop(columns=["nameseq", "label"], axis=1)
         X = X[X < 3e38]
         X = np.nan_to_num(X, copy=False, nan=0.0, posinf=0.0, neginf=0.0)
         return X
 
-def plotGraph(obj, y_test, predictions, cm_arr):
+def plot_graph(obj, y_test, predictions, cm_arr):
     plt.figure(figsize=(10, 7))
-    cm = getConfusionMatrix(obj, y_test, predictions, cm_arr)
+    cm = get_cm(obj, y_test, predictions, cm_arr)
     ax = sn.heatmap(cm, annot=True, fmt="d")
     ax.set(xlabel="Predicted", ylabel="Labels", title=obj.method)
     plt.savefig(f"./imgs/{obj.method}_{obj.group}")
 
 
-def getConfusionMatrix(obj, y_test, predictions, tp_arr):
+def get_cm(obj, y_test, predictions, tp_arr):
     cm = confusion_matrix(y_test, predictions)
     tn, fp, fn, tp = cm.ravel()
     tp_arr.append(
@@ -97,24 +97,6 @@ def getConfusionMatrix(obj, y_test, predictions, tp_arr):
     )
     print(f"{COLORS.BOLD}[DEBUG] {COLORS.SUCCESS}{obj.group}\t{obj.method}\t{cm.ravel()}{COLORS.ENDC}")
     return cm
-
-
-def createMethods(group):
-    fr = CSVData(group, "fourier_real")
-    fzc = CSVData(group, "fourier_zcurve")
-    es = CSVData(group, "entropy_shannon")
-    et = CSVData(group, "entropy_tsallis")
-    cmp = CSVData(group, "complex")
-
-    methods = dict()
-
-    methods["fourier_real"] = fr
-    methods["fourier_zcurve"] = fzc
-    methods["entropy_shannon"] = es
-    methods["entropy_tsallis"] = et
-    methods["complex"] = cmp
-
-    return methods
 
 def accuracy(y_test, y_pred):
     return np.sum(y_test == y_pred) / len(y_test)
@@ -134,14 +116,14 @@ def dp(tp_arr):
     return sqrt(sum_n / len(tp_arr))
 
 
-def saveModel(save_file, clf):
+def save_model(save_file, clf):
     cd = getcwd()
     file = open(f"{cd}/models/{save_file}", "wb")
     pickle.dump(clf, file)
     file.close()
 
 
-def loadModel(save_file):
+def load_model(save_file):
     loaded_model = pickle.load(open(save_file, "rb"))
     return loaded_model
 

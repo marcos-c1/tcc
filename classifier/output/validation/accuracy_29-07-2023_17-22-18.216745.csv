@@ -1,0 +1,7 @@
+classe,metodo,organismo,positivos,negativos,total,eficiencia,accuracy
+cd_box,fourier_real,chicken,124,8,132,0.9393939393939394,0.9890991610507495
+cd_box,fourier_real,drosophilas,63,0,63,1.0,0.9890991610507495
+cd_box,fourier_real,cElegans,107,1,108,0.9907407407407407,0.9890991610507495
+cd_box,fourier_real,leishmania,54,8,62,0.8709677419354839,0.9890991610507495
+cd_box,fourier_real,platypus,143,1,144,0.9930555555555556,0.9890991610507495
+cd_box,fourier_real,yang_human,21,0,21,1.0,0.9890991610507495
