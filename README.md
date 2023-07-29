@@ -34,15 +34,15 @@ The number of biological sequences available has increased significantly in rece
 ## Description of scripts and classifier 
 
 * In folder *scripts*
-    - feature\_extraction.sh: Used to automate feature extraction stage from all samples (positive, negative, validation data)  
-    - extract\_sequences\_count.sh: Used to extract the amount of sequences from all samples 
-    - extract\_average\_data.py: Used to extract the average data to be extracted of each family defined in pre-processing phase. The objective is to balance the positive and negative sample with similar amount of sequences. 
-    - rfam.py: Used to make a get request from rfam repository which will get the family from snoRNAs family and output to a file with fasta extension 
-    - shuffle.py: Used to shuffle all pyrimidines and purines based on a parameter known as "k" (similar to the number of codons in a sequence), this parameter will shuffle the sequence until k-th codon
+    - **feature_extraction.sh**: Used to automate feature extraction stage from all samples (positive, negative, validation data)  
+    - **extract_sequences_count.sh**: Used to extract the amount of sequences from all samples 
+    - **extract_average_data.py**: Used to extract the average data to be extracted of each family defined in pre-processing phase. The objective is to balance the positive and negative sample with similar amount of sequences. 
+    - **rfam.py**: Used to make a get request from rfam repository which will get the family from snoRNAs family and output to a file with fasta extension 
+    - **shuffle.py**: Used to shuffle all pyrimidines and purines based on a parameter known as "k" (similar to the number of codons in a sequence), this parameter will shuffle the sequence until k-th codon
 
 * In folder *classifier*
-    - train.py: The learning algorithm itself. Used to train and test the data across all samples including the validation dataset which has been extracted.
-    - utils.py: Utility file helper with auxiliary functions to plot graph, calculate the deviation, standard deviation, arithmetic average, etc.
+    - **train.py**: The learning algorithm itself. Used to train and test the data across all samples including the validation dataset which has been extracted.
+    - **utils.py**: Utility file helper with auxiliary functions to plot graph, calculate the deviation, standard deviation, arithmetic average, etc.
 
 ## Setting up 
 
