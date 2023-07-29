@@ -14,11 +14,11 @@ def shuffle(sequence, times, order):
     return sequences
 
 def getSequence(dirname):
-    directory = os.listdir(f'../average_data/{dirname}-average/')
+    directory = os.listdir(f'../average_data/{dirname}/')
     negative = dict()
     key = ''
     for filename in directory:
-        file = open(f'../average_data/{dirname}-average/{filename}')
+        file = open(f'../average_data/{dirname}/{filename}')
         lines = file.readlines()
         for line in lines:
             if(line[0] == '>'):
@@ -28,7 +28,7 @@ def getSequence(dirname):
                     negative[key] = ''
                 negative[key] += line.strip().replace('-', '')
         file.close()
-        file_output = open(f'../average_data/{dirname}-average-negative/{filename}', 'w')
+        file_output = open(f'../average_data/{dirname}_negative/{filename}', 'w')
         for key, value in negative.items():
             sequences = shuffle(value, times=3, order=2)
             for i in range(len(sequences)):
@@ -38,14 +38,14 @@ def getSequence(dirname):
         file_output.close()
 
 def joinFamilyByClass(file, group):
-    haca_dirname = f'{group}-average-negative'
-    cd_dirname = f'{group}-average-negative'
+    haca_dirname = f'{group}_negative'
+    cd_dirname = f'{group}_negative'
 
     haca_dir = os.listdir(f'../average_data/{haca_dirname}')
     cd_dir = os.listdir(f'../average_data/{cd_dirname}')
     negative = dict()
 
-    if (group == 'HACA-BOX'):
+    if (group == 'haca_box'):
         f_out = open(f'{file}.fasta', 'w')
         for filename in haca_dir:
             f_in = open(f'../average_data/{haca_dirname}/{filename}')
@@ -59,7 +59,7 @@ def joinFamilyByClass(file, group):
                     negative[key] += line.strip()
             f_in.close()
     
-    elif (group == 'CD-BOX'):
+    elif (group == 'cd_box'):
         for filename in cd_dir:
             f_in = open(f'../average_data/{cd_dirname}/{filename}')
             lines = f_in.readlines()
@@ -89,9 +89,9 @@ if __name__ == "__main__":
     join = str(args.join).lower().strip()
 
     if(dirname == 'cd-box' or dirname == 'cd'):
-        dirname = 'CD-BOX'
+        dirname = 'cd_box'
     elif(dirname == 'haca-box' or dirname == 'haca'):
-        dirname = 'HACA-BOX'
+        dirname = 'haca_box'
     else:
         print(usage)
         sys.exit()

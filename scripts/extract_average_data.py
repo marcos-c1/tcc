@@ -6,9 +6,9 @@ def extractAverageData(media=int, dirname=str) -> None:
     it = 0 
     data = ''
     sequences = dict()
-    directory = os.listdir(f'../{dirname}/')
+    directory = os.listdir(f'../positives/{dirname}/')
     for filename in directory:
-        file = open(f'../{dirname}/{filename}') 
+        file = open(f'../positives/{dirname}/{filename}') 
         lines = file.readlines()
         keys = []
         for line in lines:
@@ -24,7 +24,7 @@ def extractAverageData(media=int, dirname=str) -> None:
                 data += line.replace('-', '')
                                                                 
         file.close()
-        output_file = open(f'../average_data/{dirname}-average/{filename}', 'w')
+        output_file = open(f'../average_data/{dirname}/{filename}', 'w')
         for key, value in sequences.items():
             output_file.write(f'{key}{value}')
         output_file.close()
@@ -45,9 +45,9 @@ if __name__ == "__main__":
         sys.exit()
     dirname = str(args.group).lower().strip()
     if(dirname == 'cd-box' or dirname == 'cd'):
-        dirname = 'CD-BOX' 
+        dirname = 'cd_box' 
     elif(dirname == 'haca' or dirname == 'HACA-BOX'):
-        dirname = 'HACA-BOX'
+        dirname = 'haca_box'
     else:
         print(usage)
         sys.exit()

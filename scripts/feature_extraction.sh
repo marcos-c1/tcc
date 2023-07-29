@@ -1,47 +1,49 @@
 #!/bin/bash
 
-FOURIER_ALGORITHM="../FeatureExtraction/methods/FourierClass.py"
-ENTROPY_ALGORITHM="../FeatureExtraction/methods/EntropyClass.py"
-COMPLEX_ALGORITHM="../FeatureExtraction/methods/ComplexNetworksClass.py"
+# Extraction algorithms
+FOURIER_ALGORITHM="../extraction/methods/FourierClass.py"
+ENTROPY_ALGORITHM="../extraction/methods/EntropyClass.py"
+COMPLEX_ALGORITHM="../extraction/methods/ComplexNetworksClass.py"
 
 # Input directory
-CD_BOX_DIRECTORY="../average_data/CD-BOX-average/*.fasta"
-HACA_BOX_DIRECTORY="../average_data/HACA-BOX-average/*.fasta"
-REAL_DATA_DIRECTORY="../Validation/*"
+CD_BOX_DIRECTORY="../average_data/cd_box/*.fasta"
+HACA_BOX_DIRECTORY="../average_data/haca_box/*.fasta"
+REAL_DATA_DIRECTORY="../validation/*"
 
 # Output directory for CD-BOX class
-OUTPUT_CDBOX_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/Feature_Extraction_CDBOX/Fourier_Real"
-OUTPUT_CDBOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/Feature_Extraction_CDBOX/Fourier_ZCurve"
-OUTPUT_CDBOX_EXTRACT_ENTROPY_DIRECTORY="../extraction/Feature_Extraction_CDBOX/Entropy"
-OUTPUT_CDBOX_EXTRACT_COMPLEX_DIRECTORY="../extraction/Feature_Extraction_CDBOX/Complex"
+OUTPUT_CDBOX_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/cd_box/Fourier_Real"
+OUTPUT_CDBOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/cd_box/Fourier_ZCurve"
+OUTPUT_CDBOX_EXTRACT_ENTROPY_DIRECTORY="../extraction/cd_box/Entropy"
+OUTPUT_CDBOX_EXTRACT_COMPLEX_DIRECTORY="../extraction/cd_box/Complex"
 
 # Output directory for HACA-BOX class
-OUTPUT_HACABOX_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/Feature_Extraction_HACABOX/Fourier_Real"
-OUTPUT_HACABOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/Feature_Extraction_HACABOX/Fourier_ZCurve"
-OUTPUT_HACABOX_EXTRACT_ENTROPY_DIRECTORY="../extraction/Feature_Extraction_HACABOX/Entropy"
-OUTPUT_HACABOX_EXTRACT_COMPLEX_DIRECTORY="../extraction/Feature_Extraction_HACABOX/Complex"
+OUTPUT_HACABOX_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/haca_box/Fourier_Real"
+OUTPUT_HACABOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/haca_box/Fourier_ZCurve"
+OUTPUT_HACABOX_EXTRACT_ENTROPY_DIRECTORY="../extraction/haca_box/Entropy"
+OUTPUT_HACABOX_EXTRACT_COMPLEX_DIRECTORY="../extraction/haca_box/Complex"
 
 # Output directory for Negative sample of CD-BOX class
-OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/Feature_Extraction_CDBOX_Negative/Fourier_Real"
-OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/Feature_Extraction_CDBOX_Negative/Fourier_ZCurve"
-OUTPUT_CDBOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="../extraction/Feature_Extraction_CDBOX_Negative/Entropy"
-OUTPUT_CDBOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="../extraction/Feature_Extraction_CDBOX_Negative/Complex"
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/cd_box_negative/Fourier_Real"
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/cd_box_negative/Fourier_ZCurve"
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="../extraction/cd_box_negative/Entropy"
+OUTPUT_CDBOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="../extraction/cd_box_negative/Complex"
 
 # Output directory for Negative sample of HACA-BOX class
-OUTPUT_HACABOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/Feature_Extraction_HACABOX_Negative/Fourier_Real"
-OUTPUT_HACABOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/Feature_Extraction_HACABOX_Negative/Fourier_ZCurve"
-OUTPUT_HACABOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="../extraction/Feature_Extraction_HACABOX_Negative/Entropy"
-OUTPUT_HACABOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="../extraction/Feature_Extraction_HACABOX_Negative/Complex"
+OUTPUT_HACABOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY="../extraction/haca_box_negative/Fourier_Real"
+OUTPUT_HACABOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY="../extraction/haca_box_negative/Fourier_ZCurve"
+OUTPUT_HACABOX_NEGATIVE_EXTRACT_ENTROPY_DIRECTORY="../extraction/haca_box_negative/Entropy"
+OUTPUT_HACABOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY="../extraction/haca_box_negative/Complex"
 
 # Output directory for Real Data sample
-OUTPUT_REAL_DATA_FOURIER_REAL_DIRECTORY="../extraction/Feature_Extraction_Real_Data/Fourier_Real"
-OUTPUT_REAL_DATA_FOURIER_ZCURVE_DIRECTORY="../extraction/Feature_Extraction_Real_Data/Fourier_ZCurve"
-OUTPUT_REAL_DATA_ENTROPY_DIRECTORY="../extraction/Feature_Extraction_Real_Data/Entropy"
-OUTPUT_REAL_DATA_COMPLEX_DIRECTORY="../extraction/Feature_Extraction_Real_Data/Complex"
+OUTPUT_REAL_DATA_FOURIER_REAL_DIRECTORY="../extraction/real_data/Fourier_Real"
+OUTPUT_REAL_DATA_FOURIER_ZCURVE_DIRECTORY="../extraction/real_data/Fourier_ZCurve"
+OUTPUT_REAL_DATA_ENTROPY_DIRECTORY="../extraction/real_data/Entropy"
+OUTPUT_REAL_DATA_COMPLEX_DIRECTORY="../extraction/real_data/Complex"
 
 # Negative file
 NEGATIVE_FILE="../negatives/all_negative.fasta"
 
+# Remove all positive extraction files
 clean_positive() {
 	rm -rf $OUTPUT_CDBOX_EXTRACT_FOURIER_REAL_DIRECTORY/*.csv
 	rm -rf $OUTPUT_CDBOX_EXTRACT_FOURIER_ZCURVE_DIRECTORY/*.csv
@@ -56,6 +58,7 @@ clean_positive() {
 	rm -rf $OUTPUT_HACABOX_EXTRACT_COMPLEX_DIRECTORY/*.csv
 }
 
+# Remove all validation extraction files
 clean_real_data() {
 	rm -rf $OUTPUT_REAL_DATA_FOURIER_REAL_DIRECTORY/*.csv
 	rm -rf $OUTPUT_REAL_DATA_FOURIER_ZCURVE_DIRECTORY/*.csv
@@ -64,6 +67,7 @@ clean_real_data() {
 	rm -rf $OUTPUT_REAL_DATA_COMPLEX_DIRECTORY/*.csv
 }
 
+# Remove all negatives extraction files
 clean_negative() {
 	rm -rf $OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_REAL_DIRECTORY/*.csv
 	rm -rf $OUTPUT_CDBOX_NEGATIVE_EXTRACT_FOURIER_ZCURVE_DIRECTORY/*.csv

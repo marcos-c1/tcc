@@ -1,8 +1,8 @@
 #!/bin/bash
 
 occ=0
-dir="../Validation/"
-out_dir="../sequences_count/"
+dir="../validation/"
+out_dir="../misc/sequences_count/"
 total_sequences=0
 
 for file in $(ls $dir)
