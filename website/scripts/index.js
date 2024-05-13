@@ -2,6 +2,32 @@ const sections = document.querySelectorAll('section')
 const sidebar = document.querySelectorAll('.side-list > li')
 const sublist = document.querySelectorAll('.side-list > ul > li')
 const arrow = document.getElementById('arrow')
+const menu = document.getElementById('menu')
+
+const container = document.getElementById('primary-container')
+const nav = document.getElementById('nav-page')
+const submenu = document.getElementById('links')
+
+window.addEventListener('resize', () => {
+  if(window.innerWidth >= 651){
+    submenu.style.display = 'block'
+    container.style.gridTemplateColumns = '30% 70%'
+  } else {
+    submenu.style.display = 'none'
+    container.style.gridTemplateColumns = '10% 90%'
+  }
+})
+menu.addEventListener('click', (_)=> {
+  if(!submenu.style.display || submenu.style.display == 'none'){
+    menu.style.alignContent = 'start'
+    submenu.style.display = 'block'
+    container.style.gridTemplateColumns = '40% 60%'
+  } else {
+    menu.style.alignContent = 'center'
+    submenu.style.display = 'none'
+    container.style.gridTemplateColumns = '10% 90%'
+  }
+})
 
 sublist.forEach(li => {
     li.addEventListener('click', (ev) => {
@@ -65,4 +91,3 @@ for (let i = 0; i < sidebar.length; i++) {
         parseIdentifier(identifier)
     })
 }
-

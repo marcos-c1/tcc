@@ -9,14 +9,13 @@ a {
 }
 
 svg:hover {
- transition: all 2s ease-in-out;
- color: var(--vb-main);
+ transition: all 0.2s ease-in;
+ fill: var(--vb-main);
 }
 
-#icon {
+.social-medias > a {
   margin-right: 1vh;
 }
-
 
 :root {
     --vb-main: rgba(14, 110, 255, 0.982);
@@ -120,8 +119,8 @@ html {
 
 .side-list>li:hover,
 .sub-list>li>a:hover {
-    cursor: pointer;
-    color: var(--vb-main);
+  cursor: pointer;
+  color: var(--vb-main);
 }
 
 .sub-list>li {
@@ -145,7 +144,7 @@ html {
 }
 
 #nav-page {
-  padding: 5vh;
+  padding: 0 5vh;
 }
 
 .title {
@@ -255,9 +254,11 @@ figure {
 }
 
 #menu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
   cursor: pointer;
-  display: block;
-  width: 100px;
   max-height: 100px;
   padding: 2vh;
 }
@@ -304,7 +305,7 @@ figure {
   }
 
   #menu {
-    display: block;
+    display: flex;
   }
 
   .main-container {
@@ -313,7 +314,7 @@ figure {
 }
 
 @media (min-width: 651px) {
-  .side-container {
+  #links {
     display: block;
   }
 
