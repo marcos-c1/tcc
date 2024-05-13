@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature extraction in snoRNAs using mathematical approach</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/prism.css">
+</head>
+<body>
+    <main class="main-container" id="primary-container">
+      <aside class="side-container">
+          <div id="menu">
+            <span id="hamburguer"></span>
+            <span id="hamburguer"></span>
+            <span id="hamburguer"></span>
+          </div>
+          <ul class="side-list" id="links">
+              <li class="active" aria-label="1">1. Introduction</li>
+              <ul class="sub-list">
+                  <li><a href="#main-prob">1.1 The main problem</a></li>
+                  <li><a href="#obj">1.2 Objective</a></li>
+                  <li><a href="#spec-obj">1.3 Specific objectives</a></li>
+                  <li><a href="#snoRNA">1.4 What is snoRNA?</a></li>
+                  <li><a href="#ml">1.5 Machine Learning</a></li>
+                  <li><a href="#feature">1.6 Feature Extraction</a></li>
+                  <li><a href="#ev-metrics">1.7 Evaluation Metrics</a></li>
+              </ul>
+              <li aria-label="2">2. Methodology</li>
+              <ul class="sub-list">
+                  <li><a href="#search-strat">2.1 Search strategy</a></li>
+                  <li><a href="#inc-excl-criteria">2.2 Inclusion and exclusion criteria</a></li>
+              </ul>
+              <li aria-label="3">3. Project Pipeline</li>
+              <ul class="sub-list">
+                  <li><a href="#step1">3.1 Step 1: Collect Data</a></li>
+                  <li><a href="#step2">3.2 Step 2: Data preprocessing</a></li>
+                  <li><a href="#step3">3.3 Step 3: Extraction</a></li>
+                  <li><a href="#step4">3.4 Step 4: Training and Testing</a></li>
+                  <li><a href="#step5">3.5 Step 5: Evaluation</a></li>
+              </ul>
+              <li aria-label="4">4. Evaluation</li>
+              <ul class="sub-list">
+                  <li><a href="#statistics">4.1 Statistics</a></li>
+                  <li><a href="#study-case">4.2 Study Case</a></li>
+              </ul>
+              <div class="social-medias">
+                <a href="https://www.github.com/marcos-c1" id="icon" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="32" height="32" fill="var(--vb-primary)">
+                  <g>
+                    <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,0.296c-6.627,0-12,5.372-12,12c0,5.302,3.438,9.8,8.206,11.387   c0.6,0.111,0.82-0.26,0.82-0.577c0-0.286-0.011-1.231-0.016-2.234c-3.338,0.726-4.043-1.416-4.043-1.416   C4.421,18.069,3.635,17.7,3.635,17.7c-1.089-0.745,0.082-0.729,0.082-0.729c1.205,0.085,1.839,1.237,1.839,1.237   c1.07,1.834,2.807,1.304,3.492,0.997C9.156,18.429,9.467,17.9,9.81,17.6c-2.665-0.303-5.467-1.332-5.467-5.93   c0-1.31,0.469-2.381,1.237-3.221C5.455,8.146,5.044,6.926,5.696,5.273c0,0,1.008-0.322,3.301,1.23   C9.954,6.237,10.98,6.104,12,6.099c1.02,0.005,2.047,0.138,3.006,0.404c2.29-1.553,3.297-1.23,3.297-1.23   c0.653,1.653,0.242,2.873,0.118,3.176c0.769,0.84,1.235,1.911,1.235,3.221c0,4.609-2.807,5.624-5.479,5.921   c0.43,0.372,0.814,1.103,0.814,2.222c0,1.606-0.014,2.898-0.014,3.293c0,0.319,0.216,0.694,0.824,0.576   c4.766-1.589,8.2-6.085,8.2-11.385C24,5.669,18.627,0.296,12,0.296z"/>
+                    <path d="M4.545,17.526c-0.026,0.06-0.12,0.078-0.206,0.037c-0.087-0.039-0.136-0.121-0.108-0.18   c0.026-0.061,0.12-0.078,0.207-0.037C4.525,17.384,4.575,17.466,4.545,17.526L4.545,17.526z"/>
+                    <path d="M5.031,18.068c-0.057,0.053-0.169,0.028-0.245-0.055c-0.079-0.084-0.093-0.196-0.035-0.249   c0.059-0.053,0.167-0.028,0.246,0.056C5.076,17.903,5.091,18.014,5.031,18.068L5.031,18.068z"/>
+                    <path d="M5.504,18.759c-0.074,0.051-0.194,0.003-0.268-0.103c-0.074-0.107-0.074-0.235,0.002-0.286   c0.074-0.051,0.193-0.005,0.268,0.101C5.579,18.579,5.579,18.707,5.504,18.759L5.504,18.759z"/>
+                    <path d="M6.152,19.427c-0.066,0.073-0.206,0.053-0.308-0.046c-0.105-0.097-0.134-0.234-0.068-0.307   c0.067-0.073,0.208-0.052,0.311,0.046C6.191,19.217,6.222,19.355,6.152,19.427L6.152,19.427z"/>
+                    <path d="M7.047,19.814c-0.029,0.094-0.164,0.137-0.3,0.097C6.611,19.87,6.522,19.76,6.55,19.665   c0.028-0.095,0.164-0.139,0.301-0.096C6.986,19.609,7.075,19.719,7.047,19.814L7.047,19.814z"/>
+                    <path d="M8.029,19.886c0.003,0.099-0.112,0.181-0.255,0.183c-0.143,0.003-0.26-0.077-0.261-0.174c0-0.1,0.113-0.181,0.256-0.184   C7.912,19.708,8.029,19.788,8.029,19.886L8.029,19.886z"/>
+                    <path d="M8.943,19.731c0.017,0.096-0.082,0.196-0.224,0.222c-0.139,0.026-0.268-0.034-0.286-0.13   c-0.017-0.099,0.084-0.198,0.223-0.224C8.797,19.574,8.925,19.632,8.943,19.731L8.943,19.731z"/>
+                  </g>
+                  </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/marcos-c1" id="icon" target="_blank">
+                  <svg x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="32" height="32" fill="var(--vb-primary)">
+                  <g>
+                    <path id="Path_2525" d="M23.002,21.584h0.227l-0.435-0.658l0,0c0.266,0,0.407-0.169,0.409-0.376c0-0.008,0-0.017-0.001-0.025   c0-0.282-0.17-0.417-0.519-0.417h-0.564v1.476h0.212v-0.643h0.261L23.002,21.584z M22.577,20.774h-0.246v-0.499h0.312   c0.161,0,0.345,0.026,0.345,0.237c0,0.242-0.186,0.262-0.412,0.262"/>
+                    <path id="Path_2520" d="M17.291,19.073h-3.007v-4.709c0-1.123-0.02-2.568-1.564-2.568c-1.566,0-1.806,1.223-1.806,2.487v4.79H7.908   V9.389h2.887v1.323h0.04c0.589-1.006,1.683-1.607,2.848-1.564c3.048,0,3.609,2.005,3.609,4.612L17.291,19.073z M4.515,8.065   c-0.964,0-1.745-0.781-1.745-1.745c0-0.964,0.781-1.745,1.745-1.745c0.964,0,1.745,0.781,1.745,1.745   C6.26,7.284,5.479,8.065,4.515,8.065L4.515,8.065 M6.018,19.073h-3.01V9.389h3.01V19.073z M18.79,1.783H1.497   C0.68,1.774,0.01,2.429,0,3.246V20.61c0.01,0.818,0.68,1.473,1.497,1.464H18.79c0.819,0.01,1.492-0.645,1.503-1.464V3.245   c-0.012-0.819-0.685-1.474-1.503-1.463"/>
+                    <path id="Path_2526" d="M22.603,19.451c-0.764,0.007-1.378,0.633-1.37,1.397c0.007,0.764,0.633,1.378,1.397,1.37   c0.764-0.007,1.378-0.633,1.37-1.397c-0.007-0.754-0.617-1.363-1.37-1.37H22.603 M22.635,22.059   c-0.67,0.011-1.254-0.522-1.265-1.192c-0.011-0.67,0.523-1.222,1.193-1.233c0.67-0.011,1.222,0.523,1.233,1.193   c0,0.007,0,0.013,0,0.02C23.81,21.502,23.29,22.045,22.635,22.059h-0.031"/>
+                  </g>
+                  </svg>
+                </a>
+              </div>
+          </ul>
+      </aside>
+      <nav id="nav-page">
+        <header class="title">
+            <h1>Feature extraction in snoRNAs using mathematical approach</h1>
+            <span style="font-weight: 300; margin-top: 1vh;">Graduation project to Bachelor's degree in Computer
+                Science.</span>
+        </header>
+        <section id="intro">
+            <p class="paragraph">
+                The graduation project aims to analyze mathematical models
+                of feature extraction such as the Fourier method, Entropy and Complex Networks in the classification of
+                <b>C/D box</b> and <b>H/ACA box</b>
+                snoRNAs in vertebrate and invertebrate organisms.
+            </p>
+            <h2 id="main-prob">The main problem</h2>
+            <p class="paragraph">
+                The search for Machine Learning (ML) techniques capable
+                of identifying the characteristics of secondary structures of RNAs has become fundamental
+                over the last few years due to the large amount of data on genetic content.
+            </p>
+            <p class="paragraph">
+                Traditional ML feature extraction methods are not always able to
+                determine an effective model that can avoid the loss of information from the structure, a good example
+                are
+                the snoRNA classes.
+            </p>
+            <h2 id="obj">Objective</h2>
+            <p class="paragraph">
+                Therefore, the objective of the work is to guarantee an effective extraction method for classifying
+                snoRNA
+                classes. The main idea is to show that mathematical methods, despite being general, are good enough
+                as biological methods to classify the two classes of snoRNAs: H/ACA box and C/D
+                box
+            </p>
+            <h2 id="spec-obj">Specific objectives</h2>
+            <ol class="ordered-list">
+                <li>Collect and process snoRNA data to create a set of
+                    training and testing data;</li>
+                <li>
+                    Use a feature extraction algorithm with a mathematical approach such as
+                    Fourier transform, numerical mapping, entropy (Shannon and Tsallis), networks
+                    complex, EDeN and/or etc;
+                </li>
+                <li>
+                    Extract features from mathematical models of both classes of snoRNAs
+                    (H/ACA box and C/D box);
+                </li>
+            </ol>
+            <ol class="section-indices">
+                <li id="snoRNA">What is a snoRNA?</li>
+                <p class="paragraph">
+                    SnoRNAs are one of the oldest and most numerous families of non-coding RNAs
+                    (ncRNAs), are widely present in the nucleoli of eukaryotic cells and are 60–300 nt long. The main
+                    function of snoRNAs is to guide the modification of ribosomal RNA
+                    site-specific (rRNA).
+                </p>
+                <p class="paragraph">
+                    SnoRNAs are mainly encoded by intronic regions of coding genes
+                    protein and non-protein coding. Typically, they can be classified into
+                    two groups: H/ACA box and C/D box.
+                </p>
+                <div class="container-flex-between">
+                    <figure >
+                        <img src=" img/snoRNA_c_d_box.jpg" alt="snoRNA C/D box" />
+                        <figcaption>Secondary structure of SNORD33, which belongs to the C/D box group. Extracted image
+                            by RFAM</figcaption>
+                    </figure>
+                    <figure >
+                        <img src="img/snoRNA_h_aca_box.jpg" alt="snoRNA H/ACA box" />
+                        <figcaption>Secondary structure of SNORA26, which belongs to the H/ACA box group. Image
+                            extracted from RFAM</figcaption>
+                    </figure>
+                </div>
+                <li id="ml">Machine Learning</li>
+                <p class="paragraph">
+                    Machine Learning is a branch of artificial intelligence that
+                    involves constant self-learning algorithms to perform classification and regression tasks. Given a
+                    set
+                    of data, the algorithm will train based on
+                    predefined features that describe the snoRNA.
+                </p>
+                <p class="paragraph">
+                    The initial hypothesis is that there is a function
+                    <i>f</i> that
+                    manage to be applicable to a group <i>X</i> of the genetic code that characterizes it as an snoRNA
+                    C/D
+                    box or H/ACA box.
+                </p>
+                <figure >
+                    <img src="img/workflow.png" alt="ML Workflow" />
+                    <figcaption>Machine Learning Workflow</figcaption>
+                </figure>
+                <p class="paragraph">
+                    The Machine Learning workflow can be divided into 5 steps:
+                </p>
+                <ol class="ordered-list">
+                    <li><b>Data gathering</b>: The first step in the process
+                        of machine learning is to obtain authentic data to construct the set
+                        positive and negative, and can be acquired from existing databases or from
+                        online repositories, as long as it is from a reliable source.</li><br>
+                    <li><b>Data preprocessing</b>: This step is crucial in the flow
+                        of ML to work and also the one that takes the most time. The data may be in
+                        any format so it had to be converted to a standard format. Therefore, it is essential to check
+                        whether the amount of data
+                        for the sets (positive and negative) are balanced, if the genetic sequences
+                        holds similar sizes, if the genome contains only nitrogenous bases, and so on.</li><br>
+                    <li><b>Feature Extraction</b>: Feature extraction refers to the process of
+                        transformation of raw data into numerical data that can be processed,
+                        preserving the information in the original dataset. It is a fundamental step,
+                        because the machine learning algorithm produces better results with values
+                        continuous and discrete data than directly with raw data.</li><br>
+                    <li><b>Training</b>: An ML algorithm is aplied on the data set of
+                        training with the aim of learning and predicting certain "behaviors" based
+                        in the real values ​​arising from the extraction. These algorithms can fall into three
+                        major categories: binary, classification and regression. In this work, the
+                        classification algorithm.</li><br>
+                    <li><b>Test</b>: Once the model is trained exhaustively, the next step is to test it
+                        and validate it to ensure it is effective. Using the obtained test dataset
+                        in the previous step, the accuracy of the obtained model is checked and validated.</li>
+                </ol>
+                <li id="feature">Feature Extraction</li>
+                <p class="paragraph">
+                    Feature extraction is a part of the dimensionality reduction process, in which
+                    an initial set of raw data is divided and reduced into more manageable groups so that
+                    reduce the complexity of the processing phase. The most important characteristic of these
+                    large data sets is that they have a large number of variables. These variables
+                    require a lot of computing resources to be processed, therefore, extracting
+                    features helps you get the best feature from these big data sets by selecting and combining
+                    variables, effectively reducing the amount of data. These features are transcribed into
+                    numerical values ​​capable of describing the real data set accurately and originaly
+                </p>
+                <p class="paragraph">
+                    There are many feature extraction techniques, however, the focus of this work is to analyze the
+                    procedures that use mathematical concepts to extract attributes (features) from the set
+                    of data. Therefore, the project will be responsible for explaining the operation of 3
+                    extraction algorithms: <b>Numerical Fourier Transformation, Entropy and Complex Networks.</b>
+                </p>
+                <li id="ev-metrics">Evaluation metrics</li>
+                <p class="paragraph">
+                    To check whether the classifier was able to correctly predict the set
+                    training, you need to measure your ability to predict the model. The accuracy of
+                    classification is used to measure model performance, however, the evaluation will not always be
+                    satisfactory and the results will vary according to the chosen metric. There are metrics such as
+                    <b>Precision, Recall, F1, F-Beta and Roc-AUC</b>, and, in general, the matrix of
+                    Confusion is the basis of calculation for these metrics.
+                </p>
+                <p class="paragraph">Those metrics will be demonstrated on metholodogy section.</p>
+                <figure >
+                    <img src="img/confusion_matrix.png" alt="ML Workflow" width="500" />
+                    <figcaption>How a confusion matrix works. Extracted from <a
+                            href="https://www.datacamp.com/tutorial/what-is-a-confusion-matrix-in-machine-learning">datacamp</a>
+                    </figcaption>
+                </figure>
+            </ol>
+        </section>
+        <section id="methodology" hidden>
+            <h1 id="search-strat">Search strategy</h1>
+            <p class="paragraph">Databases like PubMed Central, UnB repository, Oxford Academic, Medline,
+                SIABI/IFB were consumed for theoretical and argumentative basis of the work</p>
+            <table>
+                <caption>
+                    Database consumed
+                </caption>
+                <tbody>
+                    <tr>
+                        <th scope="header">Database</th>
+                        <th scope="header">URL</th>
+                    </tr>
+                    <tr>
+                        <td>PubMed Central</td>
+                        <td>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov">https://pubmed.ncbi.nlm.nih.gov</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>UnB Repository</td>
+                        <td>
+                            <a href="https://repositorio.unb.br">https://repositorio.unb.br</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Oxford Academic</td>
+                        <td>
+                            <a href="https://academic.oup.com/journals">https://academic.oup.com/journals</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Medline</td>
+                        <td>
+                            <a href="http://bases.bireme.br/">http://bases.bireme.br/</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SIABI/IFB</td>
+                        <td><a href="http://siabi.ifb.edu.br/">http://siabi.ifb.edu.br/</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="paragraph">For each database chosen, advanced searches were carried out in their tools
+                of research with a time interval of 6 years until the date of this review (24
+                June 2022), including research keywords: <i>ncRNAs, machine learning,
+                    feature extraction, sequence features, mathematical approach</i> which resulted in a set
+                of more than 300 literatures</p>
+            <table>
+                <caption>
+                    Result of database searches
+                </caption>
+                <tbody>
+                    <tr>
+                        <th scope="header">Database</th>
+                        <th scope="header">Keywords</th>
+                        <th scope="header">Scientific Projects</th>
+                    </tr>
+                    <tr>
+                        <td>PubMed Central</td>
+                        <td>
+                            Machine learning, sequence features, ncRNAs
+                        </td>
+                        <td>98</td>
+                    </tr>
+                    <tr>
+                        <td>UnB Repository</td>
+                        <td>
+                            Machine learning, ncRNAs
+                        </td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Oxford Academic</td>
+                        <td>
+                            Machine learning, ncRNAs, mathematic sequence
+                            features
+                        </td>
+                        <td>153</td>
+                    </tr>
+                    <tr>
+                        <td>Medline</td>
+                        <td>
+                            Machine learning, ncRNAs, mathematic sequence
+                        </td>
+                        <td>34</td>
+                    </tr>
+                    <tr>
+                        <td>SIABI/IFB</td>
+                        <td>Machine learning</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1 id="inc-excl-criteria">Inclusion and exclusion criteria</h1>
+            <ol class="ordered-list">
+                <li><b>Inclusion criteria (IC<sub>1</sub>)</b>: Scientific productions that use ncRNAs as an object
+                    search for feature extraction;</li>
+                <li><b>Inclusion criteria (IC<sub>2</sub>)</b>: Primary studies that apply supervised or unsupervised
+                    predictive models, whether biological, hybrid or mathematical, to classify ncRNAs;</li>
+                <li><b>Inclusion criteria (IC<sub>3</sub>)</b>:
+                    Studies that classify classes and groups of ncRNAs applying the model
+                    feature extraction mathematician;</li>
+            </ol>
+            <p class="paragraph">
+                <b>Exclusion Criteria (EC)</b> will help filter only relevant scientific articles
+                for review. Based on the research questions that guide the work, the CEs proposed below select a
+                concrete group of productions in order to reduce the scope and
+                generalization of the topic.
+            </p>
+            <ul class="unordered-list">
+                <li>Studies that are not written in Portuguese or English;</li>
+                <li>Studies which the full version is not available free of charge;</li>
+                <li>"Duplicate" studies, which were obtained by searching more than one database,
+                    in these cases only the first will be considered.</li>
+                <li>Scientific productions that do not classify the group of ncRNAs;</li>
+                <li>Descriptive studies of functionalities that do not discuss the methodology of
+                    Machine learning (ML) employed;</li>
+            </ul>
+        </section>
+        <section id="code-review" hidden>
+            <h1 id="step1">Step 1: Collect data</h1><br><br>
+            <h2>Positive sample</h2>
+            <p class="paragraph">
+                First, to gather data to collect all the snoRNAs C/D box and H/ACA box samples, the <a
+                    href="https://docs.rfam.org/en/latest/database.html">RFAM
+                    database</a> will be used as reference to get all the families of each snoRNA class. In their
+                current webpage, it has an API reference to connect to the MYSQL
+                database with the user <b>rfamro</b> with host <b>mysql-rfam-public.ebi.ac.uk</b>
+            </p>
+            <pre>
+                <code class="language-bash line-numbers">
+                    mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam
+                    SHOW DATABASES;
+                    USE family;
+                    SHOW TABLES;
+                    SELECT rfam_id, type, description FROM family WHERE type LIKE '%snoRNA%';
+                </code>
+            </pre>
+            <p class="paragraph">
+                The idea is to get the <b>RFAM_ID</b> to get the fasta format file to use the genetic content of
+                nitrogenous bases as characteristics of the family. The query it will only accept snoRNAs of class C/D
+                box and H/ACA box, so it is necessary to filter the
+                <b>TYPE</b> column and output that query to a file specified by the class itself.
+            </p>
+            <code class="language-bash">
+                    SELECT rfam_id FROM family WHERE type like '%snoRNA; CD-box%' INTO OUTFILE 'cd-box';
+                </code>
+            <code class="language-bash">
+                SELECT rfam_id FROM family WHERE type like '%snoRNA; HACA-box%' INTO OUTFILE 'haca-box';
+            </code>
+            <p class="paragraph">
+                Remember that this families are the positives samples for the classifier. The negative sample will be
+                explained how it was built and how it managed to deal with overfitting issues.
+            </p>
+            <p class="paragraph">
+                A simple shell script was created to automatically download all sequences
+                of each family from the <a href="http://http.ebi.ac.uk/pub/databases/Rfam/CURRENT/fasta_files/">RFAM FTP
+                    Site Directory</a>, defining the file name based on the rfam_id name with the format of the
+                fasta extension, which is the standard extension format representation of nucleotide sequences. Each
+                file was assigned to the folder with the name of your snoRNA class inside the <i>positives</i> folder.
+            </p>
+            <code class="language-bash">
+                    for $file in $(ls positives/); do curl http://http.ebi.ac.uk/pub/databases/Rfam/CURRENT/fasta_files/$file.fa.gz -O; done;
+                    for $file in $(ls fasta/); do gzip -d $file.gz; done;
+                </code>
+            <p class="paragraph">In total, 4877 C/D box snoRNA sequences were obtained from 475
+                families and 2813 H/ACA box snoRNA sequences among 283 families for the positive set
+                of data.</p>
+            <h2>Negative sample</h2>
+            <p class="paragraph">It is necessary the negative set to train and test the classification model to be
+                generated, then, the elaboration of the negative set had as a fundamental rule
+                that 50% of the set would be created by sequences generated randomly by a
+                shuffling as the other half would be formed by genetic sequences of RNAs
+                such as <b>Ribonuclease (RNase) P</b>, <b>5S ribosomal RNA (rRNA)</b> <b>and transfer RNA (tRNA)</b>,
+                considering that the maximum size delimited for the negative set would be three times larger
+                than the positive set. The same idea aplied before was used here: gathering data from MYSQL
+                RFAM
+                database, save the output to a file and them make requests calls to RFAM FTP Site to get the fasta
+                content of each RFAM_ID. </p>
+            <p class="paragraph">
+                The effort to build the negative set not only used differente RNAs classes but an shuffle
+                algorithm was implement providing a total of 4999 sequences, 2433 of which were RNA sequences not
+                belonging to
+                snoRNAs and
+                2566 random sequences.
+            </p>
+            <pre>
+                <code class="language-python line-numbers">
+                    # A simple shuffle algorithm
+                    # It mix up the nitrogenous bases to create random genetic sequences.
+                    def shuffle(sequence, times, order):
+                        seq = sequence
+                        sequences = []
+                        for i in range(times):
+                            kmers = [seq[i:i + order] for i in range(0, len(seq), order)]
+                            random.shuffle(kmers)
+                            seq_out = ''.join(kmers)
+                            sequences.append(seq_out)
+                        return sequences
+                </code>
+            </pre>
+            <h1 id="step2">Step 2: Data preprocessing</h1>
+            <p class="paragraph">
+                Using the families as a basis for calculation and construction of the positive set, the
+                85% percentile of the data, the arithmetic mean, the variance, and the maximum and minimum value of the
+                quantities of sequences as expressed in the table below.
+            </p>
+            <table>
+                <caption>
+                    Positive Dataset Metrics.
+                </caption>
+                <tr>
+                    <th scope="header">Class</th>
+                    <th scope="header">Sequences</th>
+                    <th scope="header">Families</th>
+                    <th scope="header">Percentile</th>
+                    <th scope="header">Mean</th>
+                    <th scope="header">Variance</th>
+                    <th scope="header">Max</th>
+                    <th scope="header">Min</th>
+                </tr>
+                <tr>
+                    <td>C/D box</td>
+                    <td>4877</td>
+                    <td>475</td>
+                    <td>6</td>
+                    <td>4</td>
+                    <td>2.5589</td>
+                    <td>7</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>H/ACA box</td>
+                    <td>2813</td>
+                    <td>283</td>
+                    <td>22</td>
+                    <td>5</td>
+                    <td>27884.03</td>
+                    <td>76</td>
+                    <td>2</td>
+                </tr>
+            </table>
+            <p class="paragraph">
+                The calculation metrics are balanced through the arithmetic mean and the number of expected sequences
+                per family so that the machine learning algorithm consumes them in
+                equivalent grouping. Thus, when presetting this condition, 1553 sequences remained
+                of C/D box and 1013 H/ACA box sequences to compose the positive dataset.
+            </p>
+            <p class="paragraph">
+                According to the pre-established condition in the negative dataset, 1500 randomly generated sequences
+                were obtained and
+                1666 sequences made up of the mixture of RNase P, 5S rRNA and tRNA, totaling 3166
+                sequences in the negative dataset.
+            </p>
+            <h1 id="step3">Step 3: Extraction</h1>
+            <p class="paragraph">
+                The feature extraction methods used are mathematical in nature as
+                the numerical mapping with the Fourier transformations (Real, Z-curve), the entropies of
+                Shannon and Tsallis and complex networks. All feature extraction algorithms
+                can be extracted from <a href="https://github.com/Bonidia/FeatureExtraction_BiologicalSequences"
+                    target="_blank">BONIDIA
+                    et. al. (2021)</a>
+            </p>
+            <p class="paragraph">
+                The creation of scripts in the extraction stage was essential for automating activities
+                repetitive tasks in terms of efficiency and speed as it facilitated the adjustment of parameters for the
+                extraction algorithms, the organization of data input and output into files (mainly
+                to those that contained the fasta format in their extension) and the parallel execution of the
+                algorithms
+                to speed up the data extraction and grouping phase.
+            </p>
+            <pre>
+                <code class="language-bash line-numbers">
+                    # A bash script that verify what extraction method the user
+                    # passes as argument.
+                    extract() {
+                        local group=$1
+                        local method=$2
+                        local fourier_number=$3
+                        local entropy_choice=$3
+                        local algorithm
+                        local output_directory
+                        case $method in
+                        "complex")
+                            if [ $group = 'cdbox' ]; then
+                                for file in $CD_BOX_DIRECTORY; do
+                                    archive=$(echo -e $file | cut -f3 -d "/" | cut -f1 -d ".")
+                                    python3 $COMPLEX_ALGORITHM -i $file -o $OUTPUT_CDBOX_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l cdbox -k 3 -t 10 1>/dev/null
+                                    echo -e "Negative sample\t$group\t$method\t$archive.csv\n"
+                                done
+                            elif [ $group = 'hacabox' ]; then
+                                for file in $HACA_BOX_DIRECTORY; do
+                                    archive=$(echo -e $file | cut -f3 -d "/" | cut -f1 -d ".")
+                                    python3 $COMPLEX_ALGORITHM -i $file -o $OUTPUT_HACABOX_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l hacabox -k 3 -t 10 1>/dev/null
+                                    echo -e "Extracting...\t$group\t$method\t$archive.csv"
+                                done
+                            elif [ $group = 'negative' ]; then
+                                archive="negative_complex"
+                                python3 $COMPLEX_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_CDBOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l negative -k 3 -t 10 1>/dev/null
+                                python3 $COMPLEX_ALGORITHM -i $NEGATIVE_FILE -o $OUTPUT_HACABOX_NEGATIVE_EXTRACT_COMPLEX_DIRECTORY/$archive.csv -l negative -k 3 -t 10 1>/dev/null
+                                echo -e "$group\t$method\t$archive.csv"
+                            elif [ $group = 'real' ]; then
+                                for file in $REAL_DATA_DIRECTORY; do
+                                    archive=$(echo -e $file | cut -f3 -d "/" | cut -f1 -d ".")
+                                    python3 $COMPLEX_ALGORITHM -i $file -o $OUTPUT_REAL_DATA_COMPLEX_DIRECTORY/$archive.csv -l real -k 3 -t 10 1>/dev/null
+                                    echo -e "Extracting...\t$group\t$method\t$archive.csv"
+                                done
+                            else
+                                echo -e "Unrecognized group of snoRNAs."
+                                exit 0
+                            fi
+                            ;;
+                        # ...
+                    }
+                </code>
+            </pre>
+            <p class="paragraph">
+                The extraction returned a file in csv format covering the columns with the characteristics found in each
+                family by the algorithms. It is worth noting that these data are purely
+                continuous, therefore, it is possible for there to be infinite values ​​that are not numeric. It is
+                important to have
+                the awareness of this property of the data because later there will be a treatment around these
+                values ​​in the classifier pre-execution stage.
+            </p>
+            <h1 id="step4">Step 4: Training and Testing</h1>
+            <p class="paragraph">
+                The training and testing set was divided such that 70% of the original set was
+                for training while the remaining 30% remained for the test set and these values ​​were
+                passed to the <b>train_test_split</b> function provided by the <i>sklearn.model_selection</i> package in
+                Python.
+                In training without cross-validation, there is a parameter called <b>test_size</b> responsible for
+                establish the number of iterations that the training algorithm will perform so that in the end it can
+                evaluate which of these output models had the best benefit. On the other hand, in training
+                with cross-validation, the <b>n_estimators</b> parameter designates the proportion of models in a
+                single execution of the algorithm in order to obtain the best estimator among the evaluated portion
+                supported by evaluation metrics.
+            </p>
+            <p class="paragraph">The Random Forest classification algorithm was chosen because it was a
+                promising algorithm in literary review whose generalization was tested
+                in different classification tasks for long non-coding RNAs (lncRNAs) from
+                unbalanced data.</p>
+            <pre>
+                <code class="language-python line-numbers">
+                    class snoRNAs():
+                        # ...
+                        def train(self):
+                            for key, value in self.extraction_methods.items():
+                                for _ in range(self.test_counter):
+                                    initial_time = time.time()
+                                    X, y = value.get_XY()
+                                    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+                                    clf = RandomForestClassifier(max_depth=10)
+                                    clf.fit(X_train, y_train)
+                                    predictions = clf.predict(X_test)
+                                    self.evaluation.append((value.group, value.method, clf, f1_score(y_test, predictions), y_test))
+                                    plot_graph(value, y_test, predictions, self.cm_arr)
+                                    self.f1_scores.append(str(f1_score(y_test, predictions) * 100.0) + "%")
+                                    self.fbeta_scores.append(
+                                        str(fbeta_score(y_test, predictions, beta=0.5) * 100.0) + "%"
+                                    )
+                                    self.recalls.append(str(recall_score(y_test, predictions) * 100.0) + "%")
+                                    self.precisions.append(
+                                        str(precision_score(y_test, predictions, average="macro") * 100.0) + "%"
+                                    )
+                                    self.auc.append(str(roc_auc_score(y_test, predictions) * 100.0) + "%")
+                                    self.labels.append(value.group)
+                                    self.methods.append(key)
+                                    end_time = time.time()
+                                    self.measure_time.append(str(end_time - initial_time) + "s")
+                                    group, method, clf, y_test = self._evaluate_model(self.evaluation)
+                                    model_file = f"{group}_{method}_{self.datetime_str}.pickle"
+                                    save_model(model_file, clf)
+                                    self.test(y_test, model_file, group, method)
+                                    self.evaluation.clear()
+                                    deviation = dp(self.cm_arr)
+                                    avg = average(self.cm_arr)
+                                    self.standard_deviations.append(
+                                        {"class": value.group, "method": value.method, "deviation": deviation}
+                                    )
+                                    self.averages.append({"class": value.group, "method": value.method, "average": avg})
+                        def test(self, y_test, model_file, group, method):
+                            path = f'./models/{model_file}'
+                            model = load_model(path)
+                            real_valid = CSVData(group, method)
+                            out_file = f"./output/validation/validation_{self.datetime_str}.csv"
+                            content = ""
+                            if not path.isfile(out_file):
+                                content = f'classe,metodo,organismo,positivos,negativos,total,modelo,eficiencia\n'
+                                f = open(out_file, "w")
+                            else:
+                                f = open(out_file, "a+")
+                                for org in self.list_organisms_real_data:
+                                    X = real_valid.get_X(org)
+                                    prediction = model.predict(X)
+                                    pos = 0
+                                    neg = 0
+                                    total = 0
+                                    for i in prediction:
+                                        if i == 1:
+                                            pos += 1
+                                        else:
+                                            neg += 1
+                                        total = pos + neg
+                                        content += f'{group},{method},{org},{pos},{neg},{total},{model_file},{pos/total}\n'
+                                    f.write(content)
+                                    f.close()
+                </code>
+            </pre>
+            <p class="paragraph">
+                The tuning hyper-parameters used in Random Forest for each extraction method
+                characteristics are shown in the table below:
+            </p>
+            <table>
+                <caption>
+                    Random Forest Hyperparameters without using the GridSearchCV function.
+                </caption>
+                <tr>
+                    <th scope="header">Parameters</th>
+                    <th scope="header">Value</th>
+                </tr>
+                <tr>
+                    <td>"bootstrap"</td>
+                    <td>true</td>
+                </tr>
+                <tr>
+                    <td>"ccp_alpha"</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>"class_weight"</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>"criterion"</td>
+                    <td>gini</td>
+                </tr>
+                <tr>
+                    <td>"max_depth"</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>"max_features"</td>
+                    <td>sqrt</td>
+                </tr>
+                <tr>
+                    <td>"max_leaf_nodes"</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>"max_samples"</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>"min_impurity_decrease"</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>"min_samples_leaf"</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>"min_samples_split"</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>"min_weight_fraction_leaf"</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>"n_estimators"</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>"n_jobs"</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>"oob_score"</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td>"random_state"</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>"verbose"</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>"warm_start"</td>
+                    <td>false</td>
+                </tr>
+            </table>
+            <p class="paragraph">To automate this hyperparameter tuning process, the function
+                GridSearchCV from the sklearn module in Python. The primary objective of GridSearchCV is to create
+                of parameter combinations from an exhaustive search over specified values ​for
+                an estimator (score, that is, evaluation metric), to later evaluate them.
+                The estimator parameters used to apply these methods are optimized and refined
+                by cross-validation over a grid of parameters.</p>
+            <pre>
+                <code class="language-python line-numbers">
+                    class snoRNAs():
+                        # ...
+                        def train_with_cv(self):
+                            space = dict()
+                            space['n_estimators'] = [10, 100, 500]
+                            for key, value in self.extraction_methods.items():
+                                initial_time = time.time()
+                                X, y = value.get_XY()
+                                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+                                model = RandomForestClassifier(max_depth=10)
+                                clf_f1 = GridSearchCV(model, space, scoring="f1", refit=True)
+                                clf_precision = GridSearchCV(model, space, scoring="precision", refit=True)
+                                clf_recall = GridSearchCV(model, space, scoring="recall", refit=True)
+                                clf_accuracy = GridSearchCV(model, space, scoring="accuracy", refit=True)
+                                clf_auc = GridSearchCV(model, space, scoring="roc_auc", refit=True)
+                                result_f1 = clf_f1.fit(X_train, y_train)
+                                result_precision = clf_precision.fit(X_train, y_train)
+                                result_recall = clf_recall.fit(X_train, y_train)
+                                result_accuracy = clf_accuracy.fit(X_train, y_train)
+                                result_auc = clf_auc.fit(X_train, y_train)
+                                self.test_with_cv(result_f1.best_estimator_, result_f1.best_score_, "f1", value.group, value.method)
+                                self.test_with_cv(result_precision.best_estimator_, result_precision.best_score_, "precision", value.group, value.method)
+                                self.test_with_cv(result_recall.best_estimator_, result_recall.best_score_, "recall", value.group, value.method)
+                                self.test_with_cv(result_accuracy.best_estimator_, result_accuracy.best_score_, "accuracy", value.group, value.method)
+                                self.test_with_cv(result_auc.best_estimator_, result_auc.best_score_, "auc_roc", value.group, value.method)
+                                predictions = clf_f1.predict(X_test)
+                                plot_graph(value, y_test, predictions, self.cm_arr)
+                                self.f1_scores.append(str(f1_score(y_test, predictions) * 100.0) + "%")
+                                self.fbeta_scores.append(
+                                        str(fbeta_score(y_test, predictions, beta=0.5) * 100.0) + "%"
+                                    )
+                                self.recalls.append(str(recall_score(y_test, predictions) * 100.0) + "%")
+                                self.precisions.append(
+                                        str(precision_score(y_test, predictions, average="macro") * 100.0) + "%"
+                                    )
+                                self.auc.append(str(roc_auc_score(y_test, predictions) * 100.0) + "%")
+                                self.labels.append(value.group)
+                                self.methods.append(key)
+                                end_time = time.time()
+                                self.measure_time.append(str(end_time - initial_time) + "s")
+                        def test_with_cv(self, best_model, best_score, score_type, group, method):
+                            real_valid = CSVData(group, method)
+                            out_file = f"./output/validation/{score_type}_{self.datetime_str}.csv"
+                            content = ""
+                            if not path.isfile(out_file):
+                                content = f'classe,metodo,organismo,positivos,negativos,total,eficiencia,{score_type}\n'
+                                f = open(out_file, "w")
+                            else:
+                                f = open(out_file, "a+")
+                            for org in self.list_organisms_real_data:
+                                X = real_valid.get_X(org)
+                                prediction = best_model.predict(X)
+                                pos = 0
+                                neg = 0
+                                total = 0
+                                for i in prediction:
+                                    if i == 1:
+                                        pos += 1
+                                    else:
+                                        neg += 1
+                                total = pos + neg
+                                content += f'{group},{method},{org},{pos},{neg},{total},{pos/total},{best_score}\n'
+                            f.write(content)
+                            f.close()
+                </code>
+            </pre>
+            <p class="paragraph">
+                Similar to Random Forest's default hyperparameters, GridSearchCV
+                applied the following parameters as shown in the table below:
+            </p>
+            <table>
+                <caption>
+                    Random Forest hyperparameters after using the GridSearchCV function.
+                </caption>
+                <tr>
+                    <th scope="header">Parameters</th>
+                    <th scope="header">Value</th>
+                </tr>
+                <tr>
+                    <td>"mean_fit_time" </td>
+                    <td>array([0.03470263, 0.34155726, 1.70107441])</td>
+                </tr>
+                <tr>
+                    <td>"std_fit_time"</td>
+                    <td>array([0.00415981, 0.02498759, 0.14168099])</td>
+                </tr>
+                <tr>
+                    <td>"mean_score_time"</td>
+                    <td>array([0.00217724, 0.01229601, 0.04444399])
+                    </td>
+                </tr>
+                <tr>
+                    <td>"std_score_time"</td>
+                    <td>array([0.0001098 , 0.00510206, 0.01017052])</td>
+                </tr>
+                <tr>
+                    <td>"param_n_estimators"</td>
+                    <td>masked_array(data=[10, 100, 500])</td>
+                </tr>
+                <tr>
+                    <td>"mask"</td>
+                    <td>array([False, False, False])</td>
+                </tr>
+                <tr>
+                    <td>"params"</td>
+                    <td>array([’n_estimators’: 10, ’n_estimators’: 100, ’n_estimators’: 500])</td>
+                </tr>
+                <tr>
+                    <td>"split0_test_score"</td>
+                    <td>array([0.98817967, 0.99061033, 0.99061033])</td>
+                </tr>
+                <tr>
+                    <td>"split1_test_score"</td>
+                    <td>array([0.98337292, 0.98329356, 0.98337292])</td>
+                </tr>
+                <tr>
+                    <td>"split2_test_score"</td>
+                    <td>array([0.98584906, 0.98352941, 0.98352941])</td>
+                </tr>
+                <tr>
+                    <td>"split3_test_score"</td>
+                    <td>array([0.98345154, 0.98113208, 0.98113208])
+                    </td>
+                </tr>
+                <tr>
+                    <td>"split4_test_score"</td>
+                    <td>array([0.98578199, 0.98584906, 0.98578199])</td>
+                </tr>
+                <tr>
+                    <td>"mean_test_score"</td>
+                    <td>array([0.98532703, 0.98488289, 0.98488535])</td>
+                </tr>
+                <tr>
+                    <td>"std_test_score"</td>
+                    <td>array([0.00178623, 0.00322997, 0.00321846])</td>
+                </tr>
+                <tr>
+                    <td>"rank_test_score"</td>
+                    <td>array([1, 3, 2])</td>
+                </tr>
+            </table>
+            <h1 id="step5">Step 5: Evalutation</h1><br><br>
+            <h2>
+                Case studies: classification of snoRNAs in a dataset found in
+                literature</h2>
+            <p class="paragraph">
+                In the case studies, the operations were divided into <b>N executions</b> and for each execution
+                evaluation metrics will be checked so that in the testing stage the
+                best model found for each extraction method.
+            </p>
+            <p class="paragraph">
+                Training validations involve any validation the model needs
+                be retrained. Typically, this includes testing different models during a single pipeline.
+                training. These validations are performed in this training/evaluation phase of model development, and
+                are often kept as experimentation code, not doing anything else.
+                part of the final product of the classifier.
+            </p>
+            <p class="paragraph">
+                The training pipeline starts when loading the predictive model with the best accuracy
+                on the <b>f1_score</b> score by feature extraction method, two case studies are then done
+                around the real world dataset like the genome of vertebrates and invertebrates such
+                such as chickens, flies belonging to the <i>Drosophilidae family</i>, <i>Nematodes from the
+                    Rhabditidae family</i>,
+                <i>protozoa of the Trypanosomatidae family such as Leishmania</i>, <i>Homo Sapiens</i> and
+                <i>Platypuses</i>:
+            </p>
+            <ul class="unordered-list">
+                <li>Case Study 1: Add the real dataset according to its respective
+                    class of snoRNAs from the genomes found and use the model to predict this
+                    set.</li>
+                <li>Case Study 2: Compare the results obtained by predicting the set of
+                    training by evaluating classifier behavior with references from others
+                    articles that predicted the two classes of snoRNAs (C/D box and H/ACA box)</li>
+            </ul>
+            <p class="paragraph">
+                Before estimating the predictive model, in case studies in which a
+                cross validation, the training run divides the set into training and testing data
+                in different parts of the model in a way that validates the performance of each model on a given
+                interval, ensuring the generalization of the data presented among the best parameters
+                found.
+            </p>
+            <p class="paragraph">
+                The calculation of hits and errors is done using the confusion matrix that shows the frequencies
+                classification for each class of snoRNAs. The matrix leads us to a brief analysis of the
+                estimates even if it has not been included in an evaluation metric.
+            </p>
+            <figure>
+                <img width="500px" src="img/entropy_shannon_cd_box.png" alt="Confusion Matrix of Shannon's Entropy">
+                <figcaption>Confusion matrix in the training stage using the Shannon Entropy method
+                    for the C/D box class of snoRNAs.</figcaption>
+            </figure>
+            <p class="paragraph">
+                Which can be interpreted and created by code as follow:
+            </p>
+            <pre>
+                <code class="language-python line-numbers">
+                    def get_cm(obj, y_test, predictions, tp_arr):
+                        cm = confusion_matrix(y_test, predictions)
+                        tn, fp, fn, tp = cm.ravel()
+                        tp_arr.append(
+                            {
+                                "class": obj.group,
+                                "method": obj.method,
+                                "tn": tn,
+                                "fp": fp,
+                                "fn": fn,
+                                "tp": tp,
+                            }
+                        )
+                        print(f"{COLORS.BOLD}[DEBUG] {COLORS.SUCCESS}{obj.group}\t{obj.method}\t{cm.ravel()}{COLORS.ENDC}")
+                        return cm
+                </code>
+            </pre>
+        </section>
+        <section id="evaluation" hidden>
+            <h1 id="statistics">Statistics</h1>
+            <p class="paragraph">To identify H/ACA box and C/D snoRNAs, two datasets were constructed
+                different for each class of snoRNAs. For the learning phases, a set of
+                data as training and the other for testing using the hold-out method of separation and
+                cross validation respectively. Each training was repeated 10 times, and the calculation of
+                metrics, standard deviation and mean are displayed in the tables for each snoRNA class and
+                extraction method used. It is extremely important to know that these metrics were extracted
+                of the best estimators, that is, the best model found based on the f1_score in
+                around the training involved.</p>
+            <table>
+                <caption>
+                    Test phase results for C/D box snoRNAs: F-score (FSC), Accuracy (Acc),
+                    Recall (REC), Average Precision (PRE), Area under the ROC curve (AUC). The mean and standard
+                    deviation total of each metric.
+                </caption>
+                <tr>
+                    <th scope="header">snoRNAs Class</th>
+                    <th scope="header">Extraction Method</th>
+                    <th scope="header">FSC (%)</th>
+                    <th scope="header">ACC (%)</th>
+                    <th scope="header">REC (%)</th>
+                    <th scope="header">PRE (%)</th>
+                    <th scope="header">AUC (%)</th>
+                </tr>
+                <tr>
+                    <td>C/D box</td>
+                    <td>Fourier Real</td>
+                    <td>98.25</td>
+                    <td>98.81</td>
+                    <td>97.26</td>
+                    <td>99.18</td>
+                    <td>99.85</td>
+                </tr>
+                <tr>
+                    <td>C/D box</td>
+                    <td>Fourier Z-Curve</td>
+                    <td>98.81</td>
+                    <td>99.15</td>
+                    <td>98.27</td>
+                    <td>99.35</td>
+                    <td>99.96</td>
+                </tr>
+                <tr>
+                    <td>C/D box</td>
+                    <td>Shannon's Entropy</td>
+                    <td>79.83</td>
+                    <td>87.37</td>
+                    <td>76.47</td>
+                    <td>84.01</td>
+                    <td>93.71</td>
+                </tr>
+                <tr>
+                    <td>C/D box</td>
+                    <td>Tsallis's Entropy</td>
+                    <td>79.34</td>
+                    <td>86.58</td>
+                    <td>78.34</td>
+                    <td>80.09</td>
+                    <td>93.35</td>
+                </tr>
+                <tr>
+                    <td>C/D box</td>
+                    <td>Complex Networks</td>
+                    <td>99.72</td>
+                    <td>99.79</td>
+                    <td>99.53</td>
+                    <td>99.94</td>
+                    <td>99.98</td>
+                </tr>
+                <tr>
+                    <td>Mean (%)</td>
+                    <td></td>
+                    <td>90.70</td>
+                    <td>94.35</td>
+                    <td>89.97</td>
+                    <td>92.51</td>
+                    <td>97.37</td>
+                </tr>
+                <tr>
+                    <td>Standard Deviation (%)</td>
+                    <td></td>
+                    <td>10.60</td>
+                    <td>6.73</td>
+                    <td>11.52</td>
+                    <td>9.65</td>
+                    <td>2.72</td>
+                </tr>
+            </table>
+            <table>
+                <caption>
+                    Test phase results for H/ACA box snoRNAs: F-score (FSC), Accuracy
+                    (Acc), Recall (REC), Average Precision (PRE), Area under the ROC curve (AUC).
+                </caption>
+                <tr>
+                    <th scope="header">snoRNAs Class</th>
+                    <th scope="header">Extraction Method</th>
+                    <th scope="header">FSC (%)</th>
+                    <th scope="header">ACC (%)</th>
+                    <th scope="header">REC (%)</th>
+                    <th scope="header">PRE (%)</th>
+                    <th scope="header">AUC (%)</th>
+                </tr>
+                <tr>
+                    <td>H/ACA box</td>
+                    <td>Fourier Real</td>
+                    <td>98.25</td>
+                    <td>98.81</td>
+                    <td>97.26</td>
+                    <td>99.18</td>
+                    <td>99.85</td>
+                </tr>
+                <tr>
+                    <td>H/ACA box</td>
+                    <td>Fourier Z-Curve</td>
+                    <td>98.81</td>
+                    <td>99.15</td>
+                    <td>98.27</td>
+                    <td>99.35</td>
+                    <td>99.96</td>
+                </tr>
+                <tr>
+                    <td>H/ACA box</td>
+                    <td>Shannon's Entropy</td>
+                    <td>79.83</td>
+                    <td>87.37</td>
+                    <td>76.47</td>
+                    <td>84.01</td>
+                    <td>93.71</td>
+                </tr>
+                <tr>
+                    <td>H/ACA box</td>
+                    <td>Tsallis's Entropy</td>
+                    <td>79.34</td>
+                    <td>86.58</td>
+                    <td>78.34</td>
+                    <td>80.09</td>
+                    <td>93.35</td>
+                </tr>
+                <tr>
+                    <td>H/ACA box</td>
+                    <td>Complex Networks</td>
+                    <td>99.72</td>
+                    <td>99.79</td>
+                    <td>99.53</td>
+                    <td>99.94</td>
+                    <td>99.98</td>
+                </tr>
+                <tr>
+                    <td>Mean (%)</td>
+                    <td></td>
+                    <td>90.70</td>
+                    <td>94.35</td>
+                    <td>89.97</td>
+                    <td>92.51</td>
+                    <td>97.37</td>
+                </tr>
+                <tr>
+                    <td>Standard Deviation (%)</td>
+                    <td></td>
+                    <td>10.60</td>
+                    <td>6.73</td>
+                    <td>11.52</td>
+                    <td>9.65</td>
+                    <td>2.72</td>
+                </tr>
+            </table>
+            <h1 id="study-case">Study Case</h1>
+            <p class="paragraph">To validate the Random Forest classifier using mathematical methods, we used
+                the concepts of cross validation to separate each k-fold or k-part where the value of k = 5.
+                For each fold, both sets were separated and the desired metrics (F1, AUC,
+                PRE, REC, ACC). According to the best estimator, the model was chosen and separated for
+                that is evaluated on a real dataset with predicted vertebrate sequences and
+                invertebrates, some of these organisms have been partially confirmed in experiments
+                in humans, nematodes, drosophilids, platypuses, chickens and leishmania.</p>
+            <p class="paragraph">
+                Comparing the results obtained in <a target="_blank"
+                    href="http://icts.unb.br/jspui/handle/10482/32111">ARAUJO
+                    (2017)</a> by snoReport 2.0 taking into account
+                counts the validation sets of the cited articles, tables 5.10 show how effective the
+                predictor in classifying snoRNAs into C/D box or H/ACA box, using as a comparative basis the
+                work mentioned below.
+            </p>
+            <table>
+                <caption>
+                    Results obtained in the work of <a target="_blank"
+                        href="http://icts.unb.br/jspui/handle/10482/32111">ARAUJO
+                        (2017)</a> using the snoReport 2.0 software on the classes of snoRNAs.
+                </caption>
+                <tr>
+                    <th scope="header">Set</th>
+                    <th scope="header">C/D</th>
+                    <th scope="header">H/ACA</th>
+                </tr>
+                <tr>
+                    <td><i>Homo Sapiens</i></td>
+                    <td>(21/21)</td>
+                    <td>(28/32)</td>
+                </tr>
+                <tr>
+                    <td><i>Platypus</i></td>
+                    <td>(42/144)</td>
+                    <td>(45/73)</td>
+                </tr>
+                <tr>
+                    <td><i>Gallus gallus</i></td>
+                    <td>(112/132)</td>
+                    <td>(66/69)</td>
+                </tr>
+                <tr>
+                    <td><i>Nematodes</i></td>
+                    <td>(32/108)</td>
+                    <td>(46/60)</td>
+                </tr>
+                <tr>
+                    <td><i>Drosophila</i></td>
+                    <td>(2/63)</td>
+                    <td>(39/56)</td>
+                </tr>
+                <tr>
+                    <td><i>Leishmania</i></td>
+                    <td>(0/62)</td>
+                    <td>(0/37)</td>
+                </tr>
+            </table>
+            <div class="container-flex-between">
+                <table>
+                    <caption>
+                        Real Fourier Method.
+                    </caption>
+                    <tr>
+                        <th scope="header">Set</th>
+                        <th scope="header">C/D</th>
+                        <th scope="header">H/ACA</th>
+                    </tr>
+                    <tr>
+                        <td><i>Homo Sapiens</i></td>
+                        <td>(21/21)</td>
+                        <td>(28/33)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Platypus</i></td>
+                        <td>(143/144)</td>
+                        <td>(69/73)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Gallus gallus</i></td>
+                        <td>(124/132)</td>
+                        <td>(67/69)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Nematodes</i></td>
+                        <td>(106/108)</td>
+                        <td>(60/60)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Drosophila</i></td>
+                        <td>(63/63)</td>
+                        <td>(55/56)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Leishmania</i></td>
+                        <td>(54/62)</td>
+                        <td>(36/37)</td>
+                    </tr>
+                </table>
+                <table>
+                    <caption>
+                        Fourier Z-Curve Method.
+                    </caption>
+                    <tr>
+                        <th scope="header">Set</th>
+                        <th scope="header">C/D</th>
+                        <th scope="header">H/ACA</th>
+                    </tr>
+                    <tr>
+                        <td><i>Homo Sapiens</i></td>
+                        <td>(21/21)</td>
+                        <td>(33/33)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Platypus</i></td>
+                        <td>(144/144)</td>
+                        <td>(72/73)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Gallus gallus</i></td>
+                        <td>(125/132)</td>
+                        <td>(69/69)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Nematodes</i></td>
+                        <td>(106/108)</td>
+                        <td>(59/60)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Drosophila</i></td>
+                        <td>(63/63)</td>
+                        <td>(55/56)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Leishmania</i></td>
+                        <td>(61/62)</td>
+                        <td>(36/37)</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="container-flex-between">
+                <table>
+                    <caption>
+                        Shannon Entropy Method.
+                    </caption>
+                    <tr>
+                        <th scope="header">Set</th>
+                        <th scope="header">C/D</th>
+                        <th scope="header">H/ACA</th>
+                    </tr>
+                    <tr>
+                        <td><i>Homo Sapiens</i></td>
+                        <td>(21/21)</td>
+                        <td>(18/33)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Platypus</i></td>
+                        <td>(128/144)</td>
+                        <td>(30/73)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Gallus gallus</i></td>
+                        <td>(109/132)</td>
+                        <td>(24/69)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Nematodes</i></td>
+                        <td>(73/108)</td>
+                        <td>(13/60)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Drosophila</i></td>
+                        <td>(46/63)</td>
+                        <td>(8/56)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Leishmania</i></td>
+                        <td>(45/62)</td>
+                        <td>(17/37)</td>
+                    </tr>
+                </table>
+                <table>
+                    <caption>
+                        Tsallis Entropy Method.
+                    </caption>
+                    <tr>
+                        <th scope="header">Set</th>
+                        <th scope="header">C/D</th>
+                        <th scope="header">H/ACA</th>
+                    </tr>
+                    <tr>
+                        <td><i>Homo Sapiens</i></td>
+                        <td>(19/21)</td>
+                        <td>(27/33)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Platypus</i></td>
+                        <td>(127/144)</td>
+                        <td>(52/73)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Gallus gallus</i></td>
+                        <td>(114/132)</td>
+                        <td>(24/69)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Nematodes</i></td>
+                        <td>(83/108)</td>
+                        <td>(17/60)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Drosophila</i></td>
+                        <td>(49/63)</td>
+                        <td>(30/56)</td>
+                    </tr>
+                    <tr>
+                        <td><i>Leishmania</i></td>
+                        <td>(54/62)</td>
+                        <td>(21/37)</td>
+                    </tr>
+                </table>
+            </div>
+            <table>
+                <caption>
+                    Complex Networks Method.
+                </caption>
+                <tr>
+                    <th scope="header">Set</th>
+                    <th scope="header">C/D</th>
+                    <th scope="header">H/ACA</th>
+                </tr>
+                <tr>
+                    <td><i>Homo Sapiens</i></td>
+                    <td>(21/21)</td>
+                    <td>(33/33)</td>
+                </tr>
+                <tr>
+                    <td><i>Platypus</i></td>
+                    <td>(144/144)</td>
+                    <td>(73/73)</td>
+                </tr>
+                <tr>
+                    <td><i>Gallus gallus</i></td>
+                    <td>(127/132)</td>
+                    <td>(69/69)</td>
+                </tr>
+                <tr>
+                    <td><i>Nematodes</i></td>
+                    <td>(107/108)</td>
+                    <td>(60/60)</td>
+                </tr>
+                <tr>
+                    <td><i>Drosophila</i></td>
+                    <td>(62/63)</td>
+                    <td>(56/56)</td>
+                </tr>
+                <tr>
+                    <td><i>Leishmania</i></td>
+                    <td>(61/62)</td>
+                    <td>(37/37)</td>
+                </tr>
+            </table>
+            <p class="paragraph">Separately, in summary, the classifier was efficient in identifying the organisms
+                vertebrates and invertebrates from the validation set. Considering that the total number of sequences
+                of the snoRNAs C/D box class of vertebrate organisms is 297 and invertebrates is 233 and for the
+                of the snoRNAs class H/ACA box is 175 and 153 respectively, it is evident that the algorithms
+                Fourier and Complex Networks were considerably significant in the classification, having
+                an accuracy greater than 90% in both predictions of the two classes of snoRNAs. Even though the
+                Entropy methods were not as efficient, for the C/D box snoRNAs class they managed to have
+                an efficiency of around 80% accuracy.</p>
+            <p class="paragraph">
+                The following tables show the diagnosis of the number of sequences found by the feature extraction
+                method in vertebrate and invertebrate organisms in
+                comparison with the work of <a href="http://icts.unb.br/jspui/handle/10482/32111" target="_blank">ARAUJO
+                    (2017)</a>.
+            </p>
+            <table>
+                <caption>
+                    Number of sequences found using snoReport 2.0 in the research work of <a
+                        href="http://icts.unb.br/jspui/handle/10482/32111" target="_blank">ARAUJO
+                        (2017)</a>.
+                </caption>
+                <tr>
+                    <th scope="header">Tool</th>
+                    <th scope="header">C/D</th>
+                    <th scope="header">Accuracy (C/D)</th>
+                    <th scope="header">H/ACA</th>
+                    <th scope="header">Accuracy (H/ACA)</th>
+                </tr>
+                <tr>
+                    <td>snoReport 2.0 (vertebrate)</td>
+                    <td>175</td>
+                    <td>58.92</td>
+                    <td>139</td>
+                    <td>79.88</td>
+                </tr>
+                <tr>
+                    <td>snoReport 2.0 (invertebrate)</td>
+                    <td>34</td>
+                    <td>14.59</td>
+                    <td>85</td>
+                    <td>55.55</td>
+                </tr>
+            </table>
+            <div class="container-flex-between">
+                <table>
+                    <caption>
+                        Number of sequences found by feature extraction method in
+                        vertebrate organisms.
+                    </caption>
+                    <tr>
+                        <th scope="header">Method</th>
+                        <th scope="header">C/D</th>
+                        <th scope="header">Accuracy (C/D)</th>
+                        <th scope="header">H/ACA</th>
+                        <th scope="header">Accuracy (H/ACA)</th>
+                    </tr>
+                    <tr>
+                        <td>Real Fourier</td>
+                        <td>288</td>
+                        <td>96.96</td>
+                        <td>161</td>
+                        <td>96.56</td>
+                    </tr>
+                    <tr>
+                        <td>Z-Curve Fourier</td>
+                        <td>291</td>
+                        <td>97.97</td>
+                        <td>174</td>
+                        <td>99.14</td>
+                    </tr>
+                    <tr>
+                        <td>Shannon Entropy</td>
+                        <td>250</td>
+                        <td>84.17</td>
+                        <td>84</td>
+                        <td>67.38</td>
+                    </tr>
+                    <tr>
+                        <td>Tsallis Entropy</td>
+                        <td>255</td>
+                        <td>85.85</td>
+                        <td>128</td>
+                        <td>77.58</td>
+                    </tr>
+                    <tr>
+                        <td>Complex Networks</td>
+                        <td>292</td>
+                        <td>98.31</td>
+                        <td>175</td>
+                        <td>98.71</td>
+                    </tr>
+                </table>
+                <table>
+                    <caption>
+                        Number of sequences found by feature extraction method in
+                        invertebrate organisms.
+                    </caption>
+                    <tr>
+                        <th scope="header">Method</th>
+                        <th scope="header">C/D</th>
+                        <th scope="header">Accuracy (C/D)</th>
+                        <th scope="header">H/ACA</th>
+                        <th scope="header">Accuracy (H/ACA)</th>
+                    </tr>
+                    <tr>
+                        <td>Real Fourier</td>
+                        <td>225</td>
+                        <td>92.0</td>
+                        <td>150</td>
+                        <td>98.03</td>
+                    </tr>
+                    <tr>
+                        <td>Z-Curve Fourier</td>
+                        <td>231</td>
+                        <td>99.42</td>
+                        <td>150</td>
+                        <td>98.03</td>
+                    </tr>
+                    <tr>
+                        <td>Shannon Entropy</td>
+                        <td>157</td>
+                        <td>48.0</td>
+                        <td>65</td>
+                        <td>42.48</td>
+                    </tr>
+                    <tr>
+                        <td>Tsallis Entropy</td>
+                        <td>181</td>
+                        <td>73.14</td>
+                        <td>88</td>
+                        <td>57.51</td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td>Complex Networks</td>
+                        <td>230</td>
+                        <td>100.0</td>
+                        <td>152</td>
+                        <td>99.34</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+      </nav>
+        <button id="arrow">&uarr;</button>
+    </main>
+</body>
+<script src="scripts/index.js"></script>
+<script src="scripts/prism.js"></script>
+</html>
